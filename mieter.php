@@ -31,6 +31,6 @@ try {
 }
 
 ?>
-
+<a align="right" href = "neuerMieter.php">Neuen Mieter erfassen</a>
 </body>
 </html>
