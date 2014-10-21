@@ -5,6 +5,14 @@
 <title>Mietverwaltung 12-Familienhaus</title>
 </head>
 <body>
+    <header>
+        <div class="inner">
+            <a href = "mieter.php">Mieter</a>
+            <a href = "rechnungen.php">Rechnungen</a>
+            <a href = "abrechnung.php">Abrechnung</a>
+            <a href = "nebenabrechnungen.php">Heizkosten- und Nebenkostenabrechnung</a>
+        </div>
+    </header>
 <h1>Mieter</h1>
 <p class = "nav">
 	<a href = "mieter.php">Mieter</a>
