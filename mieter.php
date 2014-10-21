@@ -5,21 +5,14 @@
 <title>Mietverwaltung 12-Familienhaus</title>
 </head>
 <body>
-    <header>
-        <div class="inner">
-            <a href = "mieter.php">Mieter</a>
-            <a href = "rechnungen.php">Rechnungen</a>
-            <a href = "abrechnung.php">Abrechnung</a>
-            <a href = "nebenabrechnungen.php">Heizkosten- und Nebenkostenabrechnung</a>
-        </div>
-    </header>
-<h1>Mieter</h1>
-<p class = "nav">
-	<a href = "mieter.php">Mieter</a>
-	<a href = "rechnungen.php">Rechnungen</a>
-	<a href = "abrechnung.php">Abrechnung</a>
-	<a href = "nebenabrechnung.php">Heizkosten- und Nebenkostenabrechnung</a>
-</p>
+    <h1>Mieterspiegel</h1>
+    <ul>
+        <li><a class="aheader" href = "mieter.php">//Mieter</a></li>
+        <li><a class="aheader" href = "rechnungen.php">//Rechnungen</a></li>
+        <li><a class="aheader" href = "abrechnung.php">//Abrechnung</a></li>
+        <li><a class="aheader" href = "nebenabrechnungen.php">//Heizkosten- und Nebenkostenabrechnung</a></li>
+        <li id="line">&nbsp;</li>
+    </ul>
 
 <?php
 $user = 'u566874539_admin';
