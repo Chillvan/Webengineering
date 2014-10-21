@@ -1,6 +1,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="mycss.css" type="text/css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <title>Mietverwaltung 12-Familienhaus</title>
 </head>
 <body>
