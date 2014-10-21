@@ -1,8 +1,9 @@
 <html>
     <head>
+        <link rel="stylesheet" href="mycss.css" type="text/css">
         <title>Rechnungen</title>
     </head>
     <body>
-        Test Test Test @Basti tries toolbar
+
     </body>
 </html>
