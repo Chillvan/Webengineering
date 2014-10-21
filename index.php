@@ -4,21 +4,18 @@
     <title>Mietverwaltung 12-Familienhaus</title>
 </head>
 <body>
-    <header>
-        <div class="inner">
-            <a href = "mieter.php">Mieter</a>
-            <a href = "rechnungen.php">Rechnungen</a>
-            <a href = "abrechnung.php">Abrechnung</a>
-            <a href = "nebenabrechnung.php">Heizkosten- und Nebenkostenabrechnung</a>
-        </div>
-    </header>
-<h1>Hauptseite</h1><br/>
-<p class = "haupt">
-	<a href = "mieter.php">Mieter</a><br/>
-	<a href = "rechnungen.php">Rechnungen</a><br/>
-	<a href = "abrechnung.php">Abrechnung</a><br/>
-	<a href = "nebenabrechnung.php">Heizkosten- und Nebenkostenabrechnung</a><br/>
-</p>
-
+    <h1>Die Mietverwaltung</h1>
+    <ul>
+        <li><a class="aheader" href = "mieter.php">//Mieter</a></li>
+        <li><a class="aheader" href = "rechnungen.php">//Rechnungen</a></li>
+        <li><a class="aheader" href = "abrechnung.php">//Abrechnung</a></li>
+        <li><a class="aheader" href = "nebenabrechnungen.php">//Heizkosten- und Nebenkostenabrechnung</a></li>
+        <li id="line">&nbsp;</li>
+    </ul>
+    <div style="width:100%; background:#CCC;">
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>	
+	<p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
+	<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+    </div>
 </body>
 </html>
