@@ -22,7 +22,7 @@ try {
     foreach ($dbh->query('SELECT * from Mieterspiegel') as $row) {
     print_r("Mieternummer: ".$row['Mieternummer']." | Wohnungsnummer: ".$row['Wohnungsnummer'].
             " | Name: ".$row['Name']." | Vorname: ".$row['Vorname'].
-            " | Mietzins: ".$row['Mietzins']."%"." | Rechnungsadresse: ".$row['Rechnungsadresse'].
+            " | Mietzins: ".$row['Mietzins']." | Rechnungsadresse: ".$row['Rechnungsadresse'].
             " | Aktiv: ".$row['Aktiv']."<br/>");
    }
    $dbh = null;
