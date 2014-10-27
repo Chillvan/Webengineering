@@ -48,17 +48,6 @@
                           <input name="inputAktiv" value="1" type="checkbox">Aktiv
                           </label>
                       </div>
-<!--                <form method="post" action="neuerMieter.php">
-                Mieternummer: <input type="text" name="Mieternummer" value="test" disabled="1"/><br/>
-                Wohnungsnummer: <input type="text" name="Wohnungsnummer"/><br/>
-                Name: <input type="text" name="Name"/><br/>
-                Vorname: <input type="text" name="Vorname"/><br/>
-                Mietzins: <input type="text" name="Mietzins"/><br/>
-                Rechnungsadresse: <input type="text" name="Rechnungsadresse"/><br/>
-                Aktiv: <input type="checkbox" name="Aktiv" value="1"/><br/>
-                <input type="submit" value="Absenden"/>
-                <input type="reset" value="Löschen"/>
-                </form>-->
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
