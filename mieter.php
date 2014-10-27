@@ -18,7 +18,7 @@
                 <h4 class="modal-title">Neuer Mieter erfassen</h4>
               </div>
               <div class="modal-body">
-                  <form class="form" action="mieter.php" method="post">
+                  <form class="form" action="neuerMieter.php" method="post">
                       <div class="form-group">
                           <label for="inputMieternummer">Mieternummer</label>
                           <input type="number" class="form-control" name="inputMieternummer" placeholder="Mieternummer" disabled="1">
@@ -48,17 +48,6 @@
                           <input name="inputAktiv" value="1" type="checkbox">Aktiv
                           </label>
                       </div>
-<!--                <form method="post" action="neuerMieter.php">
-                Mieternummer: <input type="text" name="Mieternummer" value="test" disabled="1"/><br/>
-                Wohnungsnummer: <input type="text" name="Wohnungsnummer"/><br/>
-                Name: <input type="text" name="Name"/><br/>
-                Vorname: <input type="text" name="Vorname"/><br/>
-                Mietzins: <input type="text" name="Mietzins"/><br/>
-                Rechnungsadresse: <input type="text" name="Rechnungsadresse"/><br/>
-                Aktiv: <input type="checkbox" name="Aktiv" value="1"/><br/>
-                <input type="submit" value="Absenden"/>
-                <input type="reset" value="Löschen"/>
-                </form>-->
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -117,7 +106,7 @@
             
             try {
                 $dbh = new PDO('mysql:host=mysql.hostinger.de;dbname=u566874539_ftw', $user, $pass);
-                foreach ($dbh->query('SELECT * from Mieterspiegel') as $row) {                    
+                foreach ($dbh->query('SELECT * from Mieterspiegel ORDER BY Mieternummer ASC') as $row) {                    
 
                 print_r("<tr><td>".$row['Mieternummer']."</td><td>".$row['Wohnungsnummer'].
                         "</td><td>".$row['Name']."</td><td>".$row['Vorname'].
@@ -191,41 +180,3 @@
         <script src="js/bootstrap.min.js"></script>
     </body>
 </html>
-
-<?php
-include_once 'dbfunctions.php';
-
-if(!empty($_POST['inputWohnungsnummer']) && !empty($_POST['inputName']) && !empty($_POST['inputVorname']) 
-        && !empty($_POST['inputMietzins']) && !empty($_POST['inputRechnungsadresse']) && !empty($_POST['submit'])) {
-
-//    $user = 'u566874539_admin';
-//    $pass = 'WEFHNW14';
-//    
-//    try {
-//        $dbhb = new PDO('mysql:host=mysql.hostinger.de;dbname=u566874539_ftw', $user, $pass);
-//        
-//        $stmt = $dbhb->prepare("INSERT INTO Mieterspiegel(Wohnungsnummer,"
-//            . "Name,Vorname,Mietzins,Rechnungsadresse,Aktiv)"
-//            . " VALUES(:field1,:field2,:field3,:field4,:field5,:field6)");
-//        $stmt->execute(array(':field1' => $_POST['inputWohnungsnummer'],
-//            ':field2' => $_POST['inputName'], ':field3' => $_POST['inputVorname'], ':field4' => $_POST['inputMietzins'],
-//            ':field5' => $_POST['inputRechnungsadresse'], ':field6' => $_POST['inputAktiv']));
-//        $affected_rows = $stmt->rowCount();
-//        
-//        unset($dbhb);
-//        $dbhb = null;
-//        
-//    }
-//    catch (PDOException $e) {
-//        print "Error!: " . $e->getMessage() . "<br/>";
-//        die();
-//}
-    
-    dbfunctions::mietereintrag($_POST['inputWohnungsnummer'] ,$_POST['inputName'],$_POST['inputVorname'],
-            $_POST['inputMietzins'],$_POST['inputRechnungsadresse'],$_POST['inputAktiv']);
-        
-
-}
-?>
-
-
