@@ -23,7 +23,7 @@ echo '
     <head><title>Mieter erfassen</title></head>
     <body>
         <h2> Neuen Mieter erfassen </h2>
-        <form action="neuerMieter.php" method="post">
+        <form action="neuerMieter_old.php" method="post">
         Mieternummer: <input type="text" name="Mieternummer" value="'.$neueNummer.'" disabled="1"/><br/>
         Wohnungsnummer: <input type="text" name="Wohnungsnummer"/><br/>
         Name: <input type="text" name="Name"/><br/>
@@ -34,7 +34,7 @@ echo '
         <input type="submit" value="Absenden"/>
         <input type="reset" value="Löschen"/>
         </form>
-        <a href="mieter.php">Zurück zum Mieterspiegel</a>
+        <a href="mieter_old.php">Zurück zum Mieterspiegel</a>
         <br/>
         
     </body>   
@@ -43,16 +43,18 @@ echo '
 ';
 
 if(!empty($_POST['Wohnungsnummer']) && !empty($_POST['Name']) && !empty($_POST['Vorname']) 
-        && !empty($_POST['Mietzins']) && !empty($_POST['Rechnungsadresse']) && isset($_POST['submit'])) {
+        && !empty($_POST['Mietzins']) && !empty($_POST['Rechnungsadresse'])) {
         
         if (empty($_POST['Aktiv'])){
             $_POST['Aktiv'] = 0;
         }
         
+        echo 'supertest';
+        
         try {
-        $dbh = new PDO('mysql:host=mysql.hostinger.de;dbname=u566874539_ftw', $user, $pass);
+        $dbhb = new PDO('mysql:host=mysql.hostinger.de;dbname=u566874539_ftw', $user, $pass);
     
-        $stmt = $dbh->prepare("INSERT INTO Mieterspiegel(Wohnungsnummer,"
+        $stmt = $dbhb->prepare("INSERT INTO Mieterspiegel(Wohnungsnummer,"
             . "Name,Vorname,Mietzins,Rechnungsadresse,Aktiv)"
             . " VALUES(:field1,:field2,:field3,:field4,:field5,:field6)");
         $stmt->execute(array(':field1' => $_POST['Wohnungsnummer'],
@@ -62,7 +64,7 @@ if(!empty($_POST['Wohnungsnummer']) && !empty($_POST['Name']) && !empty($_POST['
         
         echo "Neuer Mieter ".$_POST['Name']." ".$_POST['Vorname']." wurde erfasst.<br/>";
         
-        unset($dbh);
+        unset($dbhb);
         } catch (PDOException $e) {
             print "Error!: " . $e->getMessage() . "<br/>";
             die();

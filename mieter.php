@@ -10,7 +10,7 @@
     <body>
     
         <!-- Modal neuer Mieter erfassen -->
-        <div id="login" class="modal fade" aria-hidden="true">
+        <div id="neuerMieter" class="modal fade" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -18,34 +18,34 @@
                 <h4 class="modal-title">Neuer Mieter erfassen</h4>
               </div>
               <div class="modal-body">
-                  <form class="form">
+                  <form class="form" action="mieter.php" method="post">
                       <div class="form-group">
                           <label for="inputMieternummer">Mieternummer</label>
-                          <input type="number" class="form-control" id="inputMieternummer" placeholder="Mieternummer" disabled="1">
+                          <input type="number" class="form-control" name="inputMieternummer" placeholder="Mieternummer" disabled="1">
                       </div>
                       <div class="form-group">
                           <label for="inputWohnungsnummer">Wohnungsnummer</label>
-                          <input type="number" class="form-control" id="inputWohnungsnummer" placeholder="Wohnungsnummer">
+                          <input type="number" class="form-control" name="inputWohnungsnummer" placeholder="Wohnungsnummer">
                       </div>
                       <div class="form-group">
                           <label for="inputName">Name</label>
-                          <input type="text" class="form-control" id="inputName" placeholder="Name">
+                          <input type="text" class="form-control" name="inputName" placeholder="Name">
                       </div>
                       <div class="form-group">
                           <label for="inputVorname">Vorname</label>
-                          <input type="text" class="form-control" id="inputVorname" placeholder="Vorname">
+                          <input type="text" class="form-control" name="inputVorname" placeholder="Vorname">
                       </div>
                       <div class="form-group">
                           <label for="inputMietzins">Mietzins</label>
-                          <input type="number" class="form-control" id="inputMietzins" placeholder="Mietzins">
+                          <input type="number" class="form-control" name="inputMietzins" placeholder="Mietzins">
                       </div>
                       <div class="form-group">
                           <label for="inputRechnungsadresse">Rechnungsadresse</label>
-                          <input type="text" class="form-control" id="inputRechnungsadresse" placeholder="Rechnungsadresse">
+                          <input type="text" class="form-control" name="inputRechnungsadresse" placeholder="Rechnungsadresse">
                       </div>
                       <div class="checkbox">
                           <label>
-                          <input type="checkbox">Aktiv
+                          <input name="inputAktiv" value="1" type="checkbox">Aktiv
                           </label>
                       </div>
 <!--                <form method="post" action="neuerMieter.php">
@@ -62,12 +62,12 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" value="send" id="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" value="send" name="submit" class="btn btn-primary">Submit</button>
               </div>
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-        
+
         
         <!-- Here goes our superb navbar -->
         <nav class="navbar navbar-inverse navbar-static-top no-margin" role="navigation">
@@ -144,7 +144,7 @@
                 </div>
                 <div class="col-md-5">
                     <p>
-                        <a data-target="#login" role="button" class="btn btn-default btn-lg" data-toggle="modal">Neuer Mieter erfassen</a>
+                        <a data-target="#neuerMieter" role="button" class="btn btn-default btn-lg" data-toggle="modal">Neuer Mieter erfassen</a>
                     </p>
                 </div>
                 <div class="col-md-5">
@@ -191,5 +191,41 @@
         <script src="js/bootstrap.min.js"></script>
     </body>
 </html>
+
+<?php
+include_once 'dbfunctions.php';
+
+if(!empty($_POST['inputWohnungsnummer']) && !empty($_POST['inputName']) && !empty($_POST['inputVorname']) 
+        && !empty($_POST['inputMietzins']) && !empty($_POST['inputRechnungsadresse']) && !empty($_POST['submit'])) {
+
+//    $user = 'u566874539_admin';
+//    $pass = 'WEFHNW14';
+//    
+//    try {
+//        $dbhb = new PDO('mysql:host=mysql.hostinger.de;dbname=u566874539_ftw', $user, $pass);
+//        
+//        $stmt = $dbhb->prepare("INSERT INTO Mieterspiegel(Wohnungsnummer,"
+//            . "Name,Vorname,Mietzins,Rechnungsadresse,Aktiv)"
+//            . " VALUES(:field1,:field2,:field3,:field4,:field5,:field6)");
+//        $stmt->execute(array(':field1' => $_POST['inputWohnungsnummer'],
+//            ':field2' => $_POST['inputName'], ':field3' => $_POST['inputVorname'], ':field4' => $_POST['inputMietzins'],
+//            ':field5' => $_POST['inputRechnungsadresse'], ':field6' => $_POST['inputAktiv']));
+//        $affected_rows = $stmt->rowCount();
+//        
+//        unset($dbhb);
+//        $dbhb = null;
+//        
+//    }
+//    catch (PDOException $e) {
+//        print "Error!: " . $e->getMessage() . "<br/>";
+//        die();
+//}
+    
+    dbfunctions::mietereintrag($_POST['inputWohnungsnummer'] ,$_POST['inputName'],$_POST['inputVorname'],
+            $_POST['inputMietzins'],$_POST['inputRechnungsadresse'],$_POST['inputAktiv']);
+        
+
+}
+?>
 
 
