@@ -12,9 +12,9 @@ class dbfunctions {
         }
         
         try {
-        $dbhf = new PDO('mysql:host=mysql.hostinger.de;dbname=u566874539_ftw', self::$user, self::$pass);
+        $dbhm = new PDO('mysql:host=mysql.hostinger.de;dbname=u566874539_ftw', self::$user, self::$pass);
         
-        $stmt = $dbhf->prepare("INSERT INTO Mieterspiegel(Wohnungsnummer,"
+        $stmt = $dbhm->prepare("INSERT INTO Mieterspiegel(Wohnungsnummer,"
             . "Name,Vorname,Mietzins,Rechnungsadresse,Aktiv)"
             . " VALUES(:field1,:field2,:field3,:field4,:field5,:field6)");
         $stmt->execute(array(':field1' => $wnr,
@@ -22,14 +22,42 @@ class dbfunctions {
             ':field5' => $radresse, ':field6' => $aktiv));
         $affected_rows = $stmt->rowCount();
         
-        unset($dbhf);
+        unset($dbhm);
         
+        }
+        catch (PDOException $e) {
+            print "Error!: " . $e->getMessage() . "<br/>";
+            die();
+            
+        }
     }
-    catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        echo 'DB Verbindung klappt nicht';
-        die();
-}
+    
+    public static function rechnungseintrag($wnr, $rtyp, $betrag, $datum, $komm, $bez){
+        
+        if ($bez == null){
+            $bez = 0;
+        }
+        
+        try {
+        $dbhr = new PDO('mysql:host=mysql.hostinger.de;dbname=u566874539_ftw', self::$user, self::$pass);
+        
+        $stmt = $dbhr->prepare("INSERT INTO Rechnungen(Wohnungsnummer,"
+            . "Rechnungstyp,Betrag,Datum,Kommentar,Bezahlt)"
+            . " VALUES(:field1,:field2,:field3,:field4,:field5,:field6)");
+        $stmt->execute(array(':field1' => $wnr,
+            ':field2' => $rtyp, ':field3' => $betrag, ':field4' => $datum,
+            ':field5' => $komm, ':field6' => $bez));
+        $affected_rows = $stmt->rowCount();
+        
+        unset($dbhr);
+        
+        }
+        catch (PDOException $e) {
+            print "Error!: " . $e->getMessage() . "<br/>";
+            die();
+            
+        }
+        
     }
     
 }

@@ -20,7 +20,7 @@
                     <h4 class="modal-title">Neue Rechnung erfassen</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form" action="rechnung.php.php" method="post">
+                    <form class="form" action="neueRechnung.php" method="post">
                         <div class="form-group">
                             <label for="inputRechnungsnummer">Rechnungsnummer</label>
                             <input type="number" class="form-control" name="inputRechnungsnummer" placeholder="Rechnungsnummer" disabled="1">
@@ -29,35 +29,43 @@
                             <label for="inputWohnungsnummer">Wohnungsnummer</label>
                             <input type="number" class="form-control" name="inputWohnungsnummer" placeholder="Wohnungsnummer">
                         </div>
-                        <div class="form-group">
+<!--                        <div class="form-group">
                             <label for="inputName">Name</label>
                             <input type="text" class="form-control" name="inputName" placeholder="Name">
                         </div>
                         <div class="form-group">
                             <label for="inputVorname">Vorname</label>
                             <input type="text" class="form-control" name="inputVorname" placeholder="Vorname">
-                        </div>
+                        </div>-->
                         <div class="form-group">
                             <div class="radio">
-                                <label><input type="radio" name="rechnung">Reperaturrechnung</label>
+                                <label><input type="radio" name="rechnung" value="Reparatur">Reparaturrechnung</label>
                             </div>
                             <div class="radio">
-                                <label><input type="radio" name="rechnung">Ölrechnung</label>
+                                <label><input type="radio" name="rechnung" value="Öl">Ölrechnung</label>
                             </div>
                             <div class="radio">
-                                <label><input type="radio" name="rechnung">Wasserrechnung</label>
+                                <label><input type="radio" name="rechnung" value="Wasser">Wasserrechnung</label>
                             </div>
                             <div class="radio">
-                                <label><input type="radio" name="rechnung">Stromrechnung</label>
+                                <label><input type="radio" name="rechnung" value="Strom">Stromrechnung</label>
                             </div>
                             <div class="radio">
-                                <label><input type="radio" name="rechnung">Hauswartsrechnung</label>
+                                <label><input type="radio" name="rechnung" value="Hauswart">Hauswartsrechnung</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputBetrag">Betrag</label>
                             <input type="number" class="form-control" name="inputBetrag" placeholder="Betrag">
-                      </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputDatum">Fälligkeitsdatum</label>
+                            <input type="date" class="form-control" name="inputDatum">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputKommentar">Kommentar</label>
+                            <input type="text" class="form-control" name="inputKommentar" placeholder="Kommentar">
+                        </div>
                       <div class="checkbox">
                           <label>
                           <input name="inputBezahlt" value="0" type="checkbox">Bezahlt
@@ -96,7 +104,7 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="index.html">Home</a></li>
                                 <li><a href="mieter.php">Mieter</a></li>
-                                <li><a href="rechnungen.php">Rechnungen</a></li>
+                                <li><a href="rechnung.php">Rechnungen</a></li>
                                 <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Abrechnungen <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
