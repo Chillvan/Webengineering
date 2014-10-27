@@ -144,7 +144,7 @@
                 </div>
                 <div class="col-md-5">
                     <p>
-                        <a data-target="#login" role="button" class="btn btn-default btn-lg" data-toggle="modal">Neuer Mieter erfassen</a>
+                        <a data-target="#" role="button" class="btn btn-default btn-lg" data-toggle="modal">Neuer Mieter erfassen</a>
                     </p>
                 </div>
                 <div class="col-md-5">
