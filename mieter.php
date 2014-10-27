@@ -122,9 +122,9 @@
                         "</td><td>".$row['Name']."</td><td>".$row['Vorname'].
                         "</td><td>".$row['Mietzins']."</td><td>".$row['Strasse'].
                         "</td><td>".$row['PLZ']."</td><td>".$row['Ort'].
-                        "</td><td>".$row['Aktiv']."</td></tr>");
+                        "</td><td>".$row['Aktiv']."</td><td><button type='button' class='btn btn-default btn-xs'>Extra small button</button></td></tr>");
                  }    
-
+                                  
                $dbh = null;
             } catch (PDOException $e) {
                print "Error!: " . $e->getMessage() . "<br/>";
