@@ -62,7 +62,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Submit</button>
+                <button type="submit" value="send" id="submit" class="btn btn-primary">Submit</button>
               </div>
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
