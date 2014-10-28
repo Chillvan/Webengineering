@@ -59,7 +59,7 @@
                           </div>
                   </div>
                   <div class="modal-footer">
-                    <<button class="btn btn-danger" type="reset">Reset</button>
+                    <button class="btn btn-danger" type="reset">Reset</button>
                     <button type="submit" value="send" name="submit" class="btn btn-primary">Submit</button>
                   </div>
                 </div><!-- /.modal-content -->
@@ -122,7 +122,8 @@
                         "</td><td>".$row['Name']."</td><td>".$row['Vorname'].
                         "</td><td>".$row['Mietzins']."</td><td>".$row['Strasse'].
                         "</td><td>".$row['PLZ']."</td><td>".$row['Ort'].
-                        "</td><td>".$row['Aktiv']."</td><td><button type='button' class='btn btn-default btn-xs'>Extra small button</button></td></tr>");
+                        "</td><td>".$row['Aktiv']."</td><td><button type='button' class='btn btn-default btn-xs'>edit</button></td><td>".
+                        "</td><td><button type='button' class='btn btn-default btn-xs'>delete</button></td></tr>");
                  }    
                                   
                $dbh = null;
