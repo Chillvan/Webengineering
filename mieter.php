@@ -112,7 +112,7 @@
             $pass = 'WEFHNW14';
             
             echo "<table class='table table-striped'>";
-            echo "<tr><th>Mieternummer</th><th>Wohnungsnummer</th><th>Name</th><th>Vorname</th><th>Mietzins</th><th>Rechnungsadresse</th><th>Aktiv</th></tr>";
+            echo "<tr><th>Mieternummer</th><th>Wohnungsnummer</th><th>Name</th><th>Vorname</th><th>Mietzins</th><th>Strasse</th><th>PLZ</th><th>Ort</th><th>Aktiv</th></tr>";
             
             try {
                 $dbh = new PDO('mysql:host=mysql.hostinger.de;dbname=u566874539_ftw', $user, $pass);
