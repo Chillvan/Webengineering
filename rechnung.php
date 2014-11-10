@@ -38,6 +38,7 @@
                             <input type="text" class="form-control" name="inputVorname" placeholder="Vorname">
                         </div>-->
                         <div class="form-group">
+                            <label for="rechnung">Rechnungstyp</label>
                             <div class="radio">
                                 <label><input type="radio" name="rechnung" value="Reparatur">Reparaturrechnung</label>
                             </div>
@@ -129,7 +130,7 @@
                     $pass = 'WEFHNW14';
 
                     echo "<table class='table table-striped'>";
-                    echo "<tr><th>Rechnungsnummer</th><th>Wohnungsnummer</th><th>Name</th><th>Vorname</th><th>Rechnungstyp</th><th>Betrag</th><th>Bezahlt</th></tr>";
+                    echo "<tr><th>Rechnungsnummer</th><th>Wohnungsnummer</th><th>Name</th><th>Vorname</th><th>Rechnungstyp</th><th>Kommentar</th><th>Betrag</th><th>Bezahlt</th></tr>";
 
                     try {
                         $dbh = new PDO('mysql:host=mysql.hostinger.de;dbname=u566874539_ftw', $user, $pass);
@@ -137,8 +138,9 @@
 
                             print_r("<tr><td>".$row['Rechnungsnummer']."</td><td>".$row['Wohnungsnummer'].
                                     "</td><td>".$row['Name']."</td><td>".$row['Vorname'].
-                                    "</td><td>".$row['Rechnungstyp']."</td><td>".$row['Betrag'].
-                                    "</td><td>".$row['Bezahlt']."</td><td><button type='button' class='btn btn-default btn-xs'>edit</button></td><td>".
+                                    "</td><td>".$row['Rechnungstyp']."</td><td>".$row['Kommentar'].
+                                    "</td><td>".$row['Betrag']."</td><td>".$row['Bezahlt'].
+                                    "</td><td><button type='button' class='btn btn-default btn-xs'>edit</button></td><td>".
                                     "</td><td><button type='button' class='btn btn-default btn-xs'>delete</button></td></tr>");
                         }
                         $dbh = null;
