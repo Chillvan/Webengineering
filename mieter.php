@@ -117,7 +117,7 @@
             
             try {
                 $dbh = new PDO('mysql:host=mysql.hostinger.de;dbname=u566874539_ftw', $user, $pass);
-                foreach ($dbh->query('SELECT * from Mieterspiegel ORDER BY Mieternummer ASC') as $row) {                    
+                foreach ($dbh->query('SELECT * from Mieterspiegel WHERE Aktiv=1 ORDER BY Mieternummer ASC') as $row) {                    
 
                 print_r("<tr><td>".$row['Mieternummer']."</td><td>".$row['Wohnungsnummer'].
                         "</td><td>".$row['Name']."</td><td>".$row['Vorname'].
