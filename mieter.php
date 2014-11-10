@@ -14,6 +14,7 @@
             <?php
             include_once 'modal.php';
             modal::mietererfassenmodal();
+            modal::mietereditmodal();
             ?>
 
             <div id="header">                
@@ -73,7 +74,7 @@
                         "</td><td>".$row['Strasse']."</td><td>".$row['PLZ'].
                         "</td><td>".$row['Ort']."</td><td>".$row['Mietzins'].
                         "</td><td>".$row['Aktiv'].
-                        "</td><td><button type='button' class='btn btn-default btn-xs'>edit</button></td><td>".
+                        "</td><td><a data-target='#mieterEdit' role='button' class='btn btn-default btn-xs' data-toggle='modal'>edit</a></td><td>".
                         "</td><td><button type='button' class='btn btn-default btn-xs'>delete</button></td><td>");
                  }    
                                   
