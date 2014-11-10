@@ -140,6 +140,9 @@
                                     "</td><td>".$row['Name']."</td><td>".$row['Vorname'].
                                     "</td><td>".$row['Rechnungstyp']."</td><td>".$row['Kommentar'].
                                     "</td><td>".$row['Betrag']."</td><td>".$row['Bezahlt']."</td></tr>");
+                                    "</td><td>".$row['Rechnungstyp']."</td><td>".$row['Betrag'].
+                                    "</td><td>".$row['Bezahlt']."</td><td><button type='button' class='btn btn-default btn-xs'>edit</button></td><td>".
+                                    "</td><td><button type='button' class='btn btn-default btn-xs'>delete</button></td></tr>");
                         }
                         $dbh = null;
                         } catch (PDOException $e) {

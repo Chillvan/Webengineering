@@ -59,7 +59,7 @@
                           </div>
                   </div>
                   <div class="modal-footer">
-                    <<button class="btn btn-danger" type="reset">Reset</button>
+                    <button class="btn btn-danger" type="reset">Reset</button>
                     <button type="submit" value="send" name="submit" class="btn btn-primary">Submit</button>
                   </div>
                 </div><!-- /.modal-content -->
@@ -112,7 +112,7 @@
             $pass = 'WEFHNW14';
             
             echo "<table class='table table-striped'>";
-            echo "<tr><th>Mieternummer</th><th>Wohnungsnummer</th><th>Name</th><th>Vorname</th><th>Mietzins</th><th>Rechnungsadresse</th><th>Aktiv</th></tr>";
+            echo "<tr><th>Mieternummer</th><th>Wohnungsnummer</th><th>Name</th><th>Vorname</th><th>Mietzins</th><th>Strasse</th><th>PLZ</th><th>Ort</th><th>Aktiv</th></tr>";
             
             try {
                 $dbh = new PDO('mysql:host=mysql.hostinger.de;dbname=u566874539_ftw', $user, $pass);
@@ -122,9 +122,10 @@
                         "</td><td>".$row['Name']."</td><td>".$row['Vorname'].
                         "</td><td>".$row['Mietzins']."</td><td>".$row['Strasse'].
                         "</td><td>".$row['PLZ']."</td><td>".$row['Ort'].
-                        "</td><td>".$row['Aktiv']."</td></tr>");
+                        "</td><td>".$row['Aktiv']."</td><td><button type='button' class='btn btn-default btn-xs'>edit</button></td><td>".
+                        "</td><td><button type='button' class='btn btn-default btn-xs'>delete</button></td></tr>");
                  }    
-
+                                  
                $dbh = null;
             } catch (PDOException $e) {
                print "Error!: " . $e->getMessage() . "<br/>";
