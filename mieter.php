@@ -111,6 +111,7 @@
             $user = 'u566874539_admin';
             $pass = 'WEFHNW14';
             
+            echo "<div class='div-scroll'>";
             echo "<table class='table table-striped'>";
             echo "<tr><th>Mieternummer</th><th>Wohnungsnummer</th><th>Name</th><th>Vorname</th><th>Mietzins</th><th>Strasse</th><th>PLZ</th><th>Ort</th><th>Aktiv</th></tr>";
             
@@ -133,6 +134,7 @@
             }
             
             echo "</table>";
+            echo "</div>";
             ?>
         </div>
         
