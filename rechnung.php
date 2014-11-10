@@ -40,19 +40,19 @@
                         <div class="form-group">
                             <label for="rechnung">Rechnungstyp</label>
                             <div class="radio">
-                                <label><input type="radio" name="rechnung" value="Reparatur">Reparaturrechnung</label>
+                                <label><input type="radio" name="rechnung" value="Reparatur">Reparatur</label>
                             </div>
                             <div class="radio">
-                                <label><input type="radio" name="rechnung" value="Öl">Ölrechnung</label>
+                                <label><input type="radio" name="rechnung" value="Öl">Öl</label>
                             </div>
                             <div class="radio">
-                                <label><input type="radio" name="rechnung" value="Wasser">Wasserrechnung</label>
+                                <label><input type="radio" name="rechnung" value="Wasser">Wasser</label>
                             </div>
                             <div class="radio">
-                                <label><input type="radio" name="rechnung" value="Strom">Stromrechnung</label>
+                                <label><input type="radio" name="rechnung" value="Strom">Strom</label>
                             </div>
                             <div class="radio">
-                                <label><input type="radio" name="rechnung" value="Hauswart">Hauswartsrechnung</label>
+                                <label><input type="radio" name="rechnung" value="Hauswart">Hauswart</label>
                             </div>
                         </div>
                         <div class="form-group">
@@ -68,9 +68,7 @@
                             <input type="text" class="form-control" name="inputKommentar" placeholder="Kommentar">
                         </div>
                       <div class="checkbox">
-                          <label>
-                          <input name="inputBezahlt" value="0" type="checkbox">Bezahlt
-                          </label>
+                          <label><input name="inputBezahlt" value="1" type="checkbox">Bezahlt</label>
                       </div>
                 </div>
                 <div class="modal-footer">
@@ -130,16 +128,16 @@
                     $pass = 'WEFHNW14';
 
                     echo "<table class='table table-striped'>";
-                    echo "<tr><th>Rechnungsnummer</th><th>Wohnungsnummer</th><th>Name</th><th>Vorname</th><th>Rechnungstyp</th><th>Kommentar</th><th>Betrag</th><th>Bezahlt</th></tr>";
+                    echo "<tr><th>Rechnungs-<br/>nummer</th><th>Wohnungs-<br/>nummer</th><th>Name</th><th>Vorname</th><th>Rechnungstyp</th><th>Kommentar</th><th>Betrag</th><th>Fälligkeits-<br/>datum</th><th>Bezahlt</th></tr>";
 
                     try {
                         $dbh = new PDO('mysql:host=mysql.hostinger.de;dbname=u566874539_ftw', $user, $pass);
-                        foreach ($dbh->query('SELECT * from Rechnungen,Mieterspiegel '.'WHERE Rechnungen.Mieternummer = Mieterspiegel.Mieternummer') as $row) {
+                        foreach ($dbh->query("SELECT * , DATE_FORMAT(Datum,'%d.%m.%Y') as DDatum from Rechnungen,Mieterspiegel WHERE Rechnungen.Mieternummer = Mieterspiegel.Mieternummer ORDER BY Rechnungsnummer ASC") as $row) {
 
                             print_r("<tr><td>".$row['Rechnungsnummer']."</td><td>".$row['Wohnungsnummer'].
                                     "</td><td>".$row['Name']."</td><td>".$row['Vorname'].
                                     "</td><td>".$row['Rechnungstyp']."</td><td>".$row['Kommentar'].
-                                    "</td><td>".$row['Betrag']."</td><td>".$row['Bezahlt'].
+                                    "</td><td>".$row['Betrag']."</td><td>".$row['DDatum']."</td><td>".$row['Bezahlt'].
                                     "</td><td><button type='button' class='btn btn-default btn-xs'>edit</button></td><td>".
                                     "</td><td><button type='button' class='btn btn-default btn-xs'>delete</button></td></tr>");
                         }
