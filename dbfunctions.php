@@ -41,10 +41,13 @@ class dbfunctions {
         try {
         $dbhr = new PDO('mysql:host=mysql.hostinger.de;dbname=u566874539_ftw', self::$user, self::$pass);
         
-        $stmt = $dbhr->prepare("INSERT INTO Rechnungen(Wohnungsnummer,"
+        $queryresult = ($dbhr->query('SELECT Mieternummer FROM Mieterspiegel WHERE Wohnungsnummer='.$wnr.' AND Aktiv=1'));
+        $Mieternummer = $queryresult->fetchColumn();
+        
+        $stmt = $dbhr->prepare("INSERT INTO Rechnungen(Mieternummer,"
             . "Rechnungstyp,Betrag,Datum,Kommentar,Bezahlt)"
             . " VALUES(:field1,:field2,:field3,:field4,:field5,:field6)");
-        $stmt->execute(array(':field1' => $wnr,
+        $stmt->execute(array(':field1' => $Mieternummer['Mieternummer'],
             ':field2' => $rtyp, ':field3' => $betrag, ':field4' => $datum,
             ':field5' => $komm, ':field6' => $bez));
         $affected_rows = $stmt->rowCount();
