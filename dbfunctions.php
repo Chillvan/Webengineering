@@ -5,7 +5,7 @@ class dbfunctions {
     private static $user = 'u566874539_admin';
     private static $pass = 'WEFHNW14';
     
-    public static function mietereintrag($wnr, $name, $vname, $zins, $radresse, $aktiv){
+    public static function mietereintrag($wnr, $name, $vname, $zins, $strasse, $plz, $ort, $aktiv){
         
         if ($aktiv == null){
             $aktiv = 0;
@@ -15,11 +15,11 @@ class dbfunctions {
         $dbhm = new PDO('mysql:host=mysql.hostinger.de;dbname=u566874539_ftw', self::$user, self::$pass);
         
         $stmt = $dbhm->prepare("INSERT INTO Mieterspiegel(Wohnungsnummer,"
-            . "Name,Vorname,Mietzins,Rechnungsadresse,Aktiv)"
-            . " VALUES(:field1,:field2,:field3,:field4,:field5,:field6)");
-        $stmt->execute(array(':field1' => $wnr,
-            ':field2' => $name, ':field3' => $vname, ':field4' => $zins,
-            ':field5' => $radresse, ':field6' => $aktiv));
+            . "Name,Vorname,Mietzins,Strasse,PLZ,Ort,Aktiv)"
+            . " VALUES(:field1,:field2,:field3,:field4,:field5,:field6,:field7,:field8)");
+        $stmt->execute(array(':field1' => $wnr, ':field2' => $name, 
+            ':field3' => $vname, ':field4' => $zins,':field5' => $strasse, 
+            ':field6' => $plz, ':field7' => $ort, ':field8' => $aktiv));
         $affected_rows = $stmt->rowCount();
         
         unset($dbhm);

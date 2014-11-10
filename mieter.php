@@ -9,63 +9,12 @@
     </head>
     <body>
         <div id="wrapper">
-           
-            <!-- #################### Neuer Mieter Erfassen Modal Form #################### --> 
-            <div id="neuerMieter" class="modal fade" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Neuer Mieter erfassen</h4>
-                  </div>
-                  <div class="modal-body">
-                      <form class="form" action="neuerMieter.php" method="post">
-                          <div class="form-group">
-                              <label for="inputMieternummer">Mieternummer</label>
-                              <input type="number" class="form-control" name="inputMieternummer" placeholder="Mieternummer" disabled="1">
-                          </div>
-                          <div class="form-group">
-                              <label for="inputWohnungsnummer">Wohnungsnummer</label>
-                              <input type="number" class="form-control" name="inputWohnungsnummer" placeholder="Wohnungsnummer">
-                          </div>
-                          <div class="form-group">
-                              <label for="inputName">Name</label>
-                              <input type="text" class="form-control" name="inputName" placeholder="Name">
-                          </div>
-                          <div class="form-group">
-                              <label for="inputVorname">Vorname</label>
-                              <input type="text" class="form-control" name="inputVorname" placeholder="Vorname">
-                          </div>
-                          <div class="form-group">
-                              <label for="inputMietzins">Mietzins</label>
-                              <input type="number" class="form-control" name="inputMietzins" placeholder="Mietzins">
-                          </div>
-                          <div class="form-group">
-                              <label for="inputStrasse">Strasse</label>
-                              <input type="text" class="form-control" name="inputStrasse" placeholder="Strasse & Hausnummer">
-                          </div>
-                          <div class="form-group">
-                              <label for="inputPLZ">PLZ</label>
-                              <input type="text" class="form-control" name="inputPLZ" placeholder="PLZ">
-                          </div>
-                          <div class="form-group">
-                              <label for="inputOrt">Ort</label>
-                              <input type="text" class="form-control" name="inputOrt" placeholder="Ort">
-                          </div>
-                          <div class="checkbox">
-                              <label>
-                              <input name="inputAktiv" value="1" type="checkbox">Aktiv
-                              </label>
-                          </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button class="btn btn-danger" type="reset">Reset</button>
-                    <button type="submit" value="send" name="submit" class="btn btn-primary">Submit</button>
-                  </div>
-                </div><!-- /.modal-content -->
-              </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
 
+            <!-- #################### Modalformular einfügen #################### -->
+            <?php
+            include_once 'modal.php';
+            modal::mietererfassenmodal();
+            ?>
 
             <div id="header">                
             <!-- #################### Navbar #################### -->
@@ -111,9 +60,9 @@
             $user = 'u566874539_admin';
             $pass = 'WEFHNW14';
             
-            echo "<div class='div-scroll'>";
+//            echo "<div class='div-scroll'>";
             echo "<table class='table table-striped'>";
-            echo "<tr><th>Mieternummer</th><th>Wohnungsnummer</th><th>Name</th><th>Vorname</th><th>Mietzins</th><th>Strasse</th><th>PLZ</th><th>Ort</th><th>Aktiv</th></tr>";
+            echo "<tr><th>Mieternummer</th><th>Wohnungsnummer</th><th>Name</th><th>Vorname</th><th>Strasse</th><th>PLZ</th><th>Ort</th><th>Mietzins</th><th>Aktiv</th></tr>";
             
             try {
                 $dbh = new PDO('mysql:host=mysql.hostinger.de;dbname=u566874539_ftw', $user, $pass);
@@ -121,10 +70,11 @@
 
                 print_r("<tr><td>".$row['Mieternummer']."</td><td>".$row['Wohnungsnummer'].
                         "</td><td>".$row['Name']."</td><td>".$row['Vorname'].
-                        "</td><td>".$row['Mietzins']."</td><td>".$row['Strasse'].
-                        "</td><td>".$row['PLZ']."</td><td>".$row['Ort'].
-                        "</td><td>".$row['Aktiv']."</td><td><button type='button' class='btn btn-default btn-xs'>edit</button></td><td>".
-                        "</td><td><button type='button' class='btn btn-default btn-xs'>delete</button></td></tr>");
+                        "</td><td>".$row['Strasse']."</td><td>".$row['PLZ'].
+                        "</td><td>".$row['Ort']."</td><td>".$row['Mietzins'].
+                        "</td><td>".$row['Aktiv'].
+                        "</td><td><button type='button' class='btn btn-default btn-xs'>edit</button></td><td>".
+                        "</td><td><button type='button' class='btn btn-default btn-xs'>delete</button></td><td>");
                  }    
                                   
                $dbh = null;
