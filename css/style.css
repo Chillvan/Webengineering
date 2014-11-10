@@ -57,6 +57,11 @@ img {
     text-decoration: none;
 }
 
+.div-scroll{
+    height: 800px;
+    overflow: scroll;
+}
+
 
     html,
     body {
