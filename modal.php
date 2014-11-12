@@ -55,6 +55,7 @@ class modal {
                     <button class="btn btn-danger" type="reset">Reset</button>
                     <button type="submit" value="send" name="eintragsubmit" class="btn btn-primary">Submit</button>
                   </div>
+                  </form>
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
@@ -115,6 +116,7 @@ class modal {
                     <button class="btn btn-danger" type="reset">Reset</button>
                     <button type="submit" value="'.$mr.'" name="edit'.$mr.'" class="btn btn-primary">Submit</button>
                   </div>
+                  </form>
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
@@ -123,8 +125,8 @@ class modal {
 
             public static function mieterDeleteModal($dbh, $mr){
                 
-        $queryresult = ($dbh->query('SELECT * FROM Mieterspiegel WHERE Mieternummer='.$mr));
-        $Mieterloeschen = $queryresult->fetchColumn();
+        $query = ($dbh->query('SELECT * FROM Mieterspiegel WHERE Mieternummer='.$mr));
+        $result = $query->fetch();
         
                echo '
             <div id="mieterDelete'.$mr.'" class="modal fade" aria-hidden="true">
@@ -137,13 +139,14 @@ class modal {
                   <div class="modal-body">
                       <form class="form" action="mieterDelete.php" method="post">
                          <div class="form-group">
-                              <p>Name: '.$Mieterloeschen['Name'].' Vorname: '.$Mieterloeschen['Vorname'].'</p>
+                              <p>'.$result['Name']." ".$result['Vorname'].'</p>
                           </div>
  
                   <div class="modal-footer">
                     <button class="btn btn-danger" type="reset">Reset</button>
                     <button type="submit" value="'.$mr.'" name="delete" class="btn btn-primary">Submit</button>
                   </div>
+                  </form>
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->

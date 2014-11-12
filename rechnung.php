@@ -75,6 +75,7 @@
                     <button class="btn btn-danger" type="reset">Reset</button>
                     <button type="submit" value="send" name="submit" class="btn btn-primary">Submit</button>
                 </div>
+                </form>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
