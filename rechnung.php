@@ -108,9 +108,9 @@
                                 <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Abrechnungen <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Gesamtabrechnung</a></li>
-                                <li><a href="#">Heizkostenabrechnung</a></li>
-                                <li><a href="#">Nebenkostenabrechnung</a></li>
+                                <li><a href="gesamtAbrechnung.php">Gesamtabrechnung</a></li>
+                                <li><a href="heizkostenAbrechnung.php">Heizkostenabrechnung</a></li>
+                                <li><a href="nebenkostenAbrechnung.php">Nebenkostenabrechnung</a></li>
                             </ul>
                                 </li>
                                 <li><a href="#">Sign Up</a></li>

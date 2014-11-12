@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Abrechnung Heizkosten</title>
+        <title>Nebenkostenabrechung</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -42,9 +42,9 @@
                             <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Abrechnungen <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Gesamtabrechnung</a></li>
-                            <li><a href="#">Heizkostenabrechnung</a></li>
-                            <li><a href="#">Nebenkostenabrechnung</a></li>
+                            <li><a href="gesamtAbrechnung.php">Gesamtabrechnung</a></li>
+                            <li><a href="heizkostenAbrechnung.php">Heizkostenabrechnung</a></li>
+                            <li><a href="nebenkostenAbrechnung.php">Nebenkostenabrechnung</a></li>
                         </ul>
                             </li>
                             <li><a href="#">Sign Up</a></li>
@@ -67,7 +67,7 @@
                 echo "<table class='table table-striped'>";
                 echo "<tr><th>Rechnungsnummer</th><th>Rechnungstyp</th><th>Wohnungsnummer</th><th>Name</th><th>Vorname</th><th>Betrag</th></tr>";
 
-                foreach ($dbh->query('SELECT * FROM Rechnungen WHERE Rechnungstyp="Öl" AND Rechnungen.Mieternummer = Mieterspiegel.Mieternummer ORDER BY Rechnungsnummer ASC') as $row) {                    
+                foreach ($dbh->query('SELECT * FROM Rechnungen WHERE Rechnungstyp="Öl" ORDER BY Rechnungsnummer ASC') as $row) {                    
 
                 print_r("<tr><td>".$row['Rechnungsnummer']."</td><td>".$row['Rechnungstyp'].
                         "</td><td>".$row['Wohnungsnummer']."</td><td>".$row['Name'].
@@ -123,11 +123,8 @@
         
         
         <script src="js/jquery.js"></script>
-        <script src="js/bootstrap.min.js"></script>       
+        <script src="js/bootstrap.min.js"></script> 
     </body>
 </html>
-
-<?php
-?>
 
 

@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Mieterspiegel</title>
+        <title>Heizkostenabrechnung</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -8,6 +8,7 @@
         <link rel="icon" href="css/images/favicon.ico" type="image/x-icon" />
     </head>
     <body>
+        
         <div id="wrapper">
 
             <!-- #################### Modalformular einfügen #################### -->
@@ -53,28 +54,24 @@
                 </div>  
             </nav>
             </div>
-        
-        
-            <!-- #################### Mieter von Database #################### -->
+            
+            
+            
+            <!-- #################### Heizkostenrechnungen von Database #################### -->
             <div class="container">
                 <?php
 
-                include_once 'modal.php';
+                //include_once 'modal.php';
                 include_once 'configPDO.php';
 
                 echo "<table class='table table-striped'>";
-                echo "<tr><th>Mieternummer</th><th>Wohnungsnummer</th><th>Name</th><th>Vorname</th><th>Strasse</th><th>PLZ</th><th>Ort</th><th>Mietzins</th><th>Aktiv</th></tr>";
+                echo "<tr><th>Rechnungsnummer</th><th>Rechnungstyp</th><th>Wohnungsnummer</th><th>Name</th><th>Vorname</th><th>Betrag</th></tr>";
 
-                foreach ($dbh->query('SELECT * from Mieterspiegel WHERE Aktiv=1 ORDER BY Mieternummer ASC') as $row) {                    
+                foreach ($dbh->query('SELECT * FROM Rechnungen WHERE Rechnungstyp="Öl" ORDER BY Rechnungsnummer ASC') as $row) {                    
 
-                print_r("<tr><td>".$row['Mieternummer']."</td><td>".$row['Wohnungsnummer'].
-                        "</td><td>".$row['Name']."</td><td>".$row['Vorname'].
-                        "</td><td>".$row['Strasse']."</td><td>".$row['PLZ'].
-                        "</td><td>".$row['Ort']."</td><td>".$row['Mietzins'].
-                        "</td><td>".$row['Aktiv'].
-                        "</td><td><a data-target='#mieterEdit' role='button' class='btn btn-default btn-xs' data-toggle='modal'>edit</a></td><td>".
-                        "</td><td><a data-target='#mieterDelete".$row['Mieternummer']."' role='button' class='btn btn-default btn-xs' value=".$row['Mieternummer']." data-toggle='modal'>delete</a></td><td>");
-                modal::mieterDeleteModal($dbh, $row['Mieternummer']);
+                print_r("<tr><td>".$row['Rechnungsnummer']."</td><td>".$row['Rechnungstyp'].
+                        "</td><td>".$row['Wohnungsnummer']."</td><td>".$row['Name'].
+                        "</td><td>".$row['Vorname']."</td><td>".$row['Betrag']);
                 }    
 
 
@@ -85,25 +82,9 @@
                 unset($dbh);
                 ?>
             </div>
-        
-        
-            <!-- #################### Button Neuer Mieter #################### -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-5">
-                         <!--emtpy--> 
-                    </div>
-                    <div class="col-md-5">
-                        <p>
-                            <a data-target="#neuerMieter" role="button" class="btn btn-default btn-lg" data-toggle="modal">Neuer Mieter erfassen</a>
-                        </p>
-                    </div>
-                    <div class="col-md-5">
-                         <!--emtpy--> 
-                    </div>
-                </div>
-            </div>
-
+            
+            
+            
         
             <!-- #################### Footer #################### -->
             <div id="footer">
@@ -142,6 +123,8 @@
         
         
         <script src="js/jquery.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>       
     </body>
 </html>
+
+
