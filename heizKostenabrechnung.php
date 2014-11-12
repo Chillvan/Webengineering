@@ -67,7 +67,7 @@
                 echo "<table class='table table-striped'>";
                 echo "<tr><th>Rechnungsnummer</th><th>Rechnungstyp</th><th>Wohnungsnummer</th><th>Name</th><th>Vorname</th><th>Betrag</th></tr>";
 
-                foreach ($dbh->query('SELECT * from Rechnungen WHERE Rechnungstyp=Öl ORDER BY Rechnungsnummer ASC') as $row) {                    
+                foreach ($dbh->query('SELECT * FROM Rechnungen WHERE Rechnungstyp="Öl" AND Rechnungen.Mieternummer = Mieterspiegel.Mieternummer ORDER BY Rechnungsnummer ASC') as $row) {                    
 
                 print_r("<tr><td>".$row['Rechnungsnummer']."</td><td>".$row['Rechnungstyp'].
                         "</td><td>".$row['Wohnungsnummer']."</td><td>".$row['Name'].
