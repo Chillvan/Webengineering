@@ -2,7 +2,7 @@
 
 class modal {
 
-    public static function mietererfassenmodal(){
+    public static function mieterErfassenModal(){
         echo '
             <div id="neuerMieter" class="modal fade" aria-hidden="true">
               <div class="modal-dialog">
@@ -53,7 +53,7 @@ class modal {
                   </div>
                   <div class="modal-footer">
                     <button class="btn btn-danger" type="reset">Reset</button>
-                    <button type="submit" value="send" name="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" value="send" name="eintragsubmit" class="btn btn-primary">Submit</button>
                   </div>
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
@@ -61,7 +61,7 @@ class modal {
             ';
     }
     
-        public static function mietereditmodal(){
+        public static function mieterEditModal($dbh, $mr){
             
         echo '
             <div id="mieterEdit" class="modal fade" aria-hidden="true">
@@ -113,11 +113,42 @@ class modal {
                   </div>
                   <div class="modal-footer">
                     <button class="btn btn-danger" type="reset">Reset</button>
-                    <button type="submit" value="send" name="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" value="'.$mr.'" name="edit'.$mr.'" class="btn btn-primary">Submit</button>
                   </div>
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
             ';
     }
+
+            public static function mieterDeleteModal($dbh, $mr){
+                
+        $queryresult = ($dbh->query('SELECT * FROM Mieterspiegel WHERE Mieternummer='.$mr));
+        $Mieterloeschen = $queryresult->fetchColumn();
+        
+               echo '
+            <div id="mieterDelete'.$mr.'" class="modal fade" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Mieter löschen</h4>
+                  </div>
+                  <div class="modal-body">
+                      <form class="form" action="mieterDelete.php" method="post">
+                         <div class="form-group">
+                              <p>Name: '.$Mieterloeschen['Name'].' Vorname: '.$Mieterloeschen['Vorname'].'</p>
+                          </div>
+ 
+                  <div class="modal-footer">
+                    <button class="btn btn-danger" type="reset">Reset</button>
+                    <button type="submit" value="'.$mr.'" name="delete" class="btn btn-primary">Submit</button>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            ';
+       
+            }
 }
+ 

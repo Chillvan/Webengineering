@@ -13,8 +13,7 @@
             <!-- #################### Modalformular einfügen #################### -->
             <?php
             include_once 'modal.php';
-            modal::mietererfassenmodal();
-            modal::mietereditmodal();
+            modal::mieterErfassenModal();
             ?>
 
             <div id="header">                
@@ -58,34 +57,31 @@
         <!-- #################### Mieter von Database #################### -->
         <div class="container">
             <?php
-            $user = 'u566874539_admin';
-            $pass = 'WEFHNW14';
             
-//            echo "<div class='div-scroll'>";
+            include_once 'modal.php';
+            include_once 'configPDO.php';
+            
             echo "<table class='table table-striped'>";
             echo "<tr><th>Mieternummer</th><th>Wohnungsnummer</th><th>Name</th><th>Vorname</th><th>Strasse</th><th>PLZ</th><th>Ort</th><th>Mietzins</th><th>Aktiv</th></tr>";
             
-            try {
-                $dbh = new PDO('mysql:host=mysql.hostinger.de;dbname=u566874539_ftw', $user, $pass);
-                foreach ($dbh->query('SELECT * from Mieterspiegel WHERE Aktiv=1 ORDER BY Mieternummer ASC') as $row) {                    
+            foreach ($dbh->query('SELECT * from Mieterspiegel WHERE Aktiv=1 ORDER BY Mieternummer ASC') as $row) {                    
 
-                print_r("<tr><td>".$row['Mieternummer']."</td><td>".$row['Wohnungsnummer'].
-                        "</td><td>".$row['Name']."</td><td>".$row['Vorname'].
-                        "</td><td>".$row['Strasse']."</td><td>".$row['PLZ'].
-                        "</td><td>".$row['Ort']."</td><td>".$row['Mietzins'].
-                        "</td><td>".$row['Aktiv'].
-                        "</td><td><a data-target='#mieterEdit' role='button' class='btn btn-default btn-xs' data-toggle='modal'>edit</a></td><td>".
-                        "</td><td><button type='button' class='btn btn-default btn-xs'>delete</button></td><td>");
-                 }    
+            print_r("<tr><td>".$row['Mieternummer']."</td><td>".$row['Wohnungsnummer'].
+                    "</td><td>".$row['Name']."</td><td>".$row['Vorname'].
+                    "</td><td>".$row['Strasse']."</td><td>".$row['PLZ'].
+                    "</td><td>".$row['Ort']."</td><td>".$row['Mietzins'].
+                    "</td><td>".$row['Aktiv'].
+                    "</td><td><a data-target='#mieterEdit' role='button' class='btn btn-default btn-xs' data-toggle='modal'>edit</a></td><td>".
+                    "</td><td><a data-target='#mieterDelete".$row['Mieternummer']."' role='button' class='btn btn-default btn-xs' value=".$row['Mieternummer']." data-toggle='modal'>delete</a></td><td>");
+            modal::mieterDeleteModal($dbh, $row['Mieternummer']);
+            }    
                                   
-               $dbh = null;
-            } catch (PDOException $e) {
-               print "Error!: " . $e->getMessage() . "<br/>";
-               die();
-            }
+               
             
             echo "</table>";
             echo "</div>";
+            
+            unset($dbh);
             ?>
         </div>
         
