@@ -238,7 +238,7 @@ class modal {
  
                   <div class="modal-footer">
                     <button class="btn btn-danger" type="reset">Reset</button>
-                    <button type="submit" value="'.$rn.'" name="delete" class="btn btn-primary">Submit</button>
+                    <button type="submit" value="'.$rn.'" name="rechnungdelete" class="btn btn-primary">Submit</button>
                   </div>
                   </form>
                 </div><!-- /.modal-content -->
