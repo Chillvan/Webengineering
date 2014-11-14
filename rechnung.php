@@ -74,9 +74,10 @@
                             "</td><td>".$row['Name']."</td><td>".$row['Vorname'].
                             "</td><td>".$row['Rechnungstyp']."</td><td>".$row['Kommentar'].
                             "</td><td>".$row['Betrag']."</td><td>".$row['DDatum']."</td><td>".$row['Bezahlt'].
-                            "</td><td><a data-target='#rechnungEdit' role='button' class='btn btn-default btn-xs' data-toggle='modal'>edit</a></td><td>".
+                            "</td><td><a data-target='#rechnungEdit".$row['Rechnungsnummer']."' role='button' class='btn btn-default btn-xs' value=".$row['Rechnungsnummer']." data-toggle='modal'>edit</a></td><td>".
                             "</td><td><a data-target='#rechnungDelete".$row['Rechnungsnummer']."' role='button' class='btn btn-default btn-xs' value=".$row['Rechnungsnummer']." data-toggle='modal'>delete</a></td><td>");
-                    modal::rechnungDeleteModal($dbh, $row['Rechnungsnummer'], $row['Name'], $row['Vorname'], $row['Rechnungstyp'], $row['Betrag']);
+                    modal::rechnungEditModal($row['Rechnungsnummer'], $row['Wohnungsnummer'], $row['Betrag'], $row['Kommentar']);
+                    modal::rechnungDeleteModal($row['Rechnungsnummer'], $row['Name'], $row['Vorname'], $row['Rechnungstyp'], $row['Betrag']);
                 }
 
                         echo "</table>";

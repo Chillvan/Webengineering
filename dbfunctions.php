@@ -102,9 +102,63 @@ class dbfunctions {
         
     }
     
-    public static function rechnungdelete($dbh, $rn){
+    public static function rechnungsedit($dbh, $rnr, $wnr, $rtyp, $betrag, $datum, $komm, $bez){
         
-        $stmt = $dbh->prepare("DELETE FROM Rechnungen WHERE Rechnungsnummer=".$rn);
+        $updatequery = "";
+        
+        if($wnr !== ""){
+            $updatequery = "Wohnungsnummer= ".$wnr;
+        }
+        if($rtyp !== null && $updatequery === ""){
+            $updatequery = $updatequery.'Rechnungstyp= "'.$rtyp.'"';
+        }
+        else if($rtyp !== null){
+            $updatequery = $updatequery.', Rechnungstyp= "'.$rtyp.'"';
+        }
+        if($betrag !== "" && $updatequery === ""){
+            $updatequery = $updatequery.'Betrag= '.$betrag;
+        }
+        else if($betrag !== ""){
+            $updatequery = $updatequery.', Betrag= '.$betrag;
+        }
+        if($datum !== "" && $updatequery === ""){
+            $updatequery = $updatequery.'Datum= "'.$datum.'"';
+        }
+        else if($datum !== ""){
+            $updatequery = $updatequery.', Datum= "'.$datum.'"';
+        }
+        if($komm !== "" && $updatequery === ""){
+            $updatequery = $updatequery.'Kommentar= "'.$komm.'"';
+        }
+        else if($komm !== ""){
+            $updatequery = $updatequery.', Kommentar= "'.$komm.'"';
+        }
+        if ($bez == null){
+        $bez = 0;
+        }
+        if($updatequery === ""){
+            $updatequery = $updatequery = "Bezahlt= ".$bez;
+        }
+        else if($updatequery !== ""){
+            $updatequery = $updatequery.", Bezahlt= ".$bez;
+        }
+        
+        print_r($datum);
+        echo '<br/>';
+        print_r($updatequery);
+        
+        $stmt = $dbh->prepare("UPDATE Rechnungen SET ".$updatequery." WHERE Rechnungsnummer=".$rnr);
+        $stmt->execute();
+        $affected_rows = $stmt->rowCount();
+        
+        unset($dbh);
+        
+    }
+    
+    
+    public static function rechnungdelete($dbh, $rnr){
+        
+        $stmt = $dbh->prepare("DELETE FROM Rechnungen WHERE Rechnungsnummer=".$rnr);
         $stmt->execute();
         $affected_rows = $stmt->rowCount();
         
