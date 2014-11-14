@@ -128,6 +128,10 @@ class modal {
     #################### Rechnungen Modal Forms ####################    
     #################### Rechnung erstellen Modal ####################
     public static function rechnungErfassenModal(){
+        
+        $stmt = ($dbh->query("SELECT Rechnungsnummer FROM Rechnungen ORDER BY Rechnungsnummer DESC LIMIT 1"));
+        $nextnr = $stmt->fetchColumn() +1;
+        
         echo '
             <div id="neueRechnung" class="modal fade" aria-hidden="true">
             <div class="modal-dialog">
@@ -139,8 +143,7 @@ class modal {
                 </div>
                 <div class="modal-body">
                         <div class="form-group">
-                            <label for="inputRechnungsnummer">Rechnungsnummer</label>
-                            <input type="number" class="form-control" name="inputRechnungsnummer" placeholder="Rechnungsnummer" disabled="1">
+                            <label>Rechnungsnummer '.$nextnr.'</label>
                         </div>
                         <div class="form-group">
                             <label for="inputWohnungsnummer">Wohnungsnummer</label>
@@ -190,11 +193,74 @@ class modal {
         </div><!-- /.modal -->
         ';
     }
+    
+    #################### Rechnung editieren Modal ####################
+    public static function rechnungEditModal($rnr, $wnr, $betrag, $komm){
+        
+        echo '
+            <div id="rechnungEdit'.$rnr.'" class="modal fade" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <form class="form" action="rechnungEdit.php" method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Rechnung Nr. '.$rnr.' bearbeiten</h4>
+                </div>
+                <div class="modal-body">
+                        <div class="form-group">
+                            <label for="inputWohnungsnummer">Wohnungsnummer</label>
+                            <input type="number" class="form-control" name="inputWohnungsnummer" placeholder="'.$wnr.'">
+                        </div>
+                        <div class="form-group">
+                            <label for="rechnung">Rechnungstyp</label>
+                            <div class="radio">
+                                <label><input type="radio" name="rechnung" value="Reparatur">Reparatur</label>
+                            </div>
+                            <div class="radio">
+                                <label><input type="radio" name="rechnung" value="Öl">Öl</label>
+                            </div>
+                            <div class="radio">
+                                <label><input type="radio" name="rechnung" value="Wasser">Wasser</label>
+                            </div>
+                            <div class="radio">
+                                <label><input type="radio" name="rechnung" value="Strom">Strom</label>
+                            </div>
+                            <div class="radio">
+                                <label><input type="radio" name="rechnung" value="Hauswart">Hauswart</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputBetrag">Betrag</label>
+                            <input type="number" class="form-control" name="inputBetrag" placeholder="'.$betrag.'">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputDatum">Fälligkeitsdatum</label>
+                            <input type="date" class="form-control" name="inputDatum">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputKommentar">Kommentar</label>
+                            <input type="text" class="form-control" name="inputKommentar" placeholder="'.$komm.'">
+                        </div>
+                      <div class="checkbox">
+                          <label><input name="inputBezahlt" value="1" type="checkbox">Bezahlt</label>
+                      </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" type="reset">Reset</button>
+                    <button type="submit" value="'.$rnr.'" name="rechnungsedit" class="btn btn-primary">Submit</button>
+                </div>
+                </form>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        ';
+    }
+    
     #################### Rechnung löschen Modal ####################
-    public static function rechnungDeleteModal($dbh, $rn, $name, $vorname, $typ, $betr){
+    public static function rechnungDeleteModal($rnr, $name, $vorname, $typ, $betr){
         
                echo '
-            <div id="rechnungDelete'.$rn.'" class="modal fade" aria-hidden="true">
+            <div id="rechnungDelete'.$rnr.'" class="modal fade" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                 <form class="form" action="rechnungDelete.php" method="post">
@@ -209,7 +275,7 @@ class modal {
  
                   <div class="modal-footer">
                     <button class="btn btn-danger" type="reset">Reset</button>
-                    <button type="submit" value="'.$rn.'" name="rechnungdelete" class="btn btn-primary">Submit</button>
+                    <button type="submit" value="'.$rnr.'" name="rechnungdelete" class="btn btn-primary">Submit</button>
                   </div>
                   </form>
                 </div><!-- /.modal-content -->
