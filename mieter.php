@@ -73,7 +73,9 @@
                         "</td><td>".$row['Strasse']."</td><td>".$row['PLZ'].
                         "</td><td>".$row['Ort']."</td><td>".$row['Mietzins'].
                         "</td><td>".$row['Aktiv'].
-                        "</td><td><a data-target='#mieterEdit' role='button' class='btn btn-default btn-xs' data-toggle='modal'>edit</a></td><td>");
+                        "</td><td><a data-target='#mieterEdit".$row['Mieternummer']."' role='button' class='btn btn-default btn-xs' data-toggle='modal'>edit</a></td><td>");
+                    modal::mieterEditModal($dbh, $row['Mieternummer'], $row['Wohnungsnummer'], $row['Name'], 
+                            $row['Vorname'], $row['Mietzins'], $row['Strasse'], $row['PLZ'], $row['Ort']);
                 }    
 
                 echo "</table>";

@@ -68,49 +68,45 @@ class modal {
     }
     
     #################### Mieter editieren Modal ####################
-    public static function mieterEditModal($dbh, $mr){
+    public static function mieterEditModal($dbh, $mr, $wnr, $name, $vname, $zins, $str, $plz, $ort){
             
         echo '
-            <div id="mieterEdit" class="modal fade" aria-hidden="true">
+            <div id="mieterEdit'.$mr.'" class="modal fade" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                 <form class="form" action="mieterEdit.php" method="post">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Mieter anpassen</h4>
+                    <h4 class="modal-title">Mieter Nr. '.$mr.' anpassen</h4>
                   </div>
                   <div class="modal-body">
                           <div class="form-group">
-                              <label for="inputMieternummer">Mieternummer</label>
-                              <input type="number" class="form-control" name="inputMieternummer" placeholder="Mieternummer" disabled="1">
-                          </div>
-                          <div class="form-group">
                               <label for="inputWohnungsnummer">Wohnungsnummer</label>
-                              <input type="number" class="form-control" name="inputWohnungsnummer" placeholder="Wohnungsnummer">
+                              <input type="number" class="form-control" name="inputWohnungsnummer" placeholder="'.$wnr.'">
                           </div>
                           <div class="form-group">
                               <label for="inputName">Name</label>
-                              <input type="text" class="form-control" name="inputName" placeholder="Name">
+                              <input type="text" class="form-control" name="inputName" placeholder="'.$name.'">
                           </div>
                           <div class="form-group">
                               <label for="inputVorname">Vorname</label>
-                              <input type="text" class="form-control" name="inputVorname" placeholder="Vorname">
+                              <input type="text" class="form-control" name="inputVorname" placeholder="'.$vname.'">
                           </div>
                           <div class="form-group">
                               <label for="inputMietzins">Mietzins</label>
-                              <input type="number" class="form-control" name="inputMietzins" placeholder="Mietzins">
+                              <input type="number" class="form-control" name="inputMietzins" placeholder="'.$zins.'">
                           </div>
                           <div class="form-group">
                               <label for="inputStrasse">Strasse</label>
-                              <input type="text" class="form-control" name="inputStrasse" placeholder="Strasse & Hausnummer">
+                              <input type="text" class="form-control" name="inputStrasse" placeholder="'.$str.'">
                           </div>
                           <div class="form-group">
                               <label for="inputPLZ">PLZ</label>
-                              <input type="text" class="form-control" name="inputPLZ" placeholder="PLZ">
+                              <input type="text" class="form-control" name="inputPLZ" placeholder="'.$plz.'">
                           </div>
                           <div class="form-group">
                               <label for="inputOrt">Ort</label>
-                              <input type="text" class="form-control" name="inputOrt" placeholder="Ort">
+                              <input type="text" class="form-control" name="inputOrt" placeholder="'.$ort.'">
                           </div>
                           <div class="checkbox">
                               <label>
@@ -120,7 +116,7 @@ class modal {
                   </div>
                   <div class="modal-footer">
                     <button class="btn btn-danger" type="reset">Reset</button>
-                    <button type="submit" value="'.$mr.'" name="edit'.$mr.'" class="btn btn-primary">Submit</button>
+                    <button type="submit" value="'.$mr.'" name="mieteredit" class="btn btn-primary">Submit</button>
                   </div>
                   </form>
                 </div><!-- /.modal-content -->
