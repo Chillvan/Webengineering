@@ -14,7 +14,8 @@
         <!-- #################### Modalformular einfügen #################### -->
             <?php
             include_once 'modal.php';
-            modal::rechnungErfassenModal();
+            include_once 'configPDO.php';
+            modal::rechnungErfassenModal($dbh);
             ?>
         
         
