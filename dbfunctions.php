@@ -42,7 +42,7 @@ class dbfunctions {
         $stmt = $dbh->prepare("INSERT INTO Rechnungen(Mieternummer,"
             . "Rechnungstyp,Betrag,Datum,Kommentar,Bezahlt)"
             . " VALUES(:field1,:field2,:field3,:field4,:field5,:field6)");
-        $stmt->execute(array(':field1' => $Mieternummer['Mieternummer'],
+        $stmt->execute(array(':field1' => $Mieternummer,
             ':field2' => $rtyp, ':field3' => $betrag, ':field4' => $datum,
             ':field5' => $komm, ':field6' => $bez));
         $affected_rows = $stmt->rowCount();
