@@ -25,38 +25,39 @@
                 ?>
             </div>
         
-        
-            <!-- #################### Mieter von Database #################### -->
-            <div class="dbtable">
-                <?php
+            <!-- ################### Main Content ###################-->
+            <div id="content">                
+                <!-- #################### Mieter von Database #################### -->
+                <div id="dbtable">
+                    <?php
 
-                include_once 'modal.php';
-                include_once 'configPDO.php';
+                    include_once 'modal.php';
+                    include_once 'configPDO.php';
 
-                echo "<table class='table table-striped'>";
-                echo "<tr><th>Mieter-<br/>nummer</th><th>Wohnungs-<br/>nummer</th><th>Name</th><th>Vorname</th><th>Strasse</th><th>PLZ</th><th>Ort</th><th>Mietzins</th><th>Aktiv</th><th></th></tr>";
+                    echo "<table class='table table-striped'>";
+                    echo "<tr><th>Mieter-<br/>nummer</th><th>Wohnungs-<br/>nummer</th><th>Name</th><th>Vorname</th><th>Strasse</th><th>PLZ</th><th>Ort</th><th>Mietzins</th><th>Aktiv</th><th></th></tr>";
 
-                foreach ($dbh->query('SELECT * from Mieterspiegel WHERE Aktiv=1 ORDER BY Mieternummer ASC') as $row) {                    
+                    foreach ($dbh->query('SELECT * from Mieterspiegel WHERE Aktiv=1 ORDER BY Mieternummer ASC') as $row) {                    
 
-                    print_r("<tr><td>".$row['Mieternummer']."</td><td>".$row['Wohnungsnummer'].
-                        "</td><td>".$row['Name']."</td><td>".$row['Vorname'].
-                        "</td><td>".$row['Strasse']."</td><td>".$row['PLZ'].
-                        "</td><td>".$row['Ort']."</td><td>".$row['Mietzins'].
-                        "</td><td>".$row['Aktiv'].
-                        "</td><td><a data-target='#mieterEdit".$row['Mieternummer']."' role='button' class='btn btn-default btn-xs' data-toggle='modal'>edit</a>");
-                    modal::mieterEditModal($dbh, $row['Mieternummer'], $row['Wohnungsnummer'], $row['Name'], 
-                            $row['Vorname'], $row['Mietzins'], $row['Strasse'], $row['PLZ'], $row['Ort']);
-                }    
+                        print_r("<tr><td>".$row['Mieternummer']."</td><td>".$row['Wohnungsnummer'].
+                            "</td><td>".$row['Name']."</td><td>".$row['Vorname'].
+                            "</td><td>".$row['Strasse']."</td><td>".$row['PLZ'].
+                            "</td><td>".$row['Ort']."</td><td>".$row['Mietzins'].
+                            "</td><td>".$row['Aktiv'].
+                            "</td><td><a data-target='#mieterEdit".$row['Mieternummer']."' role='button' class='btn btn-default btn-xs' data-toggle='modal'>edit</a>");
+                        modal::mieterEditModal($dbh, $row['Mieternummer'], $row['Wohnungsnummer'], $row['Name'], 
+                                $row['Vorname'], $row['Mietzins'], $row['Strasse'], $row['PLZ'], $row['Ort']);
+                    }    
 
-                echo "</table>";
+                    echo "</table>";
 
-                unset($dbh);
-                ?>
-            </div>
+                    unset($dbh);
+                    ?>
+                </div>
         
         
                 <!-- #################### Button Neuer Mieter #################### -->
-                <div class="container">
+                <div id="btnerfassen">
                     <div class="row">
                         <div class="col-md-5">
                              <!--emtpy--> 
@@ -76,36 +77,10 @@
         
             <!-- #################### Footer #################### -->
             <div id="footer">
-                <footer class="site-footer">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <p>Designed and built with all the force in the world by Silvan Hoppler, Steven Bühler and Bastian End.</p>
-                            </div>
-                        </div>
-                        <div class="bottom-footer">
-                            <div class="col-md-5">
-                                <p>&copy; Copyright by bendltd 2014 -
-                                    <script language="JavaScript" type="text/javascript">
-                                    now = new Date
-                                    theYear=now.getYear()
-                                    if (theYear < 1900)
-                                    theYear=theYear+1900
-                                    document.write(theYear)
-                                    </script>
-                                </p>
-                            </div>
-                            <div class="col-md-7">
-                                <ul class="footer-nav">
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="#">Blog</a></li>
-                                    <li><a href="#">Kontakt</a></li>
-                                    <li><a href="#">Link</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
+                <?php
+                include_once 'footer.php';
+                footer::createFooter();
+                ?>
             </div>
         </div>
         

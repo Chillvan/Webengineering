@@ -9,17 +9,14 @@
     </head>
     <body>
         <div id="wrapper">
-            
-            
-        <!-- #################### Modalformular einfügen #################### -->
+   
+            <!-- #################### Modalformular einfügen #################### -->
             <?php
             include_once 'modal.php';
             include_once 'configPDO.php';
             modal::rechnungErfassenModal($dbh);
             ?>
-        
-        
-            
+
             <!-- #################### Navbar #################### -->
             <div id="header">                                
                 <?php
@@ -29,17 +26,17 @@
             </div>
         
             <!-- ################### Main Content ###################-->
-            <div id="content">  
+            <!--<div id="content">-->  
                 
                 <!-- #################### Rechnungen von Database #################### -->
-                <div class="container">
+                <div id="dbtable">
                 <?php
 
                 include_once 'modal.php';
                 include_once 'configPDO.php';
                 
                 echo "<table class='table table-striped'>";
-                echo "<tr><th>Rechnungs-<br/>nummer</th><th>Wohnungs-<br/>nummer</th><th>Name</th><th>Vorname</th><th>Rechnungstyp</th><th>Kommentar</th><th>Betrag</th><th>Fälligkeits-<br/>datum</th><th>Bezahlt</th></tr>";
+                echo "<tr><th>Rechnungs-<br/>nummer</th><th>Wohnungs-<br/>nummer</th><th>Name</th><th>Vorname</th><th>Rechnungstyp</th><th>Kommentar</th><th>Betrag</th><th>Fälligkeits-<br/>datum</th><th>Bezahlt</th><th></th><th></th></tr>";
 
                 foreach ($dbh->query("SELECT * , DATE_FORMAT(Datum,'%d.%m.%Y') as DDatum from Rechnungen,Mieterspiegel WHERE Rechnungen.Mieternummer = Mieterspiegel.Mieternummer ORDER BY Rechnungsnummer ASC") as $row) {
 
@@ -47,8 +44,8 @@
                             "</td><td>".$row['Name']."</td><td>".$row['Vorname'].
                             "</td><td>".$row['Rechnungstyp']."</td><td>".$row['Kommentar'].
                             "</td><td>".$row['Betrag']."</td><td>".$row['DDatum']."</td><td>".$row['Bezahlt'].
-                            "</td><td><a data-target='#rechnungEdit".$row['Rechnungsnummer']."' role='button' class='btn btn-default btn-xs' value=".$row['Rechnungsnummer']." data-toggle='modal'>edit</a></td><td>".
-                            "</td><td><a data-target='#rechnungDelete".$row['Rechnungsnummer']."' role='button' class='btn btn-default btn-xs' value=".$row['Rechnungsnummer']." data-toggle='modal'>delete</a></td><td>");
+                            "</td><td><a data-target='#rechnungEdit".$row['Rechnungsnummer']."' role='button' class='btn btn-default btn-xs' value=".$row['Rechnungsnummer']." data-toggle='modal'>edit</a>".
+                            "</td><td><a data-target='#rechnungDelete".$row['Rechnungsnummer']."' role='button' class='btn btn-default btn-xs' value=".$row['Rechnungsnummer']." data-toggle='modal'>delete</a>");
                     modal::rechnungEditModal($row['Rechnungsnummer'], $row['Wohnungsnummer'], $row['Betrag'], $row['Kommentar']);
                     modal::rechnungDeleteModal($row['Rechnungsnummer'], $row['Name'], $row['Vorname'], $row['Rechnungstyp'], $row['Betrag']);
                 }
@@ -61,7 +58,7 @@
         
         
                 <!-- #################### Button Neue Rechnung #################### -->
-                <div class="container">
+                <div id="btnerfassen">
                     <div class="row">
                         <div class="col-md-5">
                              <!--emtpy--> 
@@ -76,41 +73,15 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            <!--</div>-->
         
         
             <!-- #################### Footer #################### -->
             <div id="footer">
-                <footer class="site-footer">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <p>Designed and built with all the force in the world by Silvan Hoppler, Steven Bühler and Bastian End.</p>
-                            </div>
-                        </div>
-                        <div class="bottom-footer">
-                            <div class="col-md-5">
-                                <p>&copy; Copyright by bendltd 2014 -
-                                    <script language="JavaScript" type="text/javascript">
-                                    now = new Date
-                                    theYear=now.getYear()
-                                    if (theYear < 1900)
-                                    theYear=theYear+1900
-                                    document.write(theYear)
-                                    </script>
-                                </p>
-                            </div>
-                            <div class="col-md-7">
-                                <ul class="footer-nav">
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="#">Blog</a></li>
-                                    <li><a href="#">Kontakt</a></li>
-                                    <li><a href="#">Link</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
+                <?php
+                include_once 'footer.php';
+                footer::createFooter();
+                ?>
             </div>
         </div>
                     

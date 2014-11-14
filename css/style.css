@@ -131,6 +131,22 @@ img {
   padding-top: 20px;
 }
 
-.dbtable {
-    padding: 50px;
+#dbtable {
+    padding-top: 0px;
 }
+
+#btnerfassen {
+    padding-botton: 30px;
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: #d0ceb7; //color of skull
+}
+
+/*
+.scroll {
+height: 100%;
+overflow: auto;
+width: 100%;
+}*/ 
