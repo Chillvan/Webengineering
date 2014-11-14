@@ -9,12 +9,12 @@ class modal {
             <div id="neuerMieter" class="modal fade" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
-                <form class="form" action="neuerMieter.php" method="post">
-                    <div class="modal-header">
+                  <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title">Neuer Mieter erfassen</h4>
-                    </div>
-                <div class="modal-body">
+                  </div>
+                  <div class="modal-body">
+                      <form class="form" action="neuerMieter.php" method="post">
                           <div class="form-group">
                               <label for="inputMieternummer">Mieternummer</label>
                               <input type="number" class="form-control" name="inputMieternummer" placeholder="Mieternummer" disabled="1">
@@ -57,7 +57,7 @@ class modal {
                     <button class="btn btn-danger" type="reset">Reset</button>
                     <button type="submit" value="send" name="eintragsubmit" class="btn btn-primary">Submit</button>
                   </div>
-                </form>
+                  </form>
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
@@ -71,12 +71,12 @@ class modal {
             <div id="mieterEdit" class="modal fade" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
-                <form class="form" action="mieterEdit.php" method="post">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title">Mieter anpassen</h4>
                   </div>
                   <div class="modal-body">
+                      <form class="form" action="mieterEdit.php" method="post">
                           <div class="form-group">
                               <label for="inputMieternummer">Mieternummer</label>
                               <input type="number" class="form-control" name="inputMieternummer" placeholder="Mieternummer" disabled="1">
@@ -125,6 +125,34 @@ class modal {
             </div><!-- /.modal -->
             ';
     }
+
+    #################### Mieter löschen Modal ####################
+    public static function mieterDeleteModal($dbh, $mr, $name, $vorname){
+        
+               echo '
+            <div id="mieterDelete'.$mr.'" class="modal fade" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Mieter löschen</h4>
+                  </div>
+                  <div class="modal-body">
+                      <form class="form" action="mieterDelete.php" method="post">
+                         <div class="form-group">
+                              <p>'.$name." ".$vorname.'</p>
+                          </div>
+ 
+                  <div class="modal-footer">
+                    <button class="btn btn-danger" type="reset">Reset</button>
+                    <button type="submit" value="'.$mr.'" name="mieterdelete" class="btn btn-primary">Submit</button>
+                  </div>
+                  </form>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            ';
+    }
             
     #################### Rechnungen Modal Forms ####################    
     #################### Rechnung erstellen Modal ####################
@@ -133,12 +161,12 @@ class modal {
             <div id="neueRechnung" class="modal fade" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                <form class="form" action="neueRechnung.php" method="post">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title">Neue Rechnung erfassen</h4>
                 </div>
                 <div class="modal-body">
+                    <form class="form" action="neueRechnung.php" method="post">
                         <div class="form-group">
                             <label for="inputRechnungsnummer">Rechnungsnummer</label>
                             <input type="number" class="form-control" name="inputRechnungsnummer" placeholder="Rechnungsnummer" disabled="1">
@@ -198,12 +226,12 @@ class modal {
             <div id="rechnungDelete'.$rn.'" class="modal fade" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
-                <form class="form" action="rechnungDelete.php" method="post">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title">Mieter löschen</h4>
                   </div>
                   <div class="modal-body">
+                      <form class="form" action="rechnungDelete.php" method="post">
                          <div class="form-group">
                               <p>'.$name." ".$vorname."<br/>Rechnungstyp: ".$typ."<br/>Betrag: ".$betr.'</p>
                           </div>

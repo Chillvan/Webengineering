@@ -72,7 +72,9 @@
                         "</td><td>".$row['Strasse']."</td><td>".$row['PLZ'].
                         "</td><td>".$row['Ort']."</td><td>".$row['Mietzins'].
                         "</td><td>".$row['Aktiv'].
-                        "</td><td><a data-target='#mieterEdit' role='button' class='btn btn-default btn-xs' data-toggle='modal'>edit</a></td><td>");
+                        "</td><td><a data-target='#mieterEdit' role='button' class='btn btn-default btn-xs' data-toggle='modal'>edit</a></td><td>".
+                        "</td><td><a data-target='#mieterDelete".$row['Mieternummer']."' role='button' class='btn btn-default btn-xs' value=".$row['Mieternummer']." data-toggle='modal'>delete</a></td><td>");
+                    modal::mieterDeleteModal($dbh, $row['Mieternummer'], $row['Name'], $row['Vorname']);
                 }    
 
                 echo "</table>";
