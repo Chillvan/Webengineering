@@ -65,20 +65,25 @@
                 include_once 'configPDO.php';
 
                 echo "<table class='table table-striped'>";
-                echo "<tr><th>Rechnungsnummer</th><th>Rechnungstyp</th><th>Wohnungsnummer</th><th>Name</th><th>Vorname</th><th>Betrag</th></tr>";
+                echo "<tr><th>Rechnungs-<br/>nummer</th><th>Rechnungstyp</th><th>Wohnungs-<br/>nummer</th><th>Name</th><th>Vorname</th><th>Betrag</th></tr>";
 
-                foreach ($dbh->query('SELECT * FROM Rechnungen WHERE Rechnungstyp="Öl" ORDER BY Rechnungsnummer ASC') as $row) {                    
+                foreach ($dbh->query('SELECT * FROM Rechnungen, Mieterspiegel WHERE Rechnungen.Rechnungstyp="Öl" AND Mieterspiegel.Mieternummer=Rechnungen.Mieternummer ORDER BY Rechnungsnummer ASC') as $row) {                    
 
                 print_r("<tr><td>".$row['Rechnungsnummer']."</td><td>".$row['Rechnungstyp'].
                         "</td><td>".$row['Wohnungsnummer']."</td><td>".$row['Name'].
                         "</td><td>".$row['Vorname']."</td><td>".$row['Betrag']);
-                }    
-
-
-
+                }  
+                
+                $sth = $dbh->query('SELECT SUM Betrag AS gesamt FROM Rechnungen WHERE Rechnungen.Rechnungstyp="Öl"');
+                echo $sth['gesamt'];
+//                print_r("<tr><td>"."</td><td>"."</td><td>"."</td><td>"."</td><td>"."</td><td>".$gesamt."</tr>");
+                
+                    
+                
+                
                 echo "</table>";
                 echo "</div>";
-
+                                
                 unset($dbh);
                 ?>
             </div>
