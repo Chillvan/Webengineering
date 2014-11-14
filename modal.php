@@ -68,16 +68,16 @@ class modal {
     }
     
     #################### Mieter editieren Modal ####################
-    public static function mieterEditModal($dbh, $mr, $wnr, $name, $vname, $zins, $str, $plz, $ort){
+    public static function mieterEditModal($dbh, $mnr, $wnr, $name, $vname, $zins, $str, $plz, $ort){
             
         echo '
-            <div id="mieterEdit'.$mr.'" class="modal fade" aria-hidden="true">
+            <div id="mieterEdit'.$mnr.'" class="modal fade" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                 <form class="form" action="mieterEdit.php" method="post">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Mieter Nr. '.$mr.' anpassen</h4>
+                    <h4 class="modal-title">Mieter Nr. '.$mnr.' anpassen</h4>
                   </div>
                   <div class="modal-body">
                           <div class="form-group">
@@ -116,7 +116,7 @@ class modal {
                   </div>
                   <div class="modal-footer">
                     <button class="btn btn-danger" type="reset">Reset</button>
-                    <button type="submit" value="'.$mr.'" name="mieteredit" class="btn btn-primary">Submit</button>
+                    <button type="submit" value="'.$mnr.'" name="mieteredit" class="btn btn-primary">Submit</button>
                   </div>
                   </form>
                 </div><!-- /.modal-content -->
