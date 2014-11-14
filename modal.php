@@ -4,7 +4,11 @@ class modal {
 
     #################### Mieter Modal Forms #################### 
     #################### Neuer Mieter erfassen Modal #################### 
-    public static function mieterErfassenModal(){
+    public static function mieterErfassenModal($dbh){
+        
+        $stmt = ($dbh->query("SELECT Mieternummer FROM Mieterspiegel ORDER BY Mieternummer DESC LIMIT 1"));
+        $nextMieternr = $stmt->fetchColumn() +1;
+        
         echo '
             <div id="neuerMieter" class="modal fade" aria-hidden="true">
               <div class="modal-dialog">
@@ -16,8 +20,7 @@ class modal {
                     </div>
                 <div class="modal-body">
                           <div class="form-group">
-                              <label for="inputMieternummer">Mieternummer</label>
-                              <input type="number" class="form-control" name="inputMieternummer" placeholder="Mieternummer" disabled="1">
+                              <label>Mieternummer '.$nextMieternr.'</label>
                           </div>
                           <div class="form-group">
                               <label for="inputWohnungsnummer">Wohnungsnummer</label>

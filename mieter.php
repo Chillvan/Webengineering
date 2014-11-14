@@ -13,7 +13,8 @@
             <!-- #################### Modalformular einfügen #################### -->
             <?php
             include_once 'modal.php';
-            modal::mieterErfassenModal();
+            include_once 'configPDO.php';
+            modal::mieterErfassenModal($dbh);
             ?>
 
             <div id="header">                
