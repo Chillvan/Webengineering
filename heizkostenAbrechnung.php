@@ -11,12 +11,6 @@
         
         <div id="wrapper">
 
-            <!-- #################### Modalformular einfügen #################### -->
-            <?php
-            include_once 'modal.php';
-            modal::mieterErfassenModal();
-            ?>
-
             <div id="header">                
             <!-- #################### Navbar #################### -->
             <nav class="navbar navbar-inverse navbar-static-top no-margin" role="navigation">
@@ -74,9 +68,9 @@
                         "</td><td>".$row['Vorname']."</td><td>".$row['Betrag']);
                 }  
                 
-                $sth = $dbh->query('SELECT SUM Betrag AS gesamt FROM Rechnungen WHERE Rechnungen.Rechnungstyp="Öl"');
-                echo $sth['gesamt'];
-//                print_r("<tr><td>"."</td><td>"."</td><td>"."</td><td>"."</td><td>"."</td><td>".$gesamt."</tr>");
+                $sth = ($dbh->query('SELECT SUM(Betrag) FROM Rechnungen WHERE Rechnungen.Rechnungstyp="Öl"'));
+                $gesamt = $sth->fetchColumn();
+                print_r("<tr><td>"."</td><td>"."</td><td>"."</td><td>"."</td><td>"."</td><td>".$gesamt."</tr>");
                 
                     
                 
