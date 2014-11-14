@@ -127,7 +127,7 @@ class modal {
             
     #################### Rechnungen Modal Forms ####################    
     #################### Rechnung erstellen Modal ####################
-    public static function rechnungErfassenModal(){
+    public static function rechnungErfassenModal($dbh){
         
         $stmt = ($dbh->query("SELECT Rechnungsnummer FROM Rechnungen ORDER BY Rechnungsnummer DESC LIMIT 1"));
         $nextnr = $stmt->fetchColumn() +1;
