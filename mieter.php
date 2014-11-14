@@ -67,23 +67,21 @@
 
                 foreach ($dbh->query('SELECT * from Mieterspiegel WHERE Aktiv=1 ORDER BY Mieternummer ASC') as $row) {                    
 
-                print_r("<tr><td>".$row['Mieternummer']."</td><td>".$row['Wohnungsnummer'].
+                    print_r("<tr><td>".$row['Mieternummer']."</td><td>".$row['Wohnungsnummer'].
                         "</td><td>".$row['Name']."</td><td>".$row['Vorname'].
                         "</td><td>".$row['Strasse']."</td><td>".$row['PLZ'].
                         "</td><td>".$row['Ort']."</td><td>".$row['Mietzins'].
                         "</td><td>".$row['Aktiv'].
                         "</td><td><a data-target='#mieterEdit' role='button' class='btn btn-default btn-xs' data-toggle='modal'>edit</a></td><td>".
                         "</td><td><a data-target='#mieterDelete".$row['Mieternummer']."' role='button' class='btn btn-default btn-xs' value=".$row['Mieternummer']." data-toggle='modal'>delete</a></td><td>");
-                modal::mieterDeleteModal($dbh, $row['Mieternummer']);
+                    modal::mieterDeleteModal($dbh, $row['Mieternummer'], $row['Name'], $row['Vorname']);
                 }    
 
-
-
                 echo "</table>";
-                echo "</div>";
 
                 unset($dbh);
                 ?>
+            </div>
         
         
                 <!-- #################### Button Neuer Mieter #################### -->

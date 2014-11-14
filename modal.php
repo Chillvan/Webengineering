@@ -127,10 +127,7 @@ class modal {
     }
 
     #################### Mieter löschen Modal ####################
-    public static function mieterDeleteModal($dbh, $mr){
-                
-        $query = ($dbh->query('SELECT * FROM Mieterspiegel WHERE Mieternummer='.$mr));
-        $result = $query->fetch();
+    public static function mieterDeleteModal($dbh, $mr, $name, $vorname){
         
                echo '
             <div id="mieterDelete'.$mr.'" class="modal fade" aria-hidden="true">
@@ -143,12 +140,12 @@ class modal {
                   <div class="modal-body">
                       <form class="form" action="mieterDelete.php" method="post">
                          <div class="form-group">
-                              <p>'.$result['Name']." ".$result['Vorname'].'</p>
+                              <p>'.$name." ".$vorname.'</p>
                           </div>
  
                   <div class="modal-footer">
                     <button class="btn btn-danger" type="reset">Reset</button>
-                    <button type="submit" value="'.$mr.'" name="delete" class="btn btn-primary">Submit</button>
+                    <button type="submit" value="'.$mr.'" name="mieterdelete" class="btn btn-primary">Submit</button>
                   </div>
                   </form>
                 </div><!-- /.modal-content -->
@@ -222,6 +219,32 @@ class modal {
         </div><!-- /.modal -->
         ';
     }
-            
+    #################### Rechnung löschen Modal ####################
+    public static function rechnungDeleteModal($dbh, $rn, $name, $vorname, $typ, $betr){
+        
+               echo '
+            <div id="rechnungDelete'.$rn.'" class="modal fade" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Mieter löschen</h4>
+                  </div>
+                  <div class="modal-body">
+                      <form class="form" action="rechnungDelete.php" method="post">
+                         <div class="form-group">
+                              <p>'.$name." ".$vorname."<br/>Rechnungstyp: ".$typ."<br/>Betrag: ".$betr.'</p>
+                          </div>
+ 
+                  <div class="modal-footer">
+                    <button class="btn btn-danger" type="reset">Reset</button>
+                    <button type="submit" value="'.$rn.'" name="delete" class="btn btn-primary">Submit</button>
+                  </div>
+                  </form>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            ';
+    }
 }
  

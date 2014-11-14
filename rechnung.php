@@ -60,30 +60,28 @@
                 
                 <!-- #################### Rechnungen von Database #################### -->
                 <div class="container">
-                    <?php
-                    $user = 'u566874539_admin';
-                    $pass = 'WEFHNW14';
+                <?php
 
-                    echo "<table class='table table-striped'>";
-                    echo "<tr><th>Rechnungs-<br/>nummer</th><th>Wohnungs-<br/>nummer</th><th>Name</th><th>Vorname</th><th>Rechnungstyp</th><th>Kommentar</th><th>Betrag</th><th>Fälligkeits-<br/>datum</th><th>Bezahlt</th></tr>";
+                include_once 'modal.php';
+                include_once 'configPDO.php';
+                
+                echo "<table class='table table-striped'>";
+                echo "<tr><th>Rechnungs-<br/>nummer</th><th>Wohnungs-<br/>nummer</th><th>Name</th><th>Vorname</th><th>Rechnungstyp</th><th>Kommentar</th><th>Betrag</th><th>Fälligkeits-<br/>datum</th><th>Bezahlt</th></tr>";
 
-                    try {
-                        $dbh = new PDO('mysql:host=mysql.hostinger.de;dbname=u566874539_ftw', $user, $pass);
-                        foreach ($dbh->query("SELECT * , DATE_FORMAT(Datum,'%d.%m.%Y') as DDatum from Rechnungen,Mieterspiegel WHERE Rechnungen.Mieternummer = Mieterspiegel.Mieternummer ORDER BY Rechnungsnummer ASC") as $row) {
+                foreach ($dbh->query("SELECT * , DATE_FORMAT(Datum,'%d.%m.%Y') as DDatum from Rechnungen,Mieterspiegel WHERE Rechnungen.Mieternummer = Mieterspiegel.Mieternummer ORDER BY Rechnungsnummer ASC") as $row) {
 
-                            print_r("<tr><td>".$row['Rechnungsnummer']."</td><td>".$row['Wohnungsnummer'].
-                                    "</td><td>".$row['Name']."</td><td>".$row['Vorname'].
-                                    "</td><td>".$row['Rechnungstyp']."</td><td>".$row['Kommentar'].
-                                    "</td><td>".$row['Betrag']."</td><td>".$row['DDatum']."</td><td>".$row['Bezahlt'].
-                                    "</td><td><button type='button' value=".$row['Rechnungsnummer']." class='btn btn-default btn-xs'>edit</button></td><td>".
-                                    "</td><td><button type='button' class='btn btn-default btn-xs'>delete</button></td></tr>");
-                        }
-                        $dbh = null;
-                        } catch (PDOException $e) {
-                           print "Error!: " . $e->getMessage() . "<br/>";
-                           die();
-                        }
+                    print_r("<tr><td>".$row['Rechnungsnummer']."</td><td>".$row['Wohnungsnummer'].
+                            "</td><td>".$row['Name']."</td><td>".$row['Vorname'].
+                            "</td><td>".$row['Rechnungstyp']."</td><td>".$row['Kommentar'].
+                            "</td><td>".$row['Betrag']."</td><td>".$row['DDatum']."</td><td>".$row['Bezahlt'].
+                            "</td><td><a data-target='#rechnungEdit' role='button' class='btn btn-default btn-xs' data-toggle='modal'>edit</a></td><td>".
+                            "</td><td><a data-target='#rechnungDelete".$row['Rechnungsnummer']."' role='button' class='btn btn-default btn-xs' value=".$row['Rechnungsnummer']." data-toggle='modal'>delete</a></td><td>");
+                    modal::rechnungDeleteModal($dbh, $row['Rechnungsnummer'], $row['Name'], $row['Vorname'], $row['Rechnungstyp'], $row['Betrag']);
+                }
+
                         echo "</table>";
+                        
+                        unset($dbh);
                         ?>
                 </div>
         

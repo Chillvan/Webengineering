@@ -51,6 +51,16 @@ class dbfunctions {
         
     }
     
+    public static function rechnungdelete($dbh, $rn){
+        
+        $stmt = $dbh->prepare("DELETE FROM Rechnungen WHERE Rechnungsnummer=".$rn);
+        $stmt->execute();
+        $affected_rows = $stmt->rowCount();
+        
+        unset($dbh);
+        
+    }
+    
 }
 
 ?>
