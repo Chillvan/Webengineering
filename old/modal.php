@@ -4,23 +4,20 @@ class modal {
 
     #################### Mieter Modal Forms #################### 
     #################### Neuer Mieter erfassen Modal #################### 
-    public static function mieterErfassenModal($dbh){
-        
-        $stmt = ($dbh->query("SELECT Mieternummer FROM Mieterspiegel ORDER BY Mieternummer DESC LIMIT 1"));
-        $nextMieternr = $stmt->fetchColumn() +1;
-        
+    public static function mieterErfassenModal(){
         echo '
             <div id="neuerMieter" class="modal fade" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
-                <form class="form" action="neuerMieter.php" method="post">
-                    <div class="modal-header">
+                  <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title">Neuer Mieter erfassen</h4>
-                    </div>
-                <div class="modal-body">
+                  </div>
+                  <div class="modal-body">
+                      <form class="form" action="neuerMieter.php" method="post">
                           <div class="form-group">
-                              <label>Mieternummer '.$nextMieternr.'</label>
+                              <label for="inputMieternummer">Mieternummer</label>
+                              <input type="number" class="form-control" name="inputMieternummer" placeholder="Mieternummer" disabled="1">
                           </div>
                           <div class="form-group">
                               <label for="inputWohnungsnummer">Wohnungsnummer</label>
@@ -60,7 +57,7 @@ class modal {
                     <button class="btn btn-danger" type="reset">Reset</button>
                     <button type="submit" value="send" name="eintragsubmit" class="btn btn-primary">Submit</button>
                   </div>
-                </form>
+                  </form>
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
@@ -68,45 +65,49 @@ class modal {
     }
     
     #################### Mieter editieren Modal ####################
-    public static function mieterEditModal($dbh, $mr, $wnr, $name, $vname, $zins, $str, $plz, $ort){
+    public static function mieterEditModal($dbh, $mr){
             
         echo '
-            <div id="mieterEdit'.$mr.'" class="modal fade" aria-hidden="true">
+            <div id="mieterEdit" class="modal fade" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
-                <form class="form" action="mieterEdit.php" method="post">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Mieter Nr. '.$mr.' anpassen</h4>
+                    <h4 class="modal-title">Mieter anpassen</h4>
                   </div>
                   <div class="modal-body">
+                      <form class="form" action="mieterEdit.php" method="post">
+                          <div class="form-group">
+                              <label for="inputMieternummer">Mieternummer</label>
+                              <input type="number" class="form-control" name="inputMieternummer" placeholder="Mieternummer" disabled="1">
+                          </div>
                           <div class="form-group">
                               <label for="inputWohnungsnummer">Wohnungsnummer</label>
-                              <input type="number" class="form-control" name="inputWohnungsnummer" placeholder="'.$wnr.'">
+                              <input type="number" class="form-control" name="inputWohnungsnummer" placeholder="Wohnungsnummer">
                           </div>
                           <div class="form-group">
                               <label for="inputName">Name</label>
-                              <input type="text" class="form-control" name="inputName" placeholder="'.$name.'">
+                              <input type="text" class="form-control" name="inputName" placeholder="Name">
                           </div>
                           <div class="form-group">
                               <label for="inputVorname">Vorname</label>
-                              <input type="text" class="form-control" name="inputVorname" placeholder="'.$vname.'">
+                              <input type="text" class="form-control" name="inputVorname" placeholder="Vorname">
                           </div>
                           <div class="form-group">
                               <label for="inputMietzins">Mietzins</label>
-                              <input type="number" class="form-control" name="inputMietzins" placeholder="'.$zins.'">
+                              <input type="number" class="form-control" name="inputMietzins" placeholder="Mietzins">
                           </div>
                           <div class="form-group">
                               <label for="inputStrasse">Strasse</label>
-                              <input type="text" class="form-control" name="inputStrasse" placeholder="'.$str.'">
+                              <input type="text" class="form-control" name="inputStrasse" placeholder="Strasse & Hausnummer">
                           </div>
                           <div class="form-group">
                               <label for="inputPLZ">PLZ</label>
-                              <input type="text" class="form-control" name="inputPLZ" placeholder="'.$plz.'">
+                              <input type="text" class="form-control" name="inputPLZ" placeholder="PLZ">
                           </div>
                           <div class="form-group">
                               <label for="inputOrt">Ort</label>
-                              <input type="text" class="form-control" name="inputOrt" placeholder="'.$ort.'">
+                              <input type="text" class="form-control" name="inputOrt" placeholder="Ort">
                           </div>
                           <div class="checkbox">
                               <label>
@@ -116,7 +117,35 @@ class modal {
                   </div>
                   <div class="modal-footer">
                     <button class="btn btn-danger" type="reset">Reset</button>
-                    <button type="submit" value="'.$mr.'" name="mieteredit" class="btn btn-primary">Submit</button>
+                    <button type="submit" value="'.$mr.'" name="edit'.$mr.'" class="btn btn-primary">Submit</button>
+                  </div>
+                  </form>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            ';
+    }
+
+    #################### Mieter löschen Modal ####################
+    public static function mieterDeleteModal($dbh, $mr, $name, $vorname){
+        
+               echo '
+            <div id="mieterDelete'.$mr.'" class="modal fade" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Mieter löschen</h4>
+                  </div>
+                  <div class="modal-body">
+                      <form class="form" action="mieterDelete.php" method="post">
+                         <div class="form-group">
+                              <p>'.$name." ".$vorname.'</p>
+                          </div>
+ 
+                  <div class="modal-footer">
+                    <button class="btn btn-danger" type="reset">Reset</button>
+                    <button type="submit" value="'.$mr.'" name="mieterdelete" class="btn btn-primary">Submit</button>
                   </div>
                   </form>
                 </div><!-- /.modal-content -->
@@ -132,12 +161,12 @@ class modal {
             <div id="neueRechnung" class="modal fade" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                <form class="form" action="neueRechnung.php" method="post">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title">Neue Rechnung erfassen</h4>
                 </div>
                 <div class="modal-body">
+                    <form class="form" action="neueRechnung.php" method="post">
                         <div class="form-group">
                             <label for="inputRechnungsnummer">Rechnungsnummer</label>
                             <input type="number" class="form-control" name="inputRechnungsnummer" placeholder="Rechnungsnummer" disabled="1">
@@ -197,12 +226,12 @@ class modal {
             <div id="rechnungDelete'.$rn.'" class="modal fade" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
-                <form class="form" action="rechnungDelete.php" method="post">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title">Mieter löschen</h4>
                   </div>
                   <div class="modal-body">
+                      <form class="form" action="rechnungDelete.php" method="post">
                          <div class="form-group">
                               <p>'.$name." ".$vorname."<br/>Rechnungstyp: ".$typ."<br/>Betrag: ".$betr.'</p>
                           </div>
