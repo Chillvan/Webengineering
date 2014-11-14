@@ -56,7 +56,7 @@
                 </nav>
             </div>
         
-        
+            <!-- ################### Main Content ###################-->
             <div id="content">  
                 
                 <!-- #################### Rechnungen von Database #################### -->
@@ -87,22 +87,23 @@
                 </div>
         
         
-        <!-- #################### Button Neue Rechnung #################### -->
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5">
-                     <!--emtpy--> 
-                </div>
-                <div class="col-md-5">
-                    <p>
-                        <a data-target="#neueRechnung" role="button" class="btn btn-default btn-lg" data-toggle="modal">Neue Rechnung erfassen</a>
-                    </p>
-                </div>
-                <div class="col-md-5">
-                     <!--emtpy--> 
+                <!-- #################### Button Neue Rechnung #################### -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-5">
+                             <!--emtpy--> 
+                        </div>
+                        <div class="col-md-5">
+                            <p>
+                                <a data-target="#neueRechnung" role="button" class="btn btn-default btn-lg" data-toggle="modal">Neue Rechnung erfassen</a>
+                            </p>
+                        </div>
+                        <div class="col-md-5">
+                             <!--emtpy--> 
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
         
         
             <!-- #################### Footer #################### -->

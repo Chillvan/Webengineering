@@ -63,7 +63,7 @@
                 include_once 'configPDO.php';
 
                 echo "<table class='table table-striped'>";
-                echo "<tr><th>Mieter-<br/>nummer</th><th>Wohnungs-<br/>nummer</th><th>Name</th><th>Vorname</th><th>Strasse</th><th>PLZ</th><th>Ort</th><th>Mietzins</th><th>Aktiv</th></tr>";
+                echo "<tr><th>Mieter-<br/>nummer</th><th>Wohnungs-<br/>nummer</th><th>Name</th><th>Vorname</th><th>Strasse</th><th>PLZ</th><th>Ort</th><th>Mietzins</th><th>Aktiv</th><th></th></tr>";
 
                 foreach ($dbh->query('SELECT * from Mieterspiegel WHERE Aktiv=1 ORDER BY Mieternummer ASC') as $row) {                    
 
