@@ -124,7 +124,7 @@ class modal {
     }
     
     #################### Mieter editieren Modal ####################
-    public static function mieterEditModal($dbh, $mnr, $wnr, $name, $vname, $zins, $str, $plz, $ort){
+    public static function mieterEditModal($dbh, $mnr, $name, $vname, $zins, $str, $plz, $ort){
         
         include_once 'dbfunctions.php';
         
@@ -267,7 +267,7 @@ class modal {
     }
     
     #################### Rechnung editieren Modal ####################
-    public static function rechnungEditModal($dbh, $rnr, $wnr, $betrag, $komm){
+    public static function rechnungEditModal($dbh, $rnr, $betrag, $komm){
         
         include_once 'dbfunctions.php';
         

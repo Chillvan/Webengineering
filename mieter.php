@@ -53,7 +53,7 @@ if(!isset($_SESSION['user'])){
                             "</td><td>".$row['Ort']."</td><td>".$row['Mietzins'].
                             "</td><td>".$row['Aktiv'].
                             "</td><td><a data-target='#mieterEdit".$row['Mieternummer']."' role='button' class='btn btn-default btn-xs' data-toggle='modal'>edit</a>");
-                        modal::mieterEditModal($dbh, $row['Mieternummer'], $row['Wohnungsnummer'], $row['Name'], 
+                        modal::mieterEditModal($dbh, $row['Mieternummer'], $row['Name'], 
                                 $row['Vorname'], $row['Mietzins'], $row['Strasse'], $row['PLZ'], $row['Ort']);
                     }    
 
