@@ -1,4 +1,6 @@
 <?php
+
+#################### Erstellung eines PDO ####################
 $host = 'mysql:host=mysql.hostinger.de;dbname=u566874539_ftw';
 $user = 'u566874539_admin';
 $pass = 'WEFHNW14';
