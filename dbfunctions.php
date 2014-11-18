@@ -1,7 +1,9 @@
 <?php
 
+#################### Datenbankfunktionen ####################
 class dbfunctions {
     
+    #################### User Berechtigung prüfen ####################
     public static function loginauth($dbh, $user, $pw){
         $loginquery = ($dbh->query("SELECT * FROM Login"));
         $logindata = $loginquery->fetchAll();
@@ -9,11 +11,30 @@ class dbfunctions {
         if($logindata[0][0] == $user && $logindata[0][1] == $pw){
             return true;
         }
-        else{
-            return false;
-        }
     }
     
+    #################### Passwort mit altem und wiederholtem PW vergleichen ####################
+    public static function pwcheck($dbh, $user, $alt, $neu, $erneut){
+        $query = ($dbh->query("SELECT Password FROM Login WHERE User='".$user."'"));
+        $pwdb = $query->fetchColumn();
+        
+        if($pwdb == $alt && $neu == $erneut && $neu !=""){
+            return true;
+        }
+        unset($dbh);
+    }
+    
+    #################### Änderung des Passwortes in der DB vornehmen ####################
+    public static function pwchange($dbh, $user, $pw){
+        
+        $stmt = $dbh->prepare("UPDATE Login SET Password='".$pw."' WHERE User='".$user."'");
+        $stmt->execute();
+        $affected_rows = $stmt->rowCount();
+        
+        unset($dbh);
+    }
+    
+    #################### Neuen Mieter in DB eintragen ####################
     public static function mietereintrag($dbh, $wnr, $name, $vname, $zins, $str, $plz, $ort, $aktiv){
         
         if ($aktiv == null){
@@ -32,7 +53,8 @@ class dbfunctions {
         
     }
     
-        public static function mieteredit($dbh, $mnr, $wnr, $name, $vname, $zins, $str, $plz, $ort, $aktiv){
+    #################### Bestehenden Mieter in Datenbank ändern ####################
+    public static function mieteredit($dbh, $mnr, $wnr, $name, $vname, $zins, $str, $plz, $ort, $aktiv){
 
         $updatequery = "";
         
@@ -93,6 +115,7 @@ class dbfunctions {
         
     }
     
+    #################### Neue Rechnung in DB erfassen ####################
     public static function rechnungseintrag($dbh, $wnr, $rtyp, $betrag, $datum, $komm, $bez){
         
         if ($bez == null){
@@ -114,6 +137,7 @@ class dbfunctions {
         
     }
     
+    #################### Bestehende Rechnung in DB verändern ####################
     public static function rechnungsedit($dbh, $rnr, $wnr, $rtyp, $betrag, $datum, $komm, $bez){
         
         $updatequery = "";
@@ -163,7 +187,7 @@ class dbfunctions {
         
     }
     
-    
+    #################### Rechnung aus Datenbank löschen ####################
     public static function rechnungdelete($dbh, $rnr){
         
         $stmt = $dbh->prepare("DELETE FROM Rechnungen WHERE Rechnungsnummer=".$rnr);
