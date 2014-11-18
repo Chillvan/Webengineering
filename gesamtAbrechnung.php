@@ -11,10 +11,15 @@
         
         <div id="wrapper">
             
-            <!--#################### fpdf einfügen #################### -->
+            <!--#################### Modalformular einfügen ####################--> 
             <?php
-            include('/fpdf17/fpdf.php');
-            define('FPDF_FONTPATH','/fpdf17/font/');
+            include_once 'modal.php';
+            modal::pdfDrucken();
+            ?>
+            
+            <!--#################### fpdf einfügen ####################--> 
+            <?php
+            include ("../fpdf17/fpdf.php");
             ?>
 
             <!-- #################### Navbar #################### -->

@@ -299,7 +299,7 @@ class modal {
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Nein</button>
-                    <button type="button" class="btn btn-primary">Ja</button>
+                    <button type="button" class="btn btn-primary" type="submit"> Ja </button>
                   </div>
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->

@@ -1,6 +1,6 @@
 <?php
 	
-define('FPDF_INSTALLDIR', '/fpdf17');
+define('FPDF_INSTALLDIR', '../fpdf17');
 
 if(!defined('FPDF_FONTPATH')) define('FPDF_FONTPATH', FPDF_INSTALLDIR.'/font/');
 include(FPDF_INSTALLDIR.'/fpdf.php');
