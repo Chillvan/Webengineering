@@ -1,7 +1,8 @@
-<?php	
+<?php
 require("fpdf17/fpdf.php");
 
 class PDF extends FPDF {
+    
     
     // Page header
     function Header() {
@@ -19,10 +20,13 @@ class PDF extends FPDF {
     
     // fetch data from database
     function fetchData() {
+        $host = 'mysql:host=mysql.hostinger.de;dbname=u566874539_ftw';
+        $user = 'u566874539_admin';
+        $pass = 'WEFHNW14';
+        
         try {
-            $dbh = new PDO('mysql:host=mysql.hostinger.de;dbname=u566874539_ftw', 'u566874539_admin', 'WEFHNW14');
+            $dbh = new PDO($host, $user, $pass);
             $query = $dbh->prepare('SELECT * FROM Rechnungen, Mieterspiegel WHERE Mieterspiegel.Mieternummer=Rechnungen.Mieternummer ORDER BY Rechnungsnummer ASC');
-            $dbh->query('SELECT SUM(Betrag) FROM Rechnungen');
             $query->execute();
             $abrechnung = $query->fetchAll(PDO::FETCH_ASSOC);
             $query = null;
@@ -33,34 +37,60 @@ class PDF extends FPDF {
             die();
         } 
     }
+    
+    // fetch data from database
+    function fetchGesamt() {
+        $host = 'mysql:host=mysql.hostinger.de;dbname=u566874539_ftw';
+        $user = 'u566874539_admin';
+        $pass = 'WEFHNW14';
+        
+        try {
+            $dbh = new PDO($host, $user, $pass);
+            $sth = ($dbh->query('SELECT SUM(Betrag) FROM Rechnungen'));
+            $gesamt = $sth->fetchColumn();
+            $query = null;
+            $dbh = null;
+            return $gesamt;
+        } catch (PDOException $e) {
+            print "Error!: " . $e->getMessage() . "<br/>";
+            die();
+        } 
+    }
 
 
 
 
     // Page content
-    function createTable($header, $data) {
+    function createTable($header, $data, $gesamt) {
         
         // Column widths
         $w = array(60, 50, 60, 30, 40, 35);
         // Position at 4.5 cm from top
         $this->SetY(45);
         // Header
+        $this->SetFont('Arial', 'B', 14);
         for($i=0;$i<count($header);$i++)
-            $this->Cell($w[$i],10,$header[$i],1,0,'C');
+            $this->Cell($w[$i],10,$header[$i],1,0,'L');
         $this->Ln();
         // Data
-        foreach($data as $row)
-        {
-            $this->Cell($w[0],6,number_format($row[0]),'LR');
-            $this->Cell($w[1],6,$row[1],'LR');
-            $this->Cell($w[2],6,number_format($row[2]),'LR',0,'R');
-            $this->Cell($w[3],6,$row[3],'LR',0,'R');
-            $this->Cell($w[4],6,$row[4],'LR',0,'R');
-            $this->Cell($w[5],6,number_format($row[5]),'LR',0,'R');
+        $this->SetFont('Arial', '', 14);
+        foreach ($data as $row) {
+            $this->Cell($w[0], 8, $row['Rechnungsnummer'], 1, 0, 'L');
+            $this->Cell($w[1], 8, $row['Rechnungstyp'] = utf8_decode($row['Rechnungstyp']), 1, 0, 'L');
+            $this->Cell($w[2], 8, $row['Wohnungsnummer'], 1, 0, 'L');
+            $this->Cell($w[3], 8, $row['Name'] = utf8_decode($row['Name']), 1, 0, 'L');
+            $this->Cell($w[4], 8, $row['Vorname'] = utf8_decode($row['Vorname']), 1, 0, 'L');
+            $this->Cell($w[5], 8, $row['Betrag'], 1, 0, 'R');
             $this->Ln();
         }
-        // Closing line
-        $this->Cell(array_sum($w),0,'','T');
+        $this->Ln();
+        $this->Cell($w[0], 8, '', 0, 0, 'L');
+        $this->Cell($w[1], 8, '', 0, 0, 'L');
+        $this->Cell($w[2], 8, '', 0, 0, 'L');
+        $this->Cell($w[3], 8, '', 0, 0, 'L');
+        $this->SetFont('Arial', 'B', 14);
+        $this->Cell($w[4], 8, 'Total', 1, 0, 'L');
+        $this->Cell($w[5], 8, $gesamt, 1, 0, 'R');
     }
 
 
@@ -71,20 +101,23 @@ class PDF extends FPDF {
         $this->SetY(-15);
         // Arial italic 8
         $this->SetFont('Arial','I',10);
+        // Autoren
+        $autoren = utf8_decode('Silvan Hoppler, Steven Bühler, Bastian End');
+        $this->Cell(0, 10, $autoren, 0, 0, 'L');
         // Page number
-        $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
+        $this->Cell(0, 10, 'Seite '.$this->PageNo().'/{nb}', 0, 0, 'R');
     }
 }
 
 // Instanciation of inherited class
 $pdf = new PDF();
-// Column headings
 $header = array('Rechnungsnummer', 'Rechnungstyp', 'Wohnungsnummer', 'Name', 'Vorname', 'Betrag');
 $data = $pdf->fetchData();
+$gesamt = $pdf->fetchGesamt();
 $pdf->AliasNbPages();
-$pdf->SetFont('Arial','',14);
+//$pdf->SetFont('Arial','',14);
 $pdf->AddPage('L');
-$pdf->createTable($header);
+$pdf->createTable($header, $data, $gesamt);
 //$pdf->SetFont('Times','',12);
 $pdf->Output();
 ?>
