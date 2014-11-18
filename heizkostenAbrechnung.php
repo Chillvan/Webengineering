@@ -1,3 +1,11 @@
+<?php
+session_start();
+session_regenerate_id();
+if(!isset($_SESSION['user'])){
+    header('Location: index.php');
+}
+?>
+
 <html>
     <head>
         <title>Heizkostenabrechnung</title>
@@ -15,7 +23,7 @@
             <div id="header">                                
                 <?php
                 include_once 'navbar.php';
-                navbar::createNavbar();
+                navbar::createNavbar($_SESSION['user']);
                 ?>
             </div>
             
