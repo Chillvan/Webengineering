@@ -338,6 +338,7 @@ class modal {
                     <button type="button" class="btn btn-default" data-dismiss="modal">Nein</button>
                     <button type="button" class="btn btn-primary" type="submit"> Ja </button>
                   </div>
+                </form>
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
