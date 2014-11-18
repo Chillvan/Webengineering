@@ -24,11 +24,6 @@ if(!isset($_SESSION['user'])){
             include_once 'modal.php';
             modal::pdfDrucken();
             ?>
-            
-            <!--#################### fpdf einfügen ####################--> 
-            <?php
-//            include ("/fpdf17/fpdf.php");
-            ?>
 
             <!-- #################### Navbar #################### -->
             <div id="header">                                
