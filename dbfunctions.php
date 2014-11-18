@@ -31,7 +31,6 @@ class dbfunctions {
         $stmt->execute();
         $affected_rows = $stmt->rowCount();
         
-        unset($dbh);
     }
     
     #################### Prüfen welche Wohnungen belegt sind ####################
@@ -44,8 +43,6 @@ class dbfunctions {
         for($i = 0;$i <= $laenge; $i++){
             $belegteWohnungen[$i] = $queryresult[$i][0];
         }
-        
-        unset($dbh);
         
         return $belegteWohnungen;
     }    
