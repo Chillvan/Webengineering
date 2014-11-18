@@ -4,6 +4,10 @@ class navbar {
     public static function createNavbar($user) {
         
         if($user != null){
+            
+            include_once 'modal.php';
+            modal::passwordChangeModal();
+            
             echo '    
             <nav class="navbar navbar-inverse navbar-static-top no-margin" role="navigation">
                     <div class="container-fluid">
@@ -37,7 +41,7 @@ class navbar {
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$user.'<span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href="logout.php">Logout</a></li>
-                                        <li><a href="pwchange.php">Password ändern</a></li>
+                                        <li><a href="#" data-target="#passwordChange" data-toggle="modal">Password ändern</a></li>
                                     </ul>
                                 </li>
                             </ul>

@@ -2,6 +2,43 @@
 
 class modal {
 
+    #################### Passwort ändern Modal ####################
+    public static function passwordChangeModal(){
+        
+        echo '
+            <div id="passwordChange" class="modal fade" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <form class="form" action="pwchange.php" method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Passwort ändern</h4>
+                </div>
+                <div class="modal-body">
+                        <div class="form-group">
+                            <label for="altesPw">Altes Passwort</label>
+                            <input type="password" class="form-control" name="altesPw">
+                        </div>
+                        <div class="form-group">
+                            <label for="neuesPw">Neues Passwort</label>
+                            <input type="password" class="form-control" name="neuesPw">
+                        </div>
+                        <div class="form-group">
+                            <label for="erneutPw">Neues Passwort wiederholen</label>
+                            <input type="password" class="form-control" name="erneutPw">
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" type="reset">Reset</button>
+                    <button type="submit" value="pwsubmit" name="pwsubmit" class="btn btn-primary">Submit</button>
+                </div>
+                </form>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        ';
+    }
+
     #################### Mieter Modal Forms #################### 
     #################### Neuer Mieter erfassen Modal #################### 
     public static function mieterErfassenModal($dbh){
@@ -68,7 +105,7 @@ class modal {
     }
     
     #################### Mieter editieren Modal ####################
-    public static function mieterEditModal($dbh, $mnr, $wnr, $name, $vname, $zins, $str, $plz, $ort){
+    public static function mieterEditModal($mnr, $wnr, $name, $vname, $zins, $str, $plz, $ort){
             
         echo '
             <div id="mieterEdit'.$mnr.'" class="modal fade" aria-hidden="true">
