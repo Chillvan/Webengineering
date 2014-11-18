@@ -11,12 +11,6 @@
         
         <div id="wrapper">
 
-            <!-- #################### Modalformular einfügen #################### -->
-            <?php
-            include_once 'modal.php';
-            modal::mieterErfassenModal();
-            ?>
-
             <!-- #################### Navbar #################### -->
             <div id="header">                                
                 <?php
@@ -26,31 +20,35 @@
             </div>
             
             
-            
-            <!-- #################### Heizkostenrechnungen von Database #################### -->
-            <div id="dbtable">
-                <?php
+            <!-- ################### Main Content ###################-->
+            <div id="content">             
+                <!-- #################### Heizkostenrechnungen von Database #################### -->
+                <div id="dbtable">
+                    <?php
 
-                //include_once 'modal.php';
-                include_once 'configPDO.php';
+                    //include_once 'modal.php';
+                    include_once 'configPDO.php';
 
-                echo "<table class='table table-striped'>";
-                echo "<tr><th>Rechnungsnummer</th><th>Rechnungstyp</th><th>Wohnungsnummer</th><th>Name</th><th>Vorname</th><th>Betrag</th></tr>";
+                    echo "<table class='table table-striped'>";
+                    echo "<tr><th>Rechnungs-<br/>nummer</th><th>Rechnungstyp</th><th>Wohnungs-<br/>nummer</th><th>Name</th><th>Vorname</th><th>Betrag</th></tr>";
 
-                foreach ($dbh->query('SELECT * FROM Rechnungen WHERE Rechnungstyp="Öl" ORDER BY Rechnungsnummer ASC') as $row) {                    
+                    foreach ($dbh->query('SELECT * FROM Rechnungen, Mieterspiegel WHERE Rechnungen.Rechnungstyp!="Öl" AND Mieterspiegel.Mieternummer=Rechnungen.Mieternummer ORDER BY Rechnungsnummer ASC') as $row) {                    
 
-                print_r("<tr><td>".$row['Rechnungsnummer']."</td><td>".$row['Rechnungstyp'].
-                        "</td><td>".$row['Wohnungsnummer']."</td><td>".$row['Name'].
-                        "</td><td>".$row['Vorname']."</td><td>".$row['Betrag']);
-                }    
+                    print_r("<tr><td>".$row['Rechnungsnummer']."</td><td>".$row['Rechnungstyp'].
+                            "</td><td>".$row['Wohnungsnummer']."</td><td>".$row['Name'].
+                            "</td><td>".$row['Vorname']."</td><td>".$row['Betrag']."</td></tr>");
+                    }    
 
+                    $sth = ($dbh->query('SELECT SUM(Betrag) FROM Rechnungen WHERE Rechnungen.Rechnungstyp="Öl"'));
+                    $gesamt = $sth->fetchColumn();
+                    print_r("<tr><td>"."</td><td>"."</td><td>"."</td><td>"."</td><td>"."</td><td>".$gesamt."</tr>");
 
+                    echo "</table>";
+                    echo "</div>";
 
-                echo "</table>";
-                echo "</div>";
-
-                unset($dbh);
-                ?>
+                    unset($dbh);
+                    ?>
+                </div>
             </div>
             
             
