@@ -58,7 +58,7 @@ if(!isset($_SESSION['user'])){
                                 "</td><td>".$row['Vorname']."</td><td>".$row['Betrag']."</td></tr>");
                         }
                         
-                    $sth = ($dbh->query('SELECT SUM(Betrag) FROM Rechnungen WHERE Rechnungen.Rechnungstyp="Öl"'));
+                    $sth = ($dbh->query('SELECT SUM(Betrag) FROM Rechnungen'));
                     $gesamt = $sth->fetchColumn();
                     print_r("<tr><td>"."</td><td>"."</td><td>"."</td><td>"."</td><td>"."</td><td>".$gesamt."</tr>");
 
