@@ -34,15 +34,6 @@ class dbfunctions {
         unset($dbh);
     }
     
-    #################### Prüfen welche Wohnungen frei sind ####################
-    public static function freiewohnungen($belegt){
-        
-        $Wohnungen = array(1,2,3,4,5,6,7,8,9,10,11,12);
-        $freieWohnungen = array_diff($Wohnungen, $belegt);
-        
-        return $freieWohnungen;
-    }
-    
     #################### Prüfen welche Wohnungen belegt sind ####################
     public static function belegtewohnungen($dbh){
         
@@ -57,6 +48,15 @@ class dbfunctions {
         unset($dbh);
         
         return $belegteWohnungen;
+    }    
+
+    #################### Prüfen welche Wohnungen frei sind ####################
+    public static function freiewohnungen($belegt){
+        
+        $Wohnungen = array(1,2,3,4,5,6,7,8,9,10,11,12);
+        $freieWohnungen = array_diff($Wohnungen, $belegt);
+        
+        return $freieWohnungen;
     }
     
     #################### Neuen Mieter in DB eintragen ####################
