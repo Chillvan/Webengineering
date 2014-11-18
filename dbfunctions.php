@@ -34,6 +34,31 @@ class dbfunctions {
         unset($dbh);
     }
     
+    #################### Prüfen welche Wohnungen frei sind ####################
+    public static function freiewohnungen($belegt){
+        
+        $Wohnungen = array(1,2,3,4,5,6,7,8,9,10,11,12);
+        $freieWohnungen = array_diff($Wohnungen, $belegt);
+        
+        return $freieWohnungen;
+    }
+    
+    #################### Prüfen welche Wohnungen belegt sind ####################
+    public static function belegtewohnungen($dbh){
+        
+        $query = $dbh->query("SELECT Wohnungsnummer FROM Mieterspiegel WHERE Aktiv=1 ORDER BY Wohnungsnummer ASC");
+        $queryresult = $query->fetchAll(PDO::FETCH_NUM);
+        $laenge = count($queryresult);
+        $belegteWohnungen = array();
+        for($i = 0;$i <= $laenge; $i++){
+            $belegteWohnungen[$i] = $queryresult[$i][0];
+        }
+        
+        unset($dbh);
+        
+        return $belegteWohnungen;
+    }
+    
     #################### Neuen Mieter in DB eintragen ####################
     public static function mietereintrag($dbh, $wnr, $name, $vname, $zins, $str, $plz, $ort, $aktiv){
         

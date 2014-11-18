@@ -43,8 +43,18 @@ class modal {
     #################### Neuer Mieter erfassen Modal #################### 
     public static function mieterErfassenModal($dbh){
         
+        require_once 'dbfunctions.php';
+        
         $stmt = ($dbh->query("SELECT Mieternummer FROM Mieterspiegel ORDER BY Mieternummer DESC LIMIT 1"));
         $nextMieternr = $stmt->fetchColumn() +1;
+        
+        $belegt = dbfunctions::belegtewohnungen($dbh);
+        $frei = dbfunctions::freiewohnungen($belegt);
+        
+        foreach($frei as $i){
+        $text = $text.'<option value="'.$i.'">'.$i.'</option>';
+        }
+        unset($i);
         
         echo '
             <div id="neuerMieter" class="modal fade" aria-hidden="true">
@@ -59,10 +69,12 @@ class modal {
                           <div class="form-group">
                               <label>Mieternummer '.$nextMieternr.'</label>
                           </div>
-                          <div class="form-group">
-                              <label for="inputWohnungsnummer">Wohnungsnummer</label>
-                              <input type="number" class="form-control" name="inputWohnungsnummer" placeholder="Wohnungsnummer">
-                          </div>
+                        <div class="form-group">
+                            <label for="inputWohnungsnummer">Wohnungsnummer</label>
+                            <select class="form-control" name="inputWohnungsnummer">
+                                '.$text.'
+                            </select>
+                        </div>
                           <div class="form-group">
                               <label for="inputName">Name</label>
                               <input type="text" class="form-control" name="inputName" placeholder="Name">
@@ -166,8 +178,17 @@ class modal {
     #################### Rechnung erstellen Modal ####################
     public static function rechnungErfassenModal($dbh){
         
+        include_once 'dbfunctions.php';
+        
         $stmt = ($dbh->query("SELECT Rechnungsnummer FROM Rechnungen ORDER BY Rechnungsnummer DESC LIMIT 1"));
         $nextnr = $stmt->fetchColumn() +1;
+        
+        $belegt = dbfunctions::belegtewohnungen($dbh);
+        
+        foreach($belegt as $i){
+        
+        $text = $text.'<option value="'.$i.'">'.$i.'</option>';
+        }
         
         echo '
             <div id="neueRechnung" class="modal fade" aria-hidden="true">
@@ -184,7 +205,9 @@ class modal {
                         </div>
                         <div class="form-group">
                             <label for="inputWohnungsnummer">Wohnungsnummer</label>
-                            <input type="number" class="form-control" name="inputWohnungsnummer" placeholder="Wohnungsnummer">
+                            <select class="form-control" name="inputWohnungsnummer">
+                                '.$text.'
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="rechnung">Rechnungstyp</label>
