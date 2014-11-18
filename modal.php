@@ -298,7 +298,7 @@ class modal {
                             <option>Wohnungsnummer</option>
                                 '.$text.'
                             </select>
-                        </div>
+                          </div>
                         <div class="form-group">
                             <label for="rechnung">Rechnungstyp</label>
                             <div class="radio">
