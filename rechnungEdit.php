@@ -10,7 +10,7 @@ if(isset($_POST['rechnungsedit'])){
         $_POST['rechnung'], $_POST['inputBetrag'], $_POST['inputDatum'],
         $_POST['inputKommentar'], $_POST['inputBezahlt']);
 
-//header('Location:rechnung.php');
+header('Location:rechnung.php');
 }
 else{
     echo 'Löschung ging leider nicht. Hier gehts zurück zur Übersicht.';
