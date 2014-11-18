@@ -149,7 +149,7 @@ class modal {
                           <div class="form-group">
                             <label for="inputWohnungsnummer">Wohnungsnummer</label>
                             <select class="form-control" name="inputWohnungsnummer">
-                            <option>Wohnungsnummer</option>
+                            <option value="">Wohnungsnummer</option>
                                 '.$text.'
                             </select>
                           </div>
@@ -295,7 +295,7 @@ class modal {
                         <div class="form-group">
                             <label for="inputWohnungsnummer">Wohnungsnummer</label>
                             <select class="form-control" name="inputWohnungsnummer">
-                            <option>Wohnungsnummer</option>
+                            <option value="">Wohnungsnummer</option>
                                 '.$text.'
                             </select>
                           </div>
