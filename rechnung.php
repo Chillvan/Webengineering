@@ -54,14 +54,14 @@ if(!isset($_SESSION['user'])){
                             "</td><td>".$row['Betrag']."</td><td>".$row['DDatum']."</td><td>".$row['Bezahlt'].
                             "</td><td><a data-target='#rechnungEdit".$row['Rechnungsnummer']."' role='button' class='btn btn-default btn-xs' value=".$row['Rechnungsnummer']." data-toggle='modal'>edit</a>".
                             "</td><td><a data-target='#rechnungDelete".$row['Rechnungsnummer']."' role='button' class='btn btn-default btn-xs' value=".$row['Rechnungsnummer']." data-toggle='modal'>delete</a>");
-                    modal::rechnungEditModal($row['Rechnungsnummer'], $row['Wohnungsnummer'], $row['Betrag'], $row['Kommentar']);
+                    modal::rechnungEditModal($dbh, $row['Rechnungsnummer'], $row['Betrag'], $row['Kommentar']);
                     modal::rechnungDeleteModal($row['Rechnungsnummer'], $row['Name'], $row['Vorname'], $row['Rechnungstyp'], $row['Betrag']);
                 }
 
-                        echo "</table>";
+                echo "</table>";
                         
-                        unset($dbh);
-                        ?>
+                unset($dbh);
+                ?>
                 </div>
         
         

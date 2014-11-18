@@ -1,6 +1,17 @@
 <?php
 
 class modal {
+    
+    #################### Dropdown Punkte aus Datenbank ####################
+    public static function dropdowntext($array){
+        
+        $text = "";
+        foreach($array as $i){        
+        $text = $text.'<option value="'.$i.'">'.$i.'</option>';
+        }
+        unset($i);
+        return $text;
+    }
 
     #################### Passwort ändern Modal ####################
     public static function passwordChangeModal(){
@@ -50,11 +61,7 @@ class modal {
         
         $belegt = dbfunctions::belegtewohnungen($dbh);
         $frei = dbfunctions::freiewohnungen($belegt);
-        
-        foreach($frei as $i){
-        $text = $text.'<option value="'.$i.'">'.$i.'</option>';
-        }
-        unset($i);
+        $text = modal::dropdowntext($frei);
         
         echo '
             <div id="neuerMieter" class="modal fade" aria-hidden="true">
@@ -117,7 +124,13 @@ class modal {
     }
     
     #################### Mieter editieren Modal ####################
-    public static function mieterEditModal($mnr, $wnr, $name, $vname, $zins, $str, $plz, $ort){
+    public static function mieterEditModal($dbh, $mnr, $name, $vname, $zins, $str, $plz, $ort){
+        
+        include_once 'dbfunctions.php';
+        
+        $belegt = dbfunctions::belegtewohnungen($dbh);
+        $frei = dbfunctions::freiewohnungen($belegt);
+        $text = modal::dropdowntext($frei);
             
         echo '
             <div id="mieterEdit'.$mnr.'" class="modal fade" aria-hidden="true">
@@ -130,8 +143,11 @@ class modal {
                   </div>
                   <div class="modal-body">
                           <div class="form-group">
-                              <label for="inputWohnungsnummer">Wohnungsnummer</label>
-                              <input type="number" class="form-control" name="inputWohnungsnummer" placeholder="'.$wnr.'">
+                            <label for="inputWohnungsnummer">Wohnungsnummer</label>
+                            <select class="form-control" name="inputWohnungsnummer">
+                            <option>Wohnungsnummer</option>
+                                '.$text.'
+                            </select>
                           </div>
                           <div class="form-group">
                               <label for="inputName">Name</label>
@@ -184,11 +200,7 @@ class modal {
         $nextnr = $stmt->fetchColumn() +1;
         
         $belegt = dbfunctions::belegtewohnungen($dbh);
-        
-        foreach($belegt as $i){
-        
-        $text = $text.'<option value="'.$i.'">'.$i.'</option>';
-        }
+        $text = modal::dropdowntext($belegt);
         
         echo '
             <div id="neueRechnung" class="modal fade" aria-hidden="true">
@@ -255,7 +267,12 @@ class modal {
     }
     
     #################### Rechnung editieren Modal ####################
-    public static function rechnungEditModal($rnr, $wnr, $betrag, $komm){
+    public static function rechnungEditModal($dbh, $rnr, $betrag, $komm){
+        
+        include_once 'dbfunctions.php';
+        
+        $belegt = dbfunctions::belegtewohnungen($dbh);
+        $text = modal::dropdowntext($belegt);
         
         echo '
             <div id="rechnungEdit'.$rnr.'" class="modal fade" aria-hidden="true">
@@ -269,7 +286,10 @@ class modal {
                 <div class="modal-body">
                         <div class="form-group">
                             <label for="inputWohnungsnummer">Wohnungsnummer</label>
-                            <input type="number" class="form-control" name="inputWohnungsnummer" placeholder="'.$wnr.'">
+                            <select class="form-control" name="inputWohnungsnummer">
+                            <option>Wohnungsnummer</option>
+                                '.$text.'
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="rechnung">Rechnungstyp</label>

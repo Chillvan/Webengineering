@@ -36,6 +36,8 @@ include_once 'configPDO.php';
 if(dbfunctions::pwcheck($dbh, $_SESSION['user'], $_POST['altesPw'], $_POST['neuesPw'], $_POST['erneutPw'])){
     dbfunctions::pwchange($dbh, $_SESSION['user'], $_POST['neuesPw']);
     
+    unset($dbh);
+    
     echo 'Das Passwort wurde erfolgreich geändert.';
 }
 else{
