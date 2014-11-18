@@ -14,7 +14,7 @@
             <div id="login" class="modal fade" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form class="form" action="#" method="post">
+                        <form class="form" action="login.php" method="post">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                             <h4 class="modal-title">Login</h4>
@@ -26,12 +26,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputPassword">Password</label>
-                                <input type="text" class="form-control" name="inputPassword" placeholder="Password">
+                                <input type="password" class="form-control" name="inputPassword" placeholder="Password">
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-danger" type="reset">Reset</button>
-                            <button type="submit" value="send" name="eintragssubmit" class="btn btn-primary">Login</button>
+                            <button type="submit" value="send" name="loginsubmit" class="btn btn-primary">Login</button>
                         </div>
                         </form>
                     </div><!-- /.modal-content -->

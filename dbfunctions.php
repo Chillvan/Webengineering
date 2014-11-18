@@ -2,6 +2,18 @@
 
 class dbfunctions {
     
+    public static function loginauth($dbh, $user, $pw){
+        $loginquery = ($dbh->query("SELECT * FROM Login"));
+        $logindata = $loginquery->fetchAll();
+        
+        if($logindata[0][0] == $user && $logindata[0][1] == $pw){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
     public static function mietereintrag($dbh, $wnr, $name, $vname, $zins, $str, $plz, $ort, $aktiv){
         
         if ($aktiv == null){
@@ -142,10 +154,6 @@ class dbfunctions {
         else if($updatequery !== ""){
             $updatequery = $updatequery.", Bezahlt= ".$bez;
         }
-        
-        print_r($datum);
-        echo '<br/>';
-        print_r($updatequery);
         
         $stmt = $dbh->prepare("UPDATE Rechnungen SET ".$updatequery." WHERE Rechnungsnummer=".$rnr);
         $stmt->execute();
