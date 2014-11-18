@@ -26,7 +26,7 @@
             </div>
         
             <!-- ################### Main Content ###################-->
-            <!--<div id="content">-->  
+            <div id="content">  
                 
                 <!-- #################### Rechnungen von Database #################### -->
                 <div id="dbtable">
@@ -59,7 +59,6 @@
         
                 <!-- #################### Button Neue Rechnung #################### -->
                 <div id="btnerfassen">
-                    <div class="row">
                         <div class="col-md-5">
                              <!--emtpy--> 
                         </div>
@@ -71,9 +70,8 @@
                         <div class="col-md-5">
                              <!--emtpy--> 
                         </div>
-                    </div>
                 </div>
-            <!--</div>-->
+            </div>
         
         
             <!-- #################### Footer #################### -->

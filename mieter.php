@@ -58,7 +58,6 @@
         
                 <!-- #################### Button Neuer Mieter #################### -->
                 <div id="btnerfassen">
-                    <div class="row">
                         <div class="col-md-5">
                              <!--emtpy--> 
                         </div>
@@ -70,7 +69,6 @@
                         <div class="col-md-5">
                              <!--emtpy--> 
                         </div>
-                    </div>
                 </div>
             </div>
 
