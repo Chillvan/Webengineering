@@ -266,7 +266,7 @@ class modal {
                 <form class="form" action="rechnungDelete.php" method="post">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Mieter löschen</h4>
+                    <h4 class="modal-title">Rechnung löschen</h4>
                   </div>
                   <div class="modal-body">
                          <div class="form-group">
@@ -274,10 +274,33 @@ class modal {
                           </div>
  
                   <div class="modal-footer">
-                    <button class="btn btn-danger" type="reset">Reset</button>
-                    <button type="submit" value="'.$rnr.'" name="rechnungdelete" class="btn btn-primary">Submit</button>
+                    <button type="submit" value="'.$rnr.'" name="rechnungdelete" class="btn btn-primary">Ok</button>
                   </div>
                   </form>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            ';
+    }
+    
+    #################### PDF ausdrucken ####################
+    public static function pdfDrucken() {
+        echo '
+            <div id="pdfDrucken" class="modal fade" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                <form class="form" action="pdfDrucken.php" method="post">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Gesamtabrechnung als PDF drucken</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>Sind Sie sicher, dass Sie die Gesamtabrechnung als PDF drucken wollen?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Nein</button>
+                    <button type="button" class="btn btn-primary">Ja</button>
+                  </div>
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->

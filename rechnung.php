@@ -10,7 +10,7 @@
     <body>
         <div id="wrapper">
    
-            <!-- #################### Modalformular einfügen #################### -->
+            <!--#################### Modalformular einfügen #################### -->
             <?php
             include_once 'modal.php';
             include_once 'configPDO.php';

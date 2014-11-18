@@ -10,6 +10,12 @@
     <body>
         
         <div id="wrapper">
+            
+            <!--#################### fpdf einfügen #################### -->
+            <?php
+            include('/fpdf17/fpdf.php');
+            define('FPDF_FONTPATH','/fpdf17/font/');
+            ?>
 
             <!-- #################### Navbar #################### -->
             <div id="header">                                
@@ -58,7 +64,7 @@
                         </div>
                         <div class="col-md-5">
                             <p>
-                                <a data-target="#neuerMieter" role="button" class="btn btn-default btn-lg" data-toggle="modal">Abrechnungs als PDF ausdrucken</a>
+                                <a data-target="#pdfDrucken" role="button" class="btn btn-default btn-lg" data-toggle="modal">Abrechnungs als PDF ausdrucken</a>
                             </p>
                         </div>
                         <div class="col-md-5">
