@@ -63,6 +63,8 @@ class modal {
         $frei = dbfunctions::freiewohnungen($belegt);
         $text = modal::dropdowntext($frei);
         
+        unset($dbh);
+        
         echo '
             <div id="neuerMieter" class="modal fade" aria-hidden="true">
               <div class="modal-dialog">
@@ -131,6 +133,8 @@ class modal {
         $belegt = dbfunctions::belegtewohnungen($dbh);
         $frei = dbfunctions::freiewohnungen($belegt);
         $text = modal::dropdowntext($frei);
+        
+        unset($dbh);
             
         echo '
             <div id="mieterEdit'.$mnr.'" class="modal fade" aria-hidden="true">
@@ -201,6 +205,8 @@ class modal {
         
         $belegt = dbfunctions::belegtewohnungen($dbh);
         $text = modal::dropdowntext($belegt);
+        
+        unset($dbh);
         
         echo '
             <div id="neueRechnung" class="modal fade" aria-hidden="true">
@@ -273,6 +279,8 @@ class modal {
         
         $belegt = dbfunctions::belegtewohnungen($dbh);
         $text = modal::dropdowntext($belegt);
+        
+        unset($dbh);
         
         echo '
             <div id="rechnungEdit'.$rnr.'" class="modal fade" aria-hidden="true">

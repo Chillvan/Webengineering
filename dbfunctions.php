@@ -11,6 +11,7 @@ class dbfunctions {
         if($logindata[0][0] == $user && $logindata[0][1] == $pw){
             return true;
         }
+        unset($dbh);
     }
     
     #################### Passwort mit altem und wiederholtem PW vergleichen ####################
@@ -21,6 +22,7 @@ class dbfunctions {
         if($pwdb == $alt && $neu == $erneut && $neu !=""){
             return true;
         }
+        unset($dbh);
     }
     
     #################### Änderung des Passwortes in der DB vornehmen ####################
@@ -30,6 +32,7 @@ class dbfunctions {
         $stmt->execute();
         $affected_rows = $stmt->rowCount();
         
+        unset($dbh);
     }
     
     #################### Prüfen welche Wohnungen belegt sind ####################
@@ -42,6 +45,7 @@ class dbfunctions {
         for($i = 0;$i <= $laenge; $i++){
             $belegteWohnungen[$i] = $queryresult[$i][0];
         }
+        unset($dbh);
         
         return $belegteWohnungen;
     }    
@@ -70,6 +74,7 @@ class dbfunctions {
             ':field6' => $plz, ':field7' => $ort, ':field8' => $aktiv));
         $affected_rows = $stmt->rowCount();
         
+        unset($dbh);
     }
     
     #################### Bestehenden Mieter in Datenbank ändern ####################
@@ -130,6 +135,7 @@ class dbfunctions {
         $stmt->execute();
         $affected_rows = $stmt->rowCount();
         
+        unset($dbh);
     }
     
     #################### Neue Rechnung in DB erfassen ####################
@@ -150,6 +156,7 @@ class dbfunctions {
             ':field5' => $komm, ':field6' => $bez));
         $affected_rows = $stmt->rowCount();
         
+        unset($dbh);
     }
     
     #################### Bestehende Rechnung in DB verändern ####################
@@ -198,6 +205,7 @@ class dbfunctions {
         $stmt->execute();
         $affected_rows = $stmt->rowCount();
         
+        unset($dbh);
     }
     
     #################### Rechnung aus Datenbank löschen ####################
@@ -207,6 +215,7 @@ class dbfunctions {
         $stmt->execute();
         $affected_rows = $stmt->rowCount();
         
+        unset($dbh);
     }
     
 }
