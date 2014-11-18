@@ -66,11 +66,11 @@ if(!isset($_SESSION['user'])){
         
         
                 <!-- #################### Button Neue Rechnung #################### -->
-                <div id="btn" class="container">
+                <div class="container">
                     <div class="col-md-4"></div>
                     <div class="col-md-4">
                         <p>
-                            <a data-target="#neueRechnung" role="button" class="btn btn-default btn-lg" data-toggle="modal">Neue Rechnung erfassen</a>
+                            <a id="btn" data-target="#neueRechnung" role="button" class="btn btn-default btn-lg" data-toggle="modal">Neue Rechnung erfassen</a>
                         </p>
                     </div>
                     <div class="col-md-4"></div>

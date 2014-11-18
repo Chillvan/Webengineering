@@ -136,6 +136,8 @@ html, body {
 
 #btn {
     padding-botton: 111px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .table-striped > tbody > tr:nth-child(odd) > td,
