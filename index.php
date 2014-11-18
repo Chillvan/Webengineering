@@ -1,3 +1,8 @@
+<?php
+session_start();
+session_regenerate_id();
+?>
+
 <html>
     <head>
         <title>Mietverwaltung 12-Familienhaus</title>
@@ -42,7 +47,7 @@
             <div id="header">                                
                 <?php
                 include_once 'navbar.php';
-                navbar::createNavbar();
+                navbar::createNavbar($_SESSION['user']);
                 ?>
             </div>
             
