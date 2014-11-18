@@ -71,7 +71,7 @@ if(!isset($_SESSION['user'])){
                         <p>
                             <a id="btn" data-target="#neuerMieter" role="button" class="btn btn-default btn-lg" data-toggle="modal">Neuer Mieter erfassen</a>
                         </p>
-                        </div>
+                    </div>
                     <div class="col-md-4"></div>
                 </div>
             </div>
