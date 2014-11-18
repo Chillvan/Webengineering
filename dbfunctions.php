@@ -21,7 +21,6 @@ class dbfunctions {
         if($pwdb == $alt && $neu == $erneut && $neu !=""){
             return true;
         }
-        unset($dbh);
     }
     
     #################### Änderung des Passwortes in der DB vornehmen ####################
@@ -70,8 +69,6 @@ class dbfunctions {
             ':field3' => $vname, ':field4' => $zins,':field5' => $str, 
             ':field6' => $plz, ':field7' => $ort, ':field8' => $aktiv));
         $affected_rows = $stmt->rowCount();
-        
-        unset($dbh);
         
     }
     
@@ -133,8 +130,6 @@ class dbfunctions {
         $stmt->execute();
         $affected_rows = $stmt->rowCount();
         
-        unset($dbh);
-        
     }
     
     #################### Neue Rechnung in DB erfassen ####################
@@ -154,8 +149,6 @@ class dbfunctions {
             ':field2' => $rtyp, ':field3' => $betrag, ':field4' => $datum,
             ':field5' => $komm, ':field6' => $bez));
         $affected_rows = $stmt->rowCount();
-        
-        unset($dbh);
         
     }
     
@@ -205,8 +198,6 @@ class dbfunctions {
         $stmt->execute();
         $affected_rows = $stmt->rowCount();
         
-        unset($dbh);
-        
     }
     
     #################### Rechnung aus Datenbank löschen ####################
@@ -215,8 +206,6 @@ class dbfunctions {
         $stmt = $dbh->prepare("DELETE FROM Rechnungen WHERE Rechnungsnummer=".$rnr);
         $stmt->execute();
         $affected_rows = $stmt->rowCount();
-        
-        unset($dbh);
         
     }
     

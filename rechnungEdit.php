@@ -9,6 +9,8 @@ if(isset($_POST['rechnungsedit'])){
     dbfunctions::rechnungsedit($dbh, $_POST['rechnungsedit'], $_POST['inputWohnungsnummer'],
         $_POST['rechnung'], $_POST['inputBetrag'], $_POST['inputDatum'],
         $_POST['inputKommentar'], $_POST['inputBezahlt']);
+    
+    unset($dbh);
 
 header('Location:rechnung.php');
 }

@@ -12,6 +12,8 @@ if(!empty($_POST['inputWohnungsnummer']) && !empty($_POST['inputName'])
             $_POST['inputStrasse'], $_POST['inputPLZ'],
             $_POST['inputOrt'], $_POST['inputAktiv']);
     
+    unset($dbh);
+    
     
     header('Location:mieter.php');
         

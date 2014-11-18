@@ -10,6 +10,8 @@ dbfunctions::mieteredit($dbh, $_POST['mieteredit'], $_POST['inputWohnungsnummer'
         $_POST['inputVorname'],$_POST['inputMietzins'],$_POST['inputStrasse'],$_POST['inputPLZ'],
         $_POST['inputOrt'],$_POST['inputAktiv']);
 
+unset($dbh);
+
 header('Location:mieter.php');
 }
 else{

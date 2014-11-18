@@ -8,6 +8,8 @@ if(isset($_POST['rechnungdelete'])){
 
 dbfunctions::rechnungdelete($dbh, $_POST['rechnungdelete']);
 
+unset($dbh);
+
 header('Location:rechnung.php');
 }
 else{

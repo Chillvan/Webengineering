@@ -10,6 +10,8 @@ if(!empty($_POST['inputWohnungsnummer']) && !empty($_POST['rechnung'])
             $_POST['inputBetrag'], $_POST['inputDatum'],
             $_POST['inputKommentar'],$_POST['inputBezahlt']);
     
+    unset($dbh);
+    
     header('Location:rechnung.php');
         
 }
