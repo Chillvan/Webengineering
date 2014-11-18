@@ -66,18 +66,10 @@ if(!isset($_SESSION['user'])){
             
             
                 <!-- #################### Button pdf ausdrucken #################### -->
-                <div id="btnerfassen">
-                        <div class="col-md-5">
-                             <!--emtpy--> 
-                        </div>
-                        <div class="col-md-5">
-                            <p>
-                                <a data-target="#pdfDrucken" role="button" class="btn btn-default btn-lg" data-toggle="modal">Abrechnungs als PDF ausdrucken</a>
-                            </p>
-                        </div>
-                        <div class="col-md-5">
-                             <!--emtpy--> 
-                        </div>
+                <div id="btn">
+                        <p>
+                            <a data-target="#pdfDrucken" role="button" class="btn btn-default btn-lg" data-toggle="modal">Abrechnungs als PDF ausdrucken</a>
+                        </p>
                 </div>
             </div>            
             

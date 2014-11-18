@@ -134,8 +134,8 @@ html, body {
     padding-top: 0px;
 }
 
-#btnerfassen {
-    padding-botton: 30px;
+#btn {
+    padding-botton: 111px;
 }
 
 .table-striped > tbody > tr:nth-child(odd) > td,

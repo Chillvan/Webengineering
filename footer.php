@@ -25,7 +25,7 @@ class footer {
                             </div>
                             <div class="col-md-7">
                                 <ul class="footer-nav">
-                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="index.php">Home</a></li>
                                     <li><a href="#">Blog</a></li>
                                     <li><a href="#">Kontakt</a></li>
                                     <li><a href="#">Link</a></li>

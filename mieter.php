@@ -65,18 +65,14 @@ if(!isset($_SESSION['user'])){
         
         
                 <!-- #################### Button Neuer Mieter #################### -->
-                <div id="btnerfassen">
-                        <div class="col-md-5">
-                             <!--emtpy--> 
+                <div id="btn" class="container">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <p>
+                            <a data-target="#neuerMieter" role="button" class="btn btn-default btn-lg" data-toggle="modal">Neuer Mieter erfassen</a>
+                        </p>
                         </div>
-                        <div class="col-md-5">
-                            <p>
-                                <a data-target="#neuerMieter" role="button" class="btn btn-default btn-lg" data-toggle="modal">Neuer Mieter erfassen</a>
-                            </p>
-                        </div>
-                        <div class="col-md-5">
-                             <!--emtpy--> 
-                        </div>
+                    <div class="col-md-4"></div>
                 </div>
             </div>
 
