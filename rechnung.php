@@ -45,7 +45,7 @@ if(!isset($_SESSION['user'])){
                 include_once 'configPDO.php';
                 
                 echo "<table class='table table-striped'>";
-                echo "<tr><th data-field='rnr' data-align='left' data-sortable='true'>Rechnungs#</th><th data-field='wnr' data-align='left' data-sortable='true'>Wohnungs#</th><th>Name</th><th>Vorname</th><th>Rechnungstyp</th><th>Kommentar</th><th>Betrag</th><th>Fälligkeitsdatum</th><th>Bezahlt</th><th></th><th></th></tr>";
+                echo "<tr><th>Rechnungs#</th><th>Wohnungs#</th><th>Name</th><th>Vorname</th><th>Rechnungstyp</th><th>Kommentar</th><th>Betrag</th><th>Fälligkeitsdatum</th><th>Bezahlt</th><th></th><th></th></tr>";
                 
                 foreach ($dbh->query("SELECT * , DATE_FORMAT(Datum,'%d.%m.%Y') as DDatum from Rechnungen,Mieterspiegel WHERE Rechnungen.Mieternummer = Mieterspiegel.Mieternummer ORDER BY Rechnungsnummer ASC") as $row) {
 
