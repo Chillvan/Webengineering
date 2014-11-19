@@ -35,7 +35,7 @@ session_regenerate_id();
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-danger" type="reset">Reset</button>
+                            <button class="btn btn-default" type="reset">Cancel</button>
                             <button type="submit" value="send" name="loginsubmit" class="btn btn-primary">Login</button>
                         </div>
                         </form>

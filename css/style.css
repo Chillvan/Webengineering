@@ -117,7 +117,7 @@ img {
 
 #dbtable {
     padding-top: 0px;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
 }
 
 #btn {
@@ -136,4 +136,19 @@ img {
 
 .no-padding{
     padding: 0px;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #71a14b;
+  border-color: #5e863f;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active {
+  color: #fff;
+  background-color: #5e863f;
+  border-color: #537637;
 }

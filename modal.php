@@ -40,7 +40,7 @@ class modal {
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-danger" type="reset">Reset</button>
+                    <button class="btn btn-default" type="reset">Reset</button>
                     <button type="submit" value="pwsubmit" name="pwsubmit" class="btn btn-primary">Submit</button>
                 </div>
                 </form>
@@ -115,7 +115,7 @@ class modal {
                           </div>
                   </div>
                   <div class="modal-footer">
-                    <button class="btn btn-danger" type="reset">Reset</button>
+                    <button class="btn btn-default" type="reset">Reset</button>
                     <button type="submit" value="send" name="eintragsubmit" class="btn btn-primary">Submit</button>
                   </div>
                 </form>
@@ -184,7 +184,7 @@ class modal {
                           </div>
                   </div>
                   <div class="modal-footer">
-                    <button class="btn btn-danger" type="reset">Reset</button>
+                    <button class="btn btn-default" type="reset">Reset</button>
                     <button type="submit" value="'.$mnr.'" name="mieteredit" class="btn btn-primary">Submit</button>
                   </div>
                   </form>
@@ -262,7 +262,7 @@ class modal {
                       </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-danger" type="reset">Reset</button>
+                    <button class="btn btn-default" type="reset">Reset</button>
                     <button type="submit" value="send" name="rechnungsubmit" class="btn btn-primary">Submit</button>
                 </div>
                 </form>
@@ -334,7 +334,7 @@ class modal {
                       </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-danger" type="reset">Reset</button>
+                    <button class="btn btn-default" type="reset">Reset</button>
                     <button type="submit" value="'.$rnr.'" name="rechnungsedit" class="btn btn-primary">Submit</button>
                 </div>
                 </form>
@@ -374,25 +374,30 @@ class modal {
     #################### PDF ausdrucken ####################
     public static function pdfDrucken() {
         echo '
-            <div id="pdfDrucken" class="modal fade" aria-hidden="true">
+            <div class="modal fade" id="pdfDrucken" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
-                <form class="form" action="pdfDrucken.php" method="post">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title">PDF drucken</h4>
                   </div>
                   <div class="modal-body">
-                    <p>Sind Sie sicher, dass Sie die Gesamtabrechnung als PDF drucken wollen?</p>
+                    <p>Sicher, dass Sie die Gesamtabrechnung als PDF drucken wollen?</p>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Nein</button>
-                    <button type="button" class="btn btn-primary" type="submit"> Ja </button>
+                    <button id="nein" type="button" class="btn btn-default" data-dismiss="modal">Nein</button>
+                    <a id="close" class="btn btn-primary" href="pdfDrucken.php" target="_blank">Ja</a>
                   </div>
                 </form>
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
+            
+            <script type="text/javascript">
+                $("#close").click(function() {
+                    $("#pdfDrucken").modal("hide");
+                });
+            </script>
             ';
     }
 }

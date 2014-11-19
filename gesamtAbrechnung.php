@@ -36,11 +36,11 @@ if(!isset($_SESSION['user'])){
             
             <!-- ################### Main Content ###################-->
             <div id="content"> 
+                
                 <!-- #################### Heizkostenrechnungen von Database #################### -->
                 <div id="dbtable">
                     <?php
 
-                    //include_once 'modal.php';
                     include_once 'configPDO.php';
 
                     echo "<table class='table table-striped'>";
@@ -58,7 +58,6 @@ if(!isset($_SESSION['user'])){
                     print_r("<tr><td>"."</td><td>"."</td><td>"."</td><td>"."</td><td>"."</td><td>".$gesamt."</tr>");
 
                     echo "</table>";
-                    echo "</div>";
 
                     unset($dbh);
                     ?>
@@ -66,7 +65,7 @@ if(!isset($_SESSION['user'])){
             
             
                 <!-- #################### Button pdf ausdrucken #################### -->
-                <div id="btn">
+                <div class="container">
                     <div class="col-md-4"></div>
                     <div class="col-md-4">
                         <p>
