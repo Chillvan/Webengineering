@@ -11,8 +11,9 @@ if(!isset($_SESSION['user'])){
         <title>Mieterspiegel</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-table.min.css">
+        <link rel="stylesheet" href="css/style.css">
         <link rel="icon" href="css/images/favicon.ico" type="image/x-icon" />
     </head>
     <body>
@@ -43,8 +44,8 @@ if(!isset($_SESSION['user'])){
                     include_once 'configPDO.php';
 
                     echo "<table class='table table-striped'>";
-                    echo "<tr><th>Mieter-<br/>nummer</th><th>Wohnungs-<br/>nummer</th><th>Name</th><th>Vorname</th><th>Strasse</th><th>PLZ</th><th>Ort</th><th>Mietzins</th><th>Aktiv</th><th></th></tr>";
-
+                    echo "<tr><th>Mieter-Nr.</th><th>Wohnungs-Nr.</th><th>Name</th><th>Vorname</th><th>Strasse</th><th>PLZ</th><th>Ort</th><th>Mietzins</th><th>Aktiv</th><th></th></tr>";
+                    
                     foreach ($dbh->query('SELECT * from Mieterspiegel WHERE Aktiv=1 ORDER BY Mieternummer ASC') as $row) {                    
 
                         print_r("<tr><td>".$row['Mieternummer']."</td><td>".$row['Wohnungsnummer'].
@@ -56,7 +57,7 @@ if(!isset($_SESSION['user'])){
                         modal::mieterEditModal($dbh, $row['Mieternummer'], $row['Name'], 
                                 $row['Vorname'], $row['Mietzins'], $row['Strasse'], $row['PLZ'], $row['Ort']);
                     }    
-
+                    
                     echo "</table>";
 
                     unset($dbh);
@@ -89,5 +90,6 @@ if(!isset($_SESSION['user'])){
         
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap-table.min.js"></script>
     </body>
 </html>

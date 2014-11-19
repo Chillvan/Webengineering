@@ -11,8 +11,9 @@ if(!isset($_SESSION['user'])){
         <title>Rechnungen</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-table.min.css">
+        <link rel="stylesheet" href="css/style.css">
         <link rel="icon" href="css/images/favicon.ico" type="image/x-icon" />
     </head>
     <body>
@@ -44,8 +45,8 @@ if(!isset($_SESSION['user'])){
                 include_once 'configPDO.php';
                 
                 echo "<table class='table table-striped'>";
-                echo "<tr><th>Rechnungs-<br/>nummer</th><th>Wohnungs-<br/>nummer</th><th>Name</th><th>Vorname</th><th>Rechnungstyp</th><th>Kommentar</th><th>Betrag</th><th>Fälligkeits-<br/>datum</th><th>Bezahlt</th><th></th><th></th></tr>";
-
+                echo "<tr><th data-field='rnr' data-align='left' data-sortable='true'>Rechnungs#</th><th data-field='wnr' data-align='left' data-sortable='true'>Wohnungs#</th><th>Name</th><th>Vorname</th><th>Rechnungstyp</th><th>Kommentar</th><th>Betrag</th><th>Fälligkeitsdatum</th><th>Bezahlt</th><th></th><th></th></tr>";
+                
                 foreach ($dbh->query("SELECT * , DATE_FORMAT(Datum,'%d.%m.%Y') as DDatum from Rechnungen,Mieterspiegel WHERE Rechnungen.Mieternummer = Mieterspiegel.Mieternummer ORDER BY Rechnungsnummer ASC") as $row) {
 
                     print_r("<tr><td>".$row['Rechnungsnummer']."</td><td>".$row['Wohnungsnummer'].
@@ -90,5 +91,6 @@ if(!isset($_SESSION['user'])){
         
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap-table.min.js"></script>
     </body>
 </html>
