@@ -26,9 +26,9 @@ class footer {
                             <div class="col-md-7">
                                 <ul class="footer-nav">
                                     <li><a href="index.php">Home</a></li>
-                                    <li><a href="#">Blog</a></li>
                                     <li><a href="#">Kontakt</a></li>
-                                    <li><a href="#">Link</a></li>
+                                    <li><a href="#">Offene Stellen</a></li>
+                                    <li><a href="#">Links</a></li>
                                 </ul>
                             </div>
                         </div>

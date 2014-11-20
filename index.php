@@ -12,9 +12,7 @@ session_regenerate_id();
         <link rel="stylesheet" href="css/style.css">
         <link rel="icon" href="css/images/favicon.ico" type="image/x-icon" />
     </head>
-    <body>
-        <div id="wrapper">
-        
+    <body>        
             <!-- ################### Modal für Login ################### -->
             <div id="login" class="modal fade" aria-hidden="true">
                 <div class="modal-dialog">
@@ -67,7 +65,6 @@ session_regenerate_id();
                 footer::createFooter();
                 ?>
             </div>
-        </div>
         
                          
         <script src="js/jquery.js"></script>
