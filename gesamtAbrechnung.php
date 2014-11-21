@@ -55,7 +55,7 @@ if(!isset($_SESSION['user'])){
                         
                     $sth = ($dbh->query('SELECT SUM(Betrag) FROM Rechnungen'));
                     $gesamt = $sth->fetchColumn();
-                    print_r("<tr><td>"."</td><td>"."</td><td>"."</td><td>"."</td><td>"."</td><td>".$gesamt."</tr>");
+                    print_r("<tr><td></td><td></td><td></td><td></td><td></td><td>".$gesamt."</td></tr>");
 
                     echo "</table>";
 
