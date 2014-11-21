@@ -55,7 +55,7 @@ if(!isset($_SESSION['user'])){
                         
                     $sth = ($dbh->query('SELECT SUM(Mietzins) FROM Miete'));
                     $gesamt = $sth->fetchColumn();
-                    print_r("<tr><td></td><td></td><td></td><td></td><td></td><td>".$gesamt."</td></tr>");
+                    print_r("<tr><td><b>Total</b></td><td></td><td></td><td></td><td></td><td>".$gesamt."</td></tr>");
 
                     echo "</table>";
 

@@ -44,7 +44,7 @@ if(!isset($_SESSION['user'])){
                     include_once 'configPDO.php';
 
                     echo "<table class='table table-striped'>";
-                    echo "<tr><th>Rechnungsnummer</th><th>Rechnungstyp</th><th>Wohnungsnummer</th><th>Name</th><th>Vorname</th><th>Betrag</th></tr>";
+                    echo "<tr><th>Rechnungs-Nr.</th><th>Rechnungstyp</th><th>Wohnungs-Nr.</th><th>Name</th><th>Vorname</th><th>Betrag</th></tr>";
 
                     foreach ($dbh->query('SELECT * FROM Rechnungen, Mieterspiegel WHERE Mieterspiegel.Mieternummer=Rechnungen.Mieternummer ORDER BY Rechnungsnummer ASC') as $row) {                    
 
