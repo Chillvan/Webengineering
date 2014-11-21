@@ -44,10 +44,17 @@ if(!isset($_SESSION['user'])){
                 include_once 'modal.php';
                 include_once 'configPDO.php';
                 
-                echo "<table class='table table-striped'>";
-                echo "<tr><th>Rechnungs-Nr.</th><th>Wohnungs-Nr.</th><th>Name</th><th>Vorname</th><th>Rechnungstyp</th><th>Kommentar</th><th>Betrag</th><th>Fälligkeitsdatum</th><th>Bezahlt</th><th></th><th></th></tr>";
+                $anzeige = $_POST['anzeige'];
+                    if($anzeige === null){
+                        $anzeige = "";
+                    }
                 
-                foreach ($dbh->query("SELECT * , DATE_FORMAT(Datum,'%d.%m.%Y') as DDatum from Rechnungen,Mieterspiegel WHERE Rechnungen.Mieternummer = Mieterspiegel.Mieternummer ORDER BY Rechnungsnummer ASC") as $row) {
+                echo "<table class='table table-striped'>";
+                echo "<tr><th>Rechnungs-Nr.</th><th>Wohnungs-Nr.</th><th>Name</th><th>Vorname</th><th>Rechnungstyp</th>"
+                . "<th>Kommentar</th><th>Betrag</th><th>Fälligkeitsdatum</th><th>Bezahlt</th><th></th><th></th></tr>";
+                
+                foreach ($dbh->query("SELECT * , DATE_FORMAT(Datum,'%d.%m.%Y') as DDatum from Rechnungen,Mieterspiegel "
+                        . "WHERE Rechnungen.Mieternummer = Mieterspiegel.Mieternummer ".$anzeige."ORDER BY Rechnungsnummer ASC") as $row) {
 
                     print_r("<tr><td>".$row['Rechnungsnummer']."</td><td>".$row['Wohnungsnummer'].
                             "</td><td>".$row['Name']."</td><td>".$row['Vorname'].
@@ -76,6 +83,22 @@ if(!isset($_SESSION['user'])){
                     </div>
                     <div class="col-md-4"></div>
                 </div>
+                
+            <!-- #################### Anzeigeoptionen anzeigen #################### -->
+            <?php
+            echo '
+                <form class="form" action="rechnung.php" method="post">
+                    <label for="anzeige">Anzeigeoptionen</label>
+                        <select class="form-control" name="anzeige">
+                            <option value="">Alle Rechnungen anzeigen</option>
+                            <option value="AND Bezahlt=1 ">Nur bezahlte Rechnungen anzeigen</option>
+                            <option value="AND Bezahlt=0 ">Nur unbezahlte Rechnungen anzeigen</option>
+                        </select>
+                    <button type="submit" name="rechnungAnzeigen" class="btn btn-primary">Submit</button>
+                </form>
+                ';
+            
+            ?>
             </div>
         
         
