@@ -69,7 +69,7 @@ if(!isset($_SESSION['user'])){
                     <div class="col-md-4"></div>
                     <div class="col-md-4">
                         <p>
-                            <a id="btn" data-target="#pdfDrucken" role="button" class="btn btn-default btn-lg" data-toggle="modal">Abrechnungs als PDF ausdrucken</a>
+                            <a id="btn" data-target="#pdfDrucken" role="button" class="btn btn-default btn-lg" data-toggle="modal">Übersicht Miete als PDF ausdrucken</a>
                         </p>
                     </div>
                     <div class="col-md-4"></div>

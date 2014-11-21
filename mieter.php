@@ -42,11 +42,16 @@ if(!isset($_SESSION['user'])){
 
                     include_once 'modal.php';
                     include_once 'configPDO.php';
+                    
+                    $anzeigen = $_POST['nurAktiveAnzeigen'];
+                    if($anzeigen === null){
+                        $anzeigen = "WHERE Aktiv=1 ";
+                    }
 
                     echo "<table class='table table-striped'>";
                     echo "<tr><th>Mieter-Nr.</th><th>Wohnungs-Nr.</th><th>Name</th><th>Vorname</th><th>Strasse</th><th>PLZ</th><th>Ort</th><th>Mietzins</th><th>Aktiv</th><th></th></tr>";
                     
-                    foreach ($dbh->query('SELECT * from Mieterspiegel WHERE Aktiv=1 ORDER BY Mieternummer ASC') as $row) {                    
+                    foreach ($dbh->query('SELECT * from Mieterspiegel '.$anzeigen.'ORDER BY Mieternummer ASC') as $row) {                    
 
                         print_r("<tr><td>".$row['Mieternummer']."</td><td>".$row['Wohnungsnummer'].
                             "</td><td>".$row['Name']."</td><td>".$row['Vorname'].
@@ -75,8 +80,25 @@ if(!isset($_SESSION['user'])){
                     </div>
                     <div class="col-md-4"></div>
                 </div>
+            
+            <!-- #################### Inaktive Mieter anzeigen #################### -->
+            <?php
+            if($anzeigen != ""){
+                echo '
+                <form action="mieter.php" method="post">
+                    <button type="submit" value="" name="nurAktiveAnzeigen" class="btn btn-primary">Inaktive Mieter anzeigen</button>
+                </form>
+                ';
+            }
+            else{
+                echo '
+                <form action="mieter.php" method="post">
+                    <button type="submit" value="WHERE Aktiv=1 " name="nurAktiveAnzeigen" class="btn btn-primary">Inaktive Mieter ausblenden</button>
+                </form>
+                ';
+            }
+            ?>
             </div>
-
         
             <!-- #################### Footer #################### -->
             <div id="footer">
