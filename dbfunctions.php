@@ -138,6 +138,19 @@ class dbfunctions {
         unset($dbh);
     }
     
+    #################### Neuer Mieteingang in DB eintragen ####################
+    public static function mieteerfassen($dbh, $mnr, $wnr, $zins, $monat, $jahr){
+        
+        $stmt = $dbh->prepare("INSERT INTO Miete(Mieternummer,Wohnungsnummer,"
+            . "Mietzins,Monat,Jahr)"
+            . " VALUES(:field1,:field2,:field3,:field4,:field5)");
+        $stmt->execute(array(':field1' => $mnr, ':field2' => $wnr, 
+            ':field3' => $zins, ':field4' => $monat,':field5' => $jahr));
+        $affected_rows = $stmt->rowCount();
+        
+        unset($dbh);
+    }
+    
     #################### Neue Rechnung in DB erfassen ####################
     public static function rechnungseintrag($dbh, $wnr, $rtyp, $betrag, $datum, $komm, $bez){
         

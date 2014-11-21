@@ -28,6 +28,13 @@ class navbar {
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="index.php">Home</a></li>
                                 <li><a href="mieter.php">Mieter</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Miete<span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="miete.php">Mieteingang erfassen</a></li>
+                                        <li><a href="mieteUebersicht.php">Mieteingänge anzeigen</a></li>
+                                    </ul>
+                                </li>
                                 <li><a href="rechnung.php">Rechnungen</a></li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Abrechnungen <span class="caret"></span></a>

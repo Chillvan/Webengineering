@@ -194,6 +194,56 @@ class modal {
             ';
     }
             
+    #################### Miete bezahlen Modal ####################
+    public static function mieteBezahltModal($mnr, $wnr, $name, $vname, $zins){
+        
+        $monatsarray = array('Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember');
+        $jahrarray = array(date("Y")-1,date("Y"),date("Y")+1);
+        $monat = modal::dropdowntext($monatsarray);
+        $jahr = modal::dropdowntext($jahrarray);
+        
+        echo '
+            <div id="mieteBezahlt'.$mnr.'" class="modal fade" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                <form class="form" action="mieteErfassen.php" method="post">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Mieteingang</h4>
+                  </div>
+                  <div class="modal-body">
+                          <div class="form-group">
+                            <label>'.$name.' '.$vname.'<br/>Wohnung Nr. '.$wnr.'<br/>Betrag: '.$zins.'</label>
+                          </div>
+                          <div class="form-group">
+                            <label for="inputMonat">Monat</label>
+                            <select class="form-control" name="inputMonat">
+                            <option value="">Monat</option>
+                            '.$monat.'
+                            </select>
+                          </div>
+                          <div class="form-group">
+                            <label for="inputJahr">Jahr</label>
+                            <select class="form-control" name="inputJahr">
+                            <option value="">Jahr</option>
+                            '.$jahr.'
+                            </select>
+                          </div>
+                          <input type="hidden" name="inputWohnungsnummer" value="'.$wnr.'"/>
+                          <input type="hidden" name="inputMietzins" value="'.$zins.'"/>
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-default" type="reset">Reset</button>
+                    <button type="submit" value="'.$mnr.'" name="mietebezahlt" class="btn btn-primary">Submit</button>
+                  </div>
+                  </form>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            ';
+    }
+
+
     #################### Rechnungen Modal Forms ####################    
     #################### Rechnung erstellen Modal ####################
     public static function rechnungErfassenModal($dbh){
