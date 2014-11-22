@@ -66,7 +66,7 @@ if(!isset($_SESSION['user'])){
                         
                     $sth = ($dbh->query('SELECT SUM(Betrag) FROM Rechnungen '.$anzeigesum));
                     $gesamt = $sth->fetchColumn();
-                    print_r("<tr><td><b>Total</b></td><td></td><td></td><td></td><td></td><td>".$gesamt."</td></tr>");
+                    print_r("<tr><td><b>Total</b></td><td></td><td></td><td></td><td></td><td><b>".$gesamt."</b></td></tr>");
 
                     echo "</table>";
 
