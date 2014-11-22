@@ -15,14 +15,11 @@ if(!isset($_SESSION['user'])){
         <link rel="stylesheet" href="css/style.css">
         <link rel="icon" href="css/images/favicon.ico" type="image/x-icon" />
     </head>
-    <body>
-        
-        <div id="wrapper">
-            
+    <body>         
             <!--#################### Modalformular einfügen ####################--> 
             <?php
             include_once 'modal.php';
-            modal::pdfDrucken();
+            modal::pdfPrintMiete();
             ?>
 
             <!-- #################### Navbar #################### -->
@@ -38,7 +35,7 @@ if(!isset($_SESSION['user'])){
             <div id="content"> 
                 
                 <!-- #################### Mieteingänge von Database #################### -->
-                <div id="dbtable">
+                <div id="dbtable" class="tabletiny">
                     <?php
 
                     include_once 'configPDO.php';
@@ -69,7 +66,7 @@ if(!isset($_SESSION['user'])){
                     <div class="col-md-4"></div>
                     <div class="col-md-4">
                         <p>
-                            <a id="btn" data-target="#pdfDrucken" role="button" class="btn btn-default btn-lg" data-toggle="modal">Übersicht Miete als PDF ausdrucken</a>
+                            <a id="btn-wide-full" data-target="#pdfPrintMiete" role="button" class="btn btn-default btn-lg" data-toggle="modal">Übersicht Miete als PDF ausdrucken</a>
                         </p>
                     </div>
                     <div class="col-md-4"></div>
@@ -86,7 +83,6 @@ if(!isset($_SESSION['user'])){
                 footer::createFooter();
                 ?>
             </div>
-        </div>
         
         
         <script src="js/jquery.js"></script>

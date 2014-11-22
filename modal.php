@@ -422,9 +422,9 @@ class modal {
     }
     
     #################### PDF ausdrucken ####################
-    public static function pdfDrucken() {
+    public static function pdfPrintAll() {
         echo '
-            <div class="modal fade" id="pdfDrucken" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+            <div class="modal fade" id="pdfPrintAll" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -436,18 +436,81 @@ class modal {
                   </div>
                   <div class="modal-footer">
                     <button id="nein" type="button" class="btn btn-default" data-dismiss="modal">Nein</button>
-                    <a id="close" class="btn btn-primary" href="pdfDrucken.php" target="_blank">Ja</a>
+                    <a id="close" class="btn btn-primary" href="pdfPrintAll.php" target="_blank">Ja</a>
                   </div>
                 </form>
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
-            
-            <script type="text/javascript">
-                $("#close").click(function() {
-                    $("#pdfDrucken").modal("hide");
-                });
-            </script>
+            ';
+    }
+    
+        public static function pdfPrintBezahlt() {
+        echo '
+            <div class="modal fade" id="pdfPrintBezahlt" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">PDF drucken</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>Sicher, dass Sie die Gesamtabrechnung als PDF drucken wollen?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button id="nein" type="button" class="btn btn-default" data-dismiss="modal">Nein</button>
+                    <a id="close" class="btn btn-primary" href="pdfPrintBezahlt.php" target="_blank">Ja</a>
+                  </div>
+                </form>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            ';
+    }
+    
+        public static function pdfPrintNichtBezahlt() {
+        echo '
+            <div class="modal fade" id="pdfPrintNichtBezahlt" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">PDF drucken</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>Sicher, dass Sie die Gesamtabrechnung als PDF drucken wollen?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button id="nein" type="button" class="btn btn-default" data-dismiss="modal">Nein</button>
+                    <a id="close" class="btn btn-primary" href="pdfPrintNichtBezahlt.php" target="_blank">Ja</a>
+                  </div>
+                </form>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            ';
+    }
+    
+        public static function pdfPrintMiete() {
+        echo '
+            <div class="modal fade" id="pdfPrintMiete" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">PDF drucken</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>Sicher, dass Sie die Übersicht der Miete als PDF drucken wollen?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button id="nein" type="button" class="btn btn-default" data-dismiss="modal">Nein</button>
+                    <a id="close" class="btn btn-primary" href="pdfPrintMiete.php" target="_blank">Ja</a>
+                  </div>
+                </form>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
             ';
     }
 }

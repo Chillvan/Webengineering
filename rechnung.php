@@ -17,8 +17,6 @@ if(!isset($_SESSION['user'])){
         <link rel="icon" href="css/images/favicon.ico" type="image/x-icon" />
     </head>
     <body>
-        <div id="wrapper">
-   
             <!--#################### Modalformular einfügen #################### -->
             <?php
             include_once 'modal.php';
@@ -73,32 +71,31 @@ if(!isset($_SESSION['user'])){
                 </div>
         
         
-                <!-- #################### Button Neue Rechnung #################### -->
+                <!-- #################### Button Neue Rechnung + Anzeigeoption #################### -->
                 <div class="container">
                     <div class="col-md-4"></div>
                     <div class="col-md-4">
                         <p>
-                            <a id="btn" data-target="#neueRechnung" role="button" class="btn btn-default btn-lg" data-toggle="modal">Neue Rechnung erfassen</a>
+                            <!-- #################### Anzeigeoptionen anzeigen #################### -->
+                            <?php
+                            echo '
+                                <form class="form" action="rechnung.php" method="post">
+                                    <label for="anzeige">Anzeigeoptionen</label>
+                                        <select class="form-control" name="anzeige">
+                                            <option value="">Alle Rechnungen anzeigen</option>
+                                            <option value="AND Bezahlt=1 ">Nur bezahlte Rechnungen anzeigen</option>
+                                            <option value="AND Bezahlt=0 ">Nur unbezahlte Rechnungen anzeigen</option>
+                                        </select>
+                                    <button id="btn-width-full" type="submit" name="rechnungAnzeigen" class="btn btn-primary">Submit</button>
+                                    <br/>
+                                </form>
+                                ';
+                            ?>
+                            <a id="btn-width-full" data-target="#neueRechnung" role="button" class="btn btn-default btn-lg" data-toggle="modal">Neue Rechnung erfassen</a>
                         </p>
                     </div>
                     <div class="col-md-4"></div>
                 </div>
-                
-            <!-- #################### Anzeigeoptionen anzeigen #################### -->
-            <?php
-            echo '
-                <form class="form" action="rechnung.php" method="post">
-                    <label for="anzeige">Anzeigeoptionen</label>
-                        <select class="form-control" name="anzeige">
-                            <option value="">Alle Rechnungen anzeigen</option>
-                            <option value="AND Bezahlt=1 ">Nur bezahlte Rechnungen anzeigen</option>
-                            <option value="AND Bezahlt=0 ">Nur unbezahlte Rechnungen anzeigen</option>
-                        </select>
-                    <button type="submit" name="rechnungAnzeigen" class="btn btn-primary">Submit</button>
-                </form>
-                ';
-            
-            ?>
             </div>
         
         
@@ -109,7 +106,6 @@ if(!isset($_SESSION['user'])){
                 footer::createFooter();
                 ?>
             </div>
-        </div>
                     
         
         <script src="js/jquery.js"></script>

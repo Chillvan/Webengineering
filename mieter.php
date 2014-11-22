@@ -17,8 +17,6 @@ if(!isset($_SESSION['user'])){
         <link rel="icon" href="css/images/favicon.ico" type="image/x-icon" />
     </head>
     <body>
-        <div id="wrapper">
-
             <!-- #################### Modalformular einfügen #################### -->
             <?php
             include_once 'modal.php';
@@ -70,34 +68,33 @@ if(!isset($_SESSION['user'])){
                 </div>
         
         
-                <!-- #################### Button Neuer Mieter #################### -->
+                <!-- #################### Button Neuer Mieter + Toggle Aktive/Inaktive Mieter #################### -->
                 <div class="container">
                     <div class="col-md-4"></div>
                     <div class="col-md-4">
                         <p>
-                            <a id="btn" data-target="#neuerMieter" role="button" class="btn btn-default btn-lg" data-toggle="modal">Neuer Mieter erfassen</a>
+                            <!-- #################### Inaktive Mieter anzeigen #################### -->
+                            <?php
+                            if($anzeigen != ""){
+                                echo '
+                                <form action="mieter.php" method="post">
+                                    <button id="btn-width-full" type="submit" value="" name="nurAktiveAnzeigen" class="btn btn-primary">Inaktive Mieter anzeigen</button>
+                                </form>
+                                ';
+                            }
+                            else{
+                                echo '
+                                <form action="mieter.php" method="post">
+                                    <button id="btn-width-full" type="submit" value="WHERE Aktiv=1 " name="nurAktiveAnzeigen" class="btn btn-primary">Inaktive Mieter ausblenden</button>
+                                </form>
+                                ';
+                            }
+                            ?>
+                            <a id="btn-width-full" data-target="#neuerMieter" role="button" class="btn btn-default btn-lg" data-toggle="modal">Neuer Mieter erfassen</a>
                         </p>
                     </div>
                     <div class="col-md-4"></div>
                 </div>
-            
-            <!-- #################### Inaktive Mieter anzeigen #################### -->
-            <?php
-            if($anzeigen != ""){
-                echo '
-                <form action="mieter.php" method="post">
-                    <button type="submit" value="" name="nurAktiveAnzeigen" class="btn btn-primary">Inaktive Mieter anzeigen</button>
-                </form>
-                ';
-            }
-            else{
-                echo '
-                <form action="mieter.php" method="post">
-                    <button type="submit" value="WHERE Aktiv=1 " name="nurAktiveAnzeigen" class="btn btn-primary">Inaktive Mieter ausblenden</button>
-                </form>
-                ';
-            }
-            ?>
             </div>
         
             <!-- #################### Footer #################### -->
@@ -107,7 +104,6 @@ if(!isset($_SESSION['user'])){
                 footer::createFooter();
                 ?>
             </div>
-        </div>
         
         
         <script src="js/jquery.js"></script>

@@ -11,9 +11,9 @@ class PDF extends FPDF {
         // Arial bold 20
         $this->SetFont('Arial','B',30);
         // Move to the right
-        $this->Cell(10);
+        $this->Cell(30);
         // Title
-        $this->Cell(0,20,'Gesamtabrechnung Mehrfamilienhaus',0,0,'C');
+        $this->Cell(0,20,'Nicht bezahlte Rechnungen Mehrfamilienhaus',0,0,'C');
         // Line break
         $this->Ln(20);
     }
@@ -26,7 +26,7 @@ class PDF extends FPDF {
         
         try {
             $dbh = new PDO($host, $user, $pass);
-            $query = $dbh->prepare('SELECT * FROM Rechnungen, Mieterspiegel WHERE Mieterspiegel.Mieternummer=Rechnungen.Mieternummer ORDER BY Rechnungsnummer ASC');
+            $query = $dbh->prepare('SELECT * FROM Rechnungen, Mieterspiegel WHERE Mieterspiegel.Mieternummer=Rechnungen.Mieternummer AND Rechnungen.Bezahlt="0" ORDER BY Rechnungsnummer ASC');
             $query->execute();
             $abrechnung = $query->fetchAll(PDO::FETCH_ASSOC);
             $query = null;
@@ -46,7 +46,7 @@ class PDF extends FPDF {
         
         try {
             $dbh = new PDO($host, $user, $pass);
-            $sth = ($dbh->query('SELECT SUM(Betrag) FROM Rechnungen'));
+            $sth = ($dbh->query('SELECT SUM(Betrag) FROM Rechnungen WHERE Rechnungen.Bezahlt="0"'));
             $gesamt = $sth->fetchColumn();
             $query = null;
             $dbh = null;
@@ -64,7 +64,7 @@ class PDF extends FPDF {
     function createTable($header, $data, $gesamt) {
         
         // Column widths
-        $w = array(60, 50, 60, 30, 40, 35);
+        $w = array(40, 40, 40, 60, 60, 35);
         // Position at 4.5 cm from top
         $this->SetY(45);
         // Header
@@ -111,7 +111,7 @@ class PDF extends FPDF {
 
 // Instanciation of inherited class
 $pdf = new PDF();
-$header = array('Rechnungsnummer', 'Rechnungstyp', 'Wohnungsnummer', 'Name', 'Vorname', 'Betrag');
+$header = array('Rechnungs-Nr.', 'Rechnungstyp', 'Wohnungs-Nr.', 'Name', 'Vorname', 'Betrag');
 $data = $pdf->fetchData();
 $gesamt = $pdf->fetchGesamt();
 $pdf->AliasNbPages();
@@ -121,5 +121,3 @@ $pdf->createTable($header, $data, $gesamt);
 //$pdf->SetFont('Times','',12);
 $pdf->Output();
 ?>
-
-

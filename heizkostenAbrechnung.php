@@ -16,9 +16,6 @@ if(!isset($_SESSION['user'])){
         <link rel="icon" href="css/images/favicon.ico" type="image/x-icon" />
     </head>
     <body>
-        
-        <div id="wrapper">
-
             <!-- #################### Navbar #################### -->
             <div id="header">                                
                 <?php
@@ -31,7 +28,7 @@ if(!isset($_SESSION['user'])){
             <!-- ################### Main Content ###################-->
             <div id="content"> 
                 <!-- #################### Heizkostenrechnungen von Database #################### -->
-                <div id="dbtable">
+                <div class="tablesmall" id="dbtable">
                     <?php
 
                     //include_once 'modal.php';
@@ -49,7 +46,7 @@ if(!isset($_SESSION['user'])){
 
                     $sth = ($dbh->query('SELECT SUM(Betrag) FROM Rechnungen WHERE Rechnungen.Rechnungstyp="Öl"'));
                     $gesamt = $sth->fetchColumn();
-                    print_r("<tr><td></td><td></td><td></td><td></td><td></td><td>".$gesamt."</td></tr>");
+                    print_r("<tr><td><b>Total</b></td><td></td><td></td><td></td><td></td><td>".$gesamt."</td></tr>");
 
 
 
@@ -72,7 +69,6 @@ if(!isset($_SESSION['user'])){
                 footer::createFooter();
                 ?>
             </div>
-        </div>
         
         
         <script src="js/jquery.js"></script>

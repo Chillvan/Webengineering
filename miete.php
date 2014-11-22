@@ -17,8 +17,6 @@ if(!isset($_SESSION['user'])){
         <link rel="icon" href="css/images/favicon.ico" type="image/x-icon" />
     </head>
     <body>
-        <div id="wrapper">
-
             <!-- #################### Navbar #################### -->
             <div id="header">                                
                 <?php
@@ -30,7 +28,7 @@ if(!isset($_SESSION['user'])){
             <!-- ################### Main Content ###################-->
             <div id="content">                
                 <!-- #################### Aktive Mieter von Database #################### -->
-                <div id="dbtable">
+                <div id="dbtable" class="tablesmall">
                     <?php
 
                     include_once 'modal.php';

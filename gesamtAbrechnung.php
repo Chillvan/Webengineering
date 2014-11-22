@@ -16,13 +16,12 @@ if(!isset($_SESSION['user'])){
         <link rel="icon" href="css/images/favicon.ico" type="image/x-icon" />
     </head>
     <body>
-        
-        <div id="wrapper">
-            
             <!--#################### Modalformular einfügen ####################--> 
             <?php
             include_once 'modal.php';
-            modal::pdfDrucken();
+            modal::pdfPrintAll();
+            modal::pdfPrintBezahlt();
+            modal::pdfPrintNichtBezahlt();
             ?>
 
             <!-- #################### Navbar #################### -->
@@ -38,7 +37,7 @@ if(!isset($_SESSION['user'])){
             <div id="content"> 
                 
                 <!-- #################### Heizkostenrechnungen von Database #################### -->
-                <div id="dbtable">
+                <div class="tablesmall" id="dbtable">
                     <?php
 
                     include_once 'configPDO.php';
@@ -67,7 +66,7 @@ if(!isset($_SESSION['user'])){
                         
                     $sth = ($dbh->query('SELECT SUM(Betrag) FROM Rechnungen '.$anzeigesum));
                     $gesamt = $sth->fetchColumn();
-                    print_r("<tr><td></td><td></td><td></td><td></td><td></td><td>".$gesamt."</td></tr>");
+                    print_r("<tr><td><b>Total</b></td><td></td><td></td><td></td><td></td><td>".$gesamt."</td></tr>");
 
                     echo "</table>";
 
@@ -81,27 +80,26 @@ if(!isset($_SESSION['user'])){
                     <div class="col-md-4"></div>
                     <div class="col-md-4">
                         <p>
-                            <a id="btn" data-target="#pdfDrucken" role="button" class="btn btn-default btn-lg" data-toggle="modal">Abrechnung als PDF ausdrucken</a>
+                            <!-- #################### Anzeigeoptionen anzeigen #################### -->
+                            <?php
+                            echo '
+                                <form class="form" action="gesamtAbrechnung.php" method="post">
+                                    <label for="anzeige">Anzeigeoptionen</label>
+                                        <select class="form-control" name="anzeige">
+                                            <option value="">Alle Rechnungen anzeigen</option>
+                                            <option value="Bezahlt=1 ">Nur bezahlte Rechnungen anzeigen</option>
+                                            <option value="Bezahlt=0 ">Nur unbezahlte Rechnungen anzeigen</option>
+                                        </select>
+                                    <button id="btn-width-full" type="submit" name="rechnungAnzeigen" class="btn btn-primary">Submit</button>
+                                </form>
+                                ';
+
+                            ?>
+                            <a id="btn-width-full" data-target="#pdfPrintAll" role="button" class="btn btn-default btn-lg" data-toggle="modal">Abrechnung als PDF ausdrucken</a>
                         </p>
                     </div>
                     <div class="col-md-4"></div>
                 </div>
-                
-            <!-- #################### Anzeigeoptionen anzeigen #################### -->
-            <?php
-            echo '
-                <form class="form" action="gesamtAbrechnung.php" method="post">
-                    <label for="anzeige">Anzeigeoptionen</label>
-                        <select class="form-control" name="anzeige">
-                            <option value="">Alle Rechnungen anzeigen</option>
-                            <option value="Bezahlt=1 ">Nur bezahlte Rechnungen anzeigen</option>
-                            <option value="Bezahlt=0 ">Nur unbezahlte Rechnungen anzeigen</option>
-                        </select>
-                    <button type="submit" name="rechnungAnzeigen" class="btn btn-primary">Submit</button>
-                </form>
-                ';
-            
-            ?>
             </div>            
 
             <!-- #################### Footer #################### -->
@@ -111,7 +109,6 @@ if(!isset($_SESSION['user'])){
                 footer::createFooter();
                 ?>
             </div>
-        </div>
         
         
         <script src="js/jquery.js"></script>
