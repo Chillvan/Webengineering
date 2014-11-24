@@ -90,12 +90,26 @@ if(!isset($_SESSION['user'])){
                                             <option value="Bezahlt=1 ">Nur bezahlte Rechnungen anzeigen</option>
                                             <option value="Bezahlt=0 ">Nur unbezahlte Rechnungen anzeigen</option>
                                         </select>
-                                    <button id="btn-width-full" type="submit" name="rechnungAnzeigen" class="btn btn-primary">Submit</button>
+                                    <button id="btn-width-full" type="submit" name="rechnungAnzeigen" class="btn btn-primary">Absenden</button>
                                 </form>
                                 ';
 
+                            #################### Button pdf ausdrucken ####################
+                            if($anzeige === ""){
+                                $print = '#pdfPrintAll';
+                                $button = 'Gesamtabrechnung als PDF ausdrucken';
+                            }
+                            if($_POST['anzeige'] === "Bezahlt=1 "){
+                                $print = '#pdfPrintBezahlt';
+                                $button = 'Nur bezahlte Rechnungen ausdrucken';
+                            }
+                            if($_POST['anzeige'] === "Bezahlt=0 "){
+                                $print = '#pdfPrintNichtBezahlt';
+                                $button = 'Nur unbezahlte Rechnungen ausdrucken';
+                            }
+                            
+                            echo '<a id="btn-width-full" data-target="'.$print.'" role="button" class="btn btn-default btn-lg" data-toggle="modal">'.$button.'</a>';
                             ?>
-                            <a id="btn-width-full" data-target="#pdfPrintAll" role="button" class="btn btn-default btn-lg" data-toggle="modal">Abrechnung als PDF ausdrucken</a>
                         </p>
                     </div>
                     <div class="col-md-4"></div>

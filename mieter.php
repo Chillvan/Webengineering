@@ -34,13 +34,14 @@ if(!isset($_SESSION['user'])){
         
             <!-- ################### Main Content ###################-->
             <div id="content">                
-                <!-- #################### Mieter von Database #################### -->
+                <!-- #################### Mieter von Database in Tabelle ausgeben #################### -->
                 <div id="dbtable">
                     <?php
 
                     include_once 'modal.php';
                     include_once 'configPDO.php';
                     
+                    ### Logik für anzeigen-Knopf ###
                     $anzeigen = $_POST['nurAktiveAnzeigen'];
                     if($anzeigen === null){
                         $anzeigen = "WHERE Aktiv=1 ";
@@ -51,12 +52,22 @@ if(!isset($_SESSION['user'])){
                     
                     foreach ($dbh->query('SELECT * from Mieterspiegel '.$anzeigen.'ORDER BY Mieternummer ASC') as $row) {                    
 
+                        ### Umwandlung binäre Information zu Text Ja/Nein ###
+                        if($row['Aktiv'] == 1){
+                            $aktiv = 'Ja';
+                        }
+                        else{
+                            $aktiv = 'Nein';
+                        }
+                        
                         print_r("<tr><td>".$row['Mieternummer']."</td><td>".$row['Wohnungsnummer'].
                             "</td><td>".$row['Name']."</td><td>".$row['Vorname'].
                             "</td><td>".$row['Strasse']."</td><td>".$row['PLZ'].
                             "</td><td>".$row['Ort']."</td><td>".$row['Mietzins'].
-                            "</td><td>".$row['Aktiv'].
-                            "</td><td><a data-target='#mieterEdit".$row['Mieternummer']."' role='button' class='btn btn-default btn-xs' data-toggle='modal'>edit</a>");
+                            "</td><td>".$aktiv.
+                            "</td><td><a data-target='#mieterEdit".$row['Mieternummer']."' role='button' class='btn btn-default btn-xs' data-toggle='modal'>ändern</a>");
+                        
+                        ### Laden des Modals ###
                         modal::mieterEditModal($dbh, $row['Mieternummer'], $row['Name'], 
                                 $row['Vorname'], $row['Mietzins'], $row['Strasse'], $row['PLZ'], $row['Ort']);
                     }    
