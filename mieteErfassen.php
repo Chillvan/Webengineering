@@ -13,7 +13,8 @@ if(!empty($_POST['inputMonat']) && !empty($_POST['inputJahr']) && !empty($_POST[
         
 }
 else{
-    echo 'Leider hat es nicht funktioniert. Bitte füllen Sie alle Eingabefelder aus.<br/>'
-    . '<a href="miete.php">Zurück zum Mieteingang erfassen.</a>';
+    echo '<html><meta charset="UTF-8"><title>Fehler</title><body><p>Leider hat es nicht funktioniert. '
+    . 'Bitte füllen Sie alle Eingabefelder aus.<br/>'
+    . '<a href="miete.php">Zurück zum Mieteingang erfassen.</a></body></html>';
 }
 ?>

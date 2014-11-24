@@ -19,6 +19,8 @@ if(!empty($_POST['inputWohnungsnummer']) && !empty($_POST['inputName'])
         
 }
 else{
-    echo 'leider hat es nicht funktioniert. Zurück zum Mieter erfassen.<br/>';
+    echo '<html><meta charset="UTF-8"><title>Fehler</title><body><p>Leider hat es nicht funktioniert. '
+    . 'Bitte füllen Sie alle Eingabefelder aus.<br/>'
+    . '<a href="mieter.php">Zurück zum Mieter erfassen.</a></body></html>';
 }
 ?>
