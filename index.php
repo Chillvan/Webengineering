@@ -12,7 +12,13 @@ session_regenerate_id();
         <link rel="stylesheet" href="css/style.css">
         <link rel="icon" href="css/images/favicon.ico" type="image/x-icon" />
     </head>
-    <body>        
+    <body>       
+        
+        <!-- #################### PW Change Modal #################### -->
+        <?php
+        include_once 'modal.php';
+        modal::passwordChangeModal();
+        ?>
             <!-- ################### Modal für Login ################### -->
             <div id="login" class="modal fade" aria-hidden="true">
                 <div class="modal-dialog">

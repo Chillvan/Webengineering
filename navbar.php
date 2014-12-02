@@ -5,9 +5,6 @@ class navbar {
         
         if($user != null){
             
-            include_once 'modal.php';
-            modal::passwordChangeModal();
-            
             echo '    
             <nav class="navbar navbar-inverse navbar-static-top no-margin" role="navigation">
                     <div class="container-fluid">

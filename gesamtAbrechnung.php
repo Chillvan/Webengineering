@@ -22,6 +22,7 @@ if(!isset($_SESSION['user'])){
             modal::pdfPrintAll();
             modal::pdfPrintBezahlt();
             modal::pdfPrintNichtBezahlt();
+            modal::passwordChangeModal();
             ?>
 
             <!-- #################### Navbar #################### -->

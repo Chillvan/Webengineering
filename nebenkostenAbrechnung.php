@@ -16,6 +16,12 @@ if(!isset($_SESSION['user'])){
         <link rel="icon" href="css/images/favicon.ico" type="image/x-icon" />
     </head>
     <body>
+        
+        <!-- #################### PW Change Modal #################### -->
+        <?php
+        include_once 'modal.php';
+        modal::passwordChangeModal();
+        ?>
             <!-- #################### Navbar #################### -->
             <div id="header">                                
                 <?php

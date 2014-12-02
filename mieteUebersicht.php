@@ -20,6 +20,7 @@ if(!isset($_SESSION['user'])){
             <?php
             include_once 'modal.php';
             modal::pdfPrintMiete();
+            modal::passwordChangeModal();
             ?>
 
             <!-- #################### Navbar #################### -->

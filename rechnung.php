@@ -22,6 +22,7 @@ if(!isset($_SESSION['user'])){
             include_once 'modal.php';
             include_once 'configPDO.php';
             modal::rechnungErfassenModal($dbh);
+            modal::passwordChangeModal();
             ?>
 
             <!-- #################### Navbar #################### -->
