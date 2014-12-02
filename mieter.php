@@ -90,7 +90,7 @@ if(!isset($_SESSION['user'])){
                                 ';
                             }
                             ?>
-                            <a id="btn-width-full" data-target="#neuerMieter" role="button" class="btn btn-default btn-lg" data-toggle="modal">Neuer Mieter erfassen</a>
+                            <a id="btn-width-full" data-target="#neuerMieter" role="button" class="btn btn-default btn-lg" data-toggle="modal">Neuen Mieter erfassen</a>
                         </p>
                     </div>
                     <div class="col-md-4"></div>
